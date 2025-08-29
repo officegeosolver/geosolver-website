@@ -3,78 +3,62 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeoSolver — Coğrafi İnformasiya Sistemləri (GIS) və AI Həllləri</title>
-  <meta name="description" content="GeoSolver: GIS inkişafı, veb və masaüstü xəritə tətbiqləri, GeoServer/ArcGIS idarəçiliyi, AI ilə peyk təsvirlərinin analizi." />
-  <meta property="og:title" content="GeoSolver — GIS & AI Solutions" />
-  <meta property="og:description" content="Web/Mobile GIS, GeoServer & ArcGIS, AI for geospatial analytics." />
-  <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#1f2a44">
+  <title>GeoSolver — GIS & AI</title>
+  <meta name="description" content="Web/Mobile GIS, GeoServer & ArcGIS Enterprise, peyk təsvirlərində kompüter görməsi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     :root{
-      --ink:#0f172a; --muted:#475569; --ring:#7dd3fc;
-      --topbar:#1f2a44; --topbarText:#e6edf7;
-      --brand:#223b77; --accent:#f4bf37;
-      --card:#ffffff; --line:rgba(2,8,23,.08);
+      --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
+      --brand:#1d4ed8; --accent:#f4bf37; --bg:#ffffff;
+      --pill:#eef2ff;
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background:#fff; color:var(--ink);
-    }
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
     a{color:inherit;text-decoration:none}
     .container{max-width:1140px;margin:0 auto;padding:0 20px}
 
-    /* Topbar */
-    .topbar{background:var(--topbar);color:var(--topbarText);font-size:14px}
-    .topbar .wrap{max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-    .topbar .left,.topbar .right{display:flex;gap:18px;align-items:center}
-    .topbar .item{display:flex;align-items:center;gap:8px;opacity:.95}
-    .topbar .item i{font-style:normal;opacity:.85}
-
-    /* Header / navbar */
-    header{position:sticky;top:0;z-index:50;background:#ffffffcc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
+    /* NAVBAR (yuxarıda yalnız logo + menyu + dil) */
+    header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#22c55e);display:grid;place-items:center;color:#001314;font-weight:800}
-    nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
-    nav a{padding:10px 12px;border-radius:8px;color:var(--ink)}
+    nav ul{list-style:none;display:flex;gap:16px;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:10px}
     nav a:hover{background:rgba(2,8,23,.06)}
-    .lang{display:flex;gap:8px}
-    .lang button{background:#fff;border:1px solid var(--line);color:var(--ink);padding:6px 10px;border-radius:10px;cursor:pointer}
-    .lang button.active{border-color:#3b82f6}
+    .lang{display:flex;gap:6px;align-items:center}
+    .lang button{cursor:pointer;background:var(--pill);border:1px solid var(--line);padding:6px 10px;border-radius:999px}
+    .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
+    .lang button:focus{outline:2px solid #93c5fd}
 
-    /* Hero – ağ fon, böyük başlıq */
+    /* HERO */
     .hero{padding:56px 0 40px}
-    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
-    h1{font-size:clamp(30px,6vw,60px);line-height:1.05;margin:12px 0}
-    .lead{font-size:clamp(16px,1.8vw,20px);color:#334155;max-width:70ch}
-    .cta{display:flex;gap:12px;margin-top:18px}
-    .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700}
+    .crumbs{display:flex;gap:8px;align-items:center;color:#64748b;font-size:14px;margin-bottom:10px}
+    .badge{display:inline-flex;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+    h1{font-size:clamp(32px,6vw,56px);line-height:1.08;margin:14px 0}
+    .lead{font-size:18px;color:#334155;max-width:70ch}
+    .cta{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700;cursor:pointer}
     .btn.primary{background:var(--brand);color:#fff;border:none}
     .btn.gold{background:var(--accent);color:#172033;border:none}
     .btn:hover{filter:brightness(1.03)}
 
-    /* Kartlar/şəbəkə – ağ fon üçün yüngül çərçivə */
+    /* SECTIONS */
     section{padding:56px 0}
     .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px;transition:transform .2s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(2,8,23,.06)}
+    .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:18px;transition:transform .2s ease,box-shadow .2s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(2,8,23,.06)}
     .card h3{margin:6px 0 6px;font-size:20px}
     .card p{margin:0;color:#334155}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
     .tag{border:1px dashed var(--line);color:#55657a;padding:4px 8px;border-radius:999px;font-size:12px}
-
-    .projects .item{display:flex;flex-direction:column;gap:10px}
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line)}
-
     .about{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
     .input{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink)}
-    .input:focus{outline:2px solid var(--ring)}
+    .input:focus{outline:2px solid #93c5fd}
     footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
     @media (max-width:980px){
@@ -84,26 +68,12 @@
   </style>
 </head>
 <body>
-  <!-- TOPBAR -->
-  <div class="topbar">
-    <div class="wrap">
-      <div class="left">
-        <span class="item" data-i18n="top_addr"><i>📍</i>1010 Avenue, New York, NY 10018 US.</span>
-        <span class="item" data-i18n="top_phone"><i>☎️</i>212 386 5575, 212 386 5576</span>
-      </div>
-      <div class="right">
-        <span class="item" data-i18n="top_hours"><i>🕒</i>Mon–Sat, 8:00–18:00. Sunday CLOSED</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- NAVBAR -->
+  <!-- NAVBAR (topbar YOXDUR) -->
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
         <div class="logo">GΣ</div><span>GeoSolver</span>
       </a>
-      <!-- KÖHNƏ MENYU MADDƏLƏRİN QALMASI -->
       <nav aria-label="primary">
         <ul>
           <li><a href="#services" data-i18n="nav_services">Xidmətlər</a></li>
@@ -121,8 +91,8 @@
   </header>
 
   <main id="top" class="container">
-    <!-- HERO (AĞ FON) -->
     <section class="hero">
+      <div class="crumbs"><span>GIS</span> • <span>GeoServer</span> • <span>ArcGIS</span> • <span>AI</span></div>
       <span class="badge" data-i18n="badge">GIS • GeoServer • ArcGIS • AI</span>
       <h1 data-i18n="hero_title">GIS və AI ilə məkan məlumatlarını biznes dəyərinə çeviririk</h1>
       <p class="lead" data-i18n="hero_sub">Web/Mobile GIS tətbiqləri, GeoServer və ArcGIS Enterprise idarəçiliyi, peyk təsvirləri üzərində kompüter görməsi və avtomatlaşdırma.</p>
@@ -133,7 +103,7 @@
       </div>
     </section>
 
-    <!-- XİDMƏTLƏR -->
+    <!-- Xidmətlər -->
     <section id="services">
       <div class="section-title">
         <h2 data-i18n="services_title">Xidmətlər</h2>
@@ -173,7 +143,7 @@
       </div>
     </section>
 
-    <!-- TƏLİMLƏR -->
+    <!-- Təlimlər -->
     <section id="training">
       <div class="section-title">
         <h2 data-i18n="training_title">Təlimlər</h2>
@@ -198,7 +168,7 @@
       </div>
     </section>
 
-    <!-- LAYİHƏLƏR -->
+    <!-- Layihələr -->
     <section id="projects" class="projects">
       <div class="section-title">
         <h2 data-i18n="projects_title">Layihələr</h2>
@@ -223,7 +193,7 @@
       </div>
     </section>
 
-    <!-- HAQQIMIZDA -->
+    <!-- Haqqımızda -->
     <section id="about" class="about">
       <div>
         <h2 data-i18n="about_title">GeoSolver haqqında</h2>
@@ -243,7 +213,7 @@
       </aside>
     </section>
 
-    <!-- ƏLAQƏ -->
+    <!-- Əlaqə -->
     <section id="contact" class="contact">
       <div class="section-title">
         <h2 data-i18n="contact_title">Əlaqə</h2>
@@ -280,9 +250,6 @@
   <script>
     const strings = {
       az: {
-        top_addr:"📍 1010 Avenue, New York, NY 10018 US.",
-        top_phone:"☎️ 212 386 5575, 212 386 5576",
-        top_hours:"🕒 B.e.-Şənbə, 8:00–18:00. Bazar BAĞLIDIR",
         nav_services:"Xidmətlər", nav_projects:"Layihələr", nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
         badge:"GIS • GeoServer • ArcGIS • AI",
         hero_title:"GIS və AI ilə məkan məlumatlarını biznes dəyərinə çeviririk",
@@ -298,23 +265,20 @@
         training_title:"Təlimlər", training_cta:"Qeydiyyat üçün yazın",
         tr1_t:"Web GIS & GeoServer Bootcamp", tr1_d:"Leaflet/MapLibre ilə veb xəritə, GeoServer-PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.",
         tr2_t:"ArcGIS Enterprise Admin", tr2_d:"Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.",
-        tr3_t:"CV/AI: Peyk Təsviri Analizi", tr3_d:"Mask R-CNN/YOLO ilə obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
+        tr3_t:"CV/AI: Peyk Təsviri Analizi", tr3_d:"Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
         projects_title:"Layihələr", projects_cta:"Portfel istəyin",
         pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması", pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
         pr2_t:"Şəhər binalarının xəritələnməsi", pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
         pr3_t:"Enterprise GIS arxitekturası", pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
-        about_title:"GeoSolver haqqında", about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə ixtisaslaşmış komandadır.",
-        about_p2:"Missiyamız: təşkilatların məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
+        about_title:"GeoSolver haqqında", about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə komandadır.",
+        about_p2:"Missiyamız: məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
         about_li1:"OGC standartlarına sadiqlik", about_li2:"ArcGIS və Open Source balansı", about_li3:"SLA ilə dəstək və təlim",
         about_side_t:"Sürətli faktlar",
-        contact_title:"Əlaqə", contact_badge:"24-48 saat cavab", send_btn:"Göndər",
+        contact_title:"Əlaqə", contact_badge:"24–48 saat cavab", send_btn:"Göndər",
         contact_card_t:"Bir fincan qəhvə üstündə danışaq ☕", contact_addr_t:"Ünvan:",
         rights:"Bütün hüquqlar qorunur."
       },
       en: {
-        top_addr:"📍 1010 Avenue, New York, NY 10018 US.",
-        top_phone:"☎️ 212 386 5575, 212 386 5576",
-        top_hours:"🕒 Mon–Sat, 8:00–18:00. Sunday CLOSED",
         nav_services:"Services", nav_projects:"Projects", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
         badge:"GIS • GeoServer • ArcGIS • AI",
         hero_title:"We turn geospatial data into business value with GIS & AI",
@@ -324,7 +288,7 @@
         srv1_t:"Web & Mobile GIS", srv1_d:"Map apps with React/Leaflet, MapLibre, ArcGIS API; analytics and real-time layers.",
         srv2_t:"GeoServer & OGC", srv2_d:"GeoServer setup, PostGIS integration, WMS/WFS/WCS, security and caching.",
         srv3_t:"ArcGIS Enterprise", srv3_d:"Portal/Server/Data Store, federation, load balancing, SDE Oracle/PostgreSQL.",
-        srv4_t:"AI & Computer Vision", srv4_d:"Object detection, change detection and super-resolution on satellite/UAV imagery.",
+        srv4_t:"AI & Computer Vision", srv4_d:"Object detection, change detection, and super-resolution on satellite/UAV imagery.",
         srv5_t:"Spatial Analytics", srv5_d:"Routing, density studies, service areas, geocoding and ETL.",
         srv6_t:"DevOps & Cloud", srv6_d:"Docker/K8s, CI/CD, Cloud (Alibaba/AWS), security and monitoring.",
         training_title:"Training", training_cta:"Contact for enrollment",
@@ -335,7 +299,7 @@
         pr1_t:"Crop-field object detection", pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
         pr2_t:"Urban building mapping", pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
         pr3_t:"Enterprise GIS architecture", pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
-        about_title:"About GeoSolver", about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map applications and AI-driven geospatial analytics.",
+        about_title:"About GeoSolver", about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map apps and AI-driven geospatial analytics.",
         about_p2:"Our mission: convert geospatial data into value with robust architecture, open standards and intelligent models.",
         about_li1:"Commitment to OGC standards", about_li2:"Balanced ArcGIS & Open Source", about_li3:"SLA-backed support & training",
         about_side_t:"Quick facts",
@@ -352,18 +316,12 @@
         const key = el.getAttribute('data-i18n');
         if(dict[key]) el.textContent = dict[key];
       });
-      if(lang==='en'){
-        document.title = 'GeoSolver — GIS & AI Solutions';
-        document.querySelector('meta[name="description"]').setAttribute('content','GeoSolver: Web/Mobile GIS, GeoServer & ArcGIS Enterprise, AI on satellite imagery.');
-      } else {
-        document.title = 'GeoSolver — Coğrafi İnformasiya Sistemləri (GIS) və AI Həllləri';
-        document.querySelector('meta[name="description"]').setAttribute('content','GeoSolver: GIS inkişafı, veb və masaüstü xəritə tətbiqləri, GeoServer/ArcGIS idarəçiliyi, AI ilə peyk təsvirlərinin analizi.');
-      }
+      document.title = (lang==='en') ? 'GeoSolver — GIS & AI' : 'GeoSolver — GIS & AI';
       document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-      // Dil düymələri – AZ/EN işləməsi
+      // LANG BUTTONS – tam kliklənən
       document.querySelectorAll('.lang button').forEach(btn=>{
         btn.addEventListener('click', ()=>{
           const lang = btn.dataset.lang;
@@ -372,7 +330,7 @@
         });
       });
 
-      // Contact form via mailto
+      // Contact form (mailto)
       document.getElementById('contactForm').addEventListener('submit', (e)=>{
         e.preventDefault();
         const f = e.target;
@@ -385,7 +343,7 @@
         f.reset();
       });
 
-      // İl və ilkin dil
+      // Year & init language
       document.getElementById('year')?.textContent = new Date().getFullYear();
       setLang(localStorage.getItem('gs_lang') || 'az');
     });
