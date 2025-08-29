@@ -8,95 +8,83 @@
   <meta property="og:title" content="GeoSolver — GIS & AI Solutions" />
   <meta property="og:description" content="Web/Mobile GIS, GeoServer & ArcGIS, AI for geospatial analytics." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#0ea5e9">
+  <meta name="theme-color" content="#1f2a44">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    :root{--bg:#0b1220;--card:#0f172a;--muted:#94a3b8;--text:#e2e8f0;--brand:#22d3ee;--accent:#38bdf8;--geo:#22c55e;--ring:#7dd3fc}
+    :root{
+      --ink:#0f172a; --muted:#475569; --ring:#7dd3fc;
+      --topbar:#1f2a44; --topbarText:#e6edf7;
+      --brand:#223b77; --accent:#f4bf37;
+      --card:#ffffff; --line:rgba(2,8,23,.08);
+    }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:linear-gradient(180deg,#0b1220,#0b1220 60%,#0d1b2a);color:var(--text)}
+    body{
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:#fff; color:var(--ink);
+    }
     a{color:inherit;text-decoration:none}
     .container{max-width:1140px;margin:0 auto;padding:0 20px}
 
-    /* --- Topbar (üst informasiya zolağı) --- */
-    .topbar{background:#1f2a44;color:#e6edf7;font-size:14px}
+    /* Topbar */
+    .topbar{background:var(--topbar);color:var(--topbarText);font-size:14px}
     .topbar .wrap{max-width:1140px;margin:0 auto;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
     .topbar .left,.topbar .right{display:flex;gap:18px;align-items:center}
     .topbar .item{display:flex;align-items:center;gap:8px;opacity:.95}
     .topbar .item i{font-style:normal;opacity:.85}
 
-    /* --- Navbar --- */
-    header{position:sticky;top:0;z-index:50;background:#ffffffcc;backdrop-filter:blur(10px);border-bottom:1px solid rgba(148,163,184,.15);color:#0b1220}
+    /* Header / navbar */
+    header{position:sticky;top:0;z-index:50;background:#ffffffcc;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,var(--brand),var(--geo));display:grid;place-items:center;color:#001314;font-weight:800}
+    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#22c55e);display:grid;place-items:center;color:#001314;font-weight:800}
     nav ul{list-style:none;display:flex;gap:18px;margin:0;padding:0}
-    nav a{padding:10px 12px;border-radius:8px;color:#0b1220}
+    nav a{padding:10px 12px;border-radius:8px;color:var(--ink)}
     nav a:hover{background:rgba(2,8,23,.06)}
-    nav a .caret{margin-left:6px;opacity:.6}
-
-    .nav-cta{margin-left:auto;display:flex;gap:10px;align-items:center}
-    .btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(148,163,184,.25);background:#0b1220;color:#e2e8f0;font-weight:600}
-    .btn.pill{border-radius:999px}
-    .btn.light{background:#fff;border:1px solid rgba(2,8,23,.12);color:#0b1220}
-    .btn.gold{background:#f4bf37;border:none;color:#172033;font-weight:700}
     .lang{display:flex;gap:8px}
-    .lang button{background:#fff;border:1px solid rgba(2,8,23,.12);color:#0b1220;padding:6px 10px;border-radius:10px;cursor:pointer}
+    .lang button{background:#fff;border:1px solid var(--line);color:var(--ink);padding:6px 10px;border-radius:10px;cursor:pointer}
     .lang button.active{border-color:#3b82f6}
 
-    /* --- Hero (foto fonlu) --- */
-    .hero{padding:0}
-    .hero-wrap{position:relative;overflow:hidden}
-    .hero-bg{
-      min-height:520px;
-      background:
-        linear-gradient(0deg,rgba(15,23,42,.55),rgba(15,23,42,.55)),
-        url('https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
-    }
-    .hero-inner{max-width:1140px;margin:0 auto;padding:90px 20px 110px;color:#eaf2ff}
-    .hero h1{font-size:clamp(36px,6.5vw,64px);line-height:1.05;margin:0 0 14px}
-    .lead{font-size:clamp(16px,1.8vw,20px);color:#cbd5e1;max-width:62ch}
-    .hero .lead{font-size:clamp(18px,2vw,22px);max-width:720px;color:#eaf2ff;opacity:.95}
-    .cta{display:flex;gap:12px;margin-top:26px}
-    .hero .btn{border-radius:999px;padding:14px 20px;font-weight:700}
-    .hero .btn.primary{background:#223b77;border:none;color:#fff}
-    .hero .btn.gold{background:#f4bf37;color:#172033}
+    /* Hero – ağ fon, böyük başlıq */
+    .hero{padding:56px 0 40px}
+    .badge{display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--muted)}
+    h1{font-size:clamp(30px,6vw,60px);line-height:1.05;margin:12px 0}
+    .lead{font-size:clamp(16px,1.8vw,20px);color:#334155;max-width:70ch}
+    .cta{display:flex;gap:12px;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);font-weight:700}
+    .btn.primary{background:var(--brand);color:#fff;border:none}
+    .btn.gold{background:var(--accent);color:#172033;border:none}
+    .btn:hover{filter:brightness(1.03)}
 
-    /* --- Bölmələr (sənin əvvəlki dizayn) --- */
+    /* Kartlar/şəbəkə – ağ fon üçün yüngül çərçivə */
     section{padding:56px 0}
     .section-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
     .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .card{border:1px solid rgba(148,163,184,.2);background:linear-gradient(180deg,#0f172a,#0e1627);border-radius:18px;padding:18px;transition:transform .2s ease, box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(2,8,23,.35)}
+    .card{border:1px solid var(--line);background:var(--card);border-radius:16px;padding:18px;transition:transform .2s ease, box-shadow .2s ease}
+    .card:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(2,8,23,.06)}
     .card h3{margin:6px 0 6px;font-size:20px}
-    .card p{margin:0;color:#cbd5e1}
+    .card p{margin:0;color:#334155}
     .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
-    .tag{border:1px dashed rgba(148,163,184,.35);color:#9fb3c8;padding:4px 8px;border-radius:999px;font-size:12px}
+    .tag{border:1px dashed var(--line);color:#55657a;padding:4px 8px;border-radius:999px;font-size:12px}
 
     .projects .item{display:flex;flex-direction:column;gap:10px}
-    .projects .thumb{aspect-ratio:16/9;border-radius:14px;background:radial-gradient(60% 60% at 50% 0%,rgba(34,211,238,.2),transparent),#0b1220;border:1px solid rgba(148,163,184,.2)}
+    .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line)}
 
     .about{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
-    .contact form{display:grid;gap:10px}
-    .input{background:#0b1220;border:1px solid rgba(148,163,184,.25);border-radius:12px;padding:12px;color:var(--text)}
+    .input{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:var(--ink)}
     .input:focus{outline:2px solid var(--ring)}
-    footer{padding:26px 0;border-top:1px solid rgba(148,163,184,.15);color:#9fb3c8}
+    footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
-    /* Mobil uyğunluq */
-    .mobile-lang{display:none}
-    @media (max-width: 980px){
+    @media (max-width:980px){
       nav ul{display:none}
-      .nav-cta{display:none}
-      .mobile-lang{display:flex;justify-content:flex-end;padding:10px 20px;gap:8px}
-      .hero-inner{padding:70px 20px 90px}
       .grid,.about{grid-template-columns:1fr}
     }
   </style>
 </head>
 <body>
-  <!-- ÜST İNFORMASİYA ZOLAĞI -->
+  <!-- TOPBAR -->
   <div class="topbar">
     <div class="wrap">
       <div class="left">
@@ -104,7 +92,7 @@
         <span class="item" data-i18n="top_phone"><i>☎️</i>212 386 5575, 212 386 5576</span>
       </div>
       <div class="right">
-        <span class="item" data-i18n="top_hours"><i>🕒</i>Mon-Sat, 8:00-18:00. Sunday CLOSED</span>
+        <span class="item" data-i18n="top_hours"><i>🕒</i>Mon–Sat, 8:00–18:00. Sunday CLOSED</span>
       </div>
     </div>
   </div>
@@ -115,52 +103,33 @@
       <a href="#top" class="brand" aria-label="GeoSolver home">
         <div class="logo">GΣ</div><span>GeoSolver</span>
       </a>
-
+      <!-- KÖHNƏ MENYU MADDƏLƏRİN QALMASI -->
       <nav aria-label="primary">
         <ul>
-          <li><a href="#hero">Home <span class="caret">▾</span></a></li>
-          <li><a href="#services">Pages <span class="caret">▾</span></a></li>
-          <li><a href="#projects">News <span class="caret">▾</span></a></li>
-          <li><a href="#about">Elements <span class="caret">▾</span></a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#services" data-i18n="nav_services">Xidmətlər</a></li>
+          <li><a href="#training" data-i18n="nav_training">Təlimlər</a></li>
+          <li><a href="#projects" data-i18n="nav_projects">Layihələr</a></li>
+          <li><a href="#about" data-i18n="nav_about">Haqqımızda</a></li>
+          <li><a href="#contact" data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
       </nav>
-
-      <div class="nav-cta">
-        <a class="btn pill light" href="#projects" data-i18n="cta_readmore">Read more</a>
-        <a class="btn pill gold" href="#contact" data-i18n="cta_contactus">Contact us</a>
-        <div class="lang" role="group" aria-label="Language switcher">
-          <button class="active" data-lang="az">AZ</button>
-          <button data-lang="en">EN</button>
-        </div>
+      <div class="lang" role="group" aria-label="Language switcher">
+        <button class="active" data-lang="az">AZ</button>
+        <button data-lang="en">EN</button>
       </div>
     </div>
   </header>
 
-  <!-- Mobil üçün dil düymələri -->
-  <div class="mobile-lang">
-    <div class="lang" role="group" aria-label="Language switcher (mobile)">
-      <button class="active" data-lang="az">AZ</button>
-      <button data-lang="en">EN</button>
-    </div>
-  </div>
-
   <main id="top" class="container">
-    <!-- HERO -->
-    <section class="hero" id="hero">
-      <div class="hero-wrap">
-        <div class="hero-bg">
-          <div class="hero-inner">
-            <h1 data-i18n="hero_title_big">Growth Partners</h1>
-            <p class="lead" data-i18n="hero_sub_big">
-              Connect with top consultants hand-picked by GeoSolver for GIS, GeoServer/ArcGIS Enterprise və geospatial AI həllləri.
-            </p>
-            <div class="cta">
-              <a class="btn primary" href="#projects" data-i18n="cta_readmore">Read more</a>
-              <a class="btn gold" href="#contact" data-i18n="cta_contactus">Contact us</a>
-            </div>
-          </div>
-        </div>
+    <!-- HERO (AĞ FON) -->
+    <section class="hero">
+      <span class="badge" data-i18n="badge">GIS • GeoServer • ArcGIS • AI</span>
+      <h1 data-i18n="hero_title">GIS və AI ilə məkan məlumatlarını biznes dəyərinə çeviririk</h1>
+      <p class="lead" data-i18n="hero_sub">Web/Mobile GIS tətbiqləri, GeoServer və ArcGIS Enterprise idarəçiliyi, peyk təsvirləri üzərində kompüter görməsi və avtomatlaşdırma.</p>
+      <div class="cta">
+        <a class="btn primary" href="#contact" data-i18n="cta_start">Müzakirə edək</a>
+        <a class="btn gold" href="#training" data-i18n="cta_training">Təlimlərə bax</a>
+        <a class="btn" href="#projects" data-i18n="cta_view">Layihələrə bax</a>
       </div>
     </section>
 
@@ -233,7 +202,7 @@
     <section id="projects" class="projects">
       <div class="section-title">
         <h2 data-i18n="projects_title">Layihələr</h2>
-        <a class="btn light" href="#contact" data-i18n="projects_cta">Portfel istəyin</a>
+        <a class="btn" href="#contact" data-i18n="projects_cta">Portfel istəyin</a>
       </div>
       <div class="grid">
         <article class="card item">
@@ -285,7 +254,7 @@
           <input class="input" name="name" placeholder="Ad" required />
           <input class="input" name="email" type="email" placeholder="Email" required />
           <textarea class="input" name="msg" rows="5" placeholder="Mesaj" required></textarea>
-          <button class="btn gold pill" type="submit" data-i18n="send_btn">Göndər</button>
+          <button class="btn primary" type="submit" data-i18n="send_btn">Göndər</button>
         </form>
         <div class="card">
           <h3 data-i18n="contact_card_t">Bir fincan qəhvə üstündə danışaq ☕</h3>
@@ -311,16 +280,9 @@
   <script>
     const strings = {
       az: {
-        /* topbar */
         top_addr:"📍 1010 Avenue, New York, NY 10018 US.",
         top_phone:"☎️ 212 386 5575, 212 386 5576",
-        top_hours:"🕒 B.e.-Şənbə, 8:00-18:00. Bazar BAĞLIDIR",
-        /* nav + hero */
-        cta_readmore:"Ətraflı bax",
-        cta_contactus:"Əlaqə saxla",
-        hero_title_big:"Sizin Growth tərəfdaşınız",
-        hero_sub_big:"GeoSolver komandası GIS, GeoServer/ArcGIS Enterprise və geospatial AI üzrə seçilmiş məsləhətçilərlə biznesinizə dəyər qatır.",
-        /* legacy keys (bölmələr) */
+        top_hours:"🕒 B.e.-Şənbə, 8:00–18:00. Bazar BAĞLIDIR",
         nav_services:"Xidmətlər", nav_projects:"Layihələr", nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
         badge:"GIS • GeoServer • ArcGIS • AI",
         hero_title:"GIS və AI ilə məkan məlumatlarını biznes dəyərinə çeviririk",
@@ -353,10 +315,6 @@
         top_addr:"📍 1010 Avenue, New York, NY 10018 US.",
         top_phone:"☎️ 212 386 5575, 212 386 5576",
         top_hours:"🕒 Mon–Sat, 8:00–18:00. Sunday CLOSED",
-        cta_readmore:"Read more",
-        cta_contactus:"Contact us",
-        hero_title_big:"Growth Partners",
-        hero_sub_big:"Connect with top consultants hand-picked by GeoSolver for GIS, GeoServer/ArcGIS Enterprise and geospatial AI solutions.",
         nav_services:"Services", nav_projects:"Projects", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
         badge:"GIS • GeoServer • ArcGIS • AI",
         hero_title:"We turn geospatial data into business value with GIS & AI",
@@ -404,31 +362,33 @@
       document.querySelectorAll('.lang button').forEach(b=>b.classList.toggle('active', b.dataset.lang===lang));
     }
 
-    // Dil düymələri (navbar + mobil)
-    document.querySelectorAll('.lang button').forEach(btn=>{
-      btn.addEventListener('click',()=>{
-        const lang = btn.dataset.lang;
-        localStorage.setItem('gs_lang', lang);
-        setLang(lang);
+    document.addEventListener('DOMContentLoaded', () => {
+      // Dil düymələri – AZ/EN işləməsi
+      document.querySelectorAll('.lang button').forEach(btn=>{
+        btn.addEventListener('click', ()=>{
+          const lang = btn.dataset.lang;
+          localStorage.setItem('gs_lang', lang);
+          setLang(lang);
+        });
       });
-    });
 
-    // Contact form via mailto
-    document.getElementById('contactForm').addEventListener('submit', (e)=>{
-      e.preventDefault();
-      const f = e.target;
-      const name = encodeURIComponent(f.name.value.trim());
-      const email = encodeURIComponent(f.email.value.trim());
-      const msg = encodeURIComponent(f.msg.value.trim());
-      const subject = `[GeoSolver.az] ${decodeURIComponent(name)}`;
-      const body = `Ad: ${decodeURIComponent(name)}%0AEmail: ${decodeURIComponent(email)}%0A%0A${decodeURIComponent(msg)}`;
-      window.location.href = `mailto:info@geosolver.az?subject=${encodeURIComponent(subject)}&body=${body}`;
-      f.reset();
-    });
+      // Contact form via mailto
+      document.getElementById('contactForm').addEventListener('submit', (e)=>{
+        e.preventDefault();
+        const f = e.target;
+        const name = encodeURIComponent(f.name.value.trim());
+        const email = encodeURIComponent(f.email.value.trim());
+        const msg = encodeURIComponent(f.msg.value.trim());
+        const subject = `[GeoSolver.az] ${decodeURIComponent(name)}`;
+        const body = `Ad: ${decodeURIComponent(name)}%0AEmail: ${decodeURIComponent(email)}%0A%0A${decodeURIComponent(msg)}`;
+        window.location.href = `mailto:info@geosolver.az?subject=${encodeURIComponent(subject)}&body=${body}`;
+        f.reset();
+      });
 
-    // Year & initial language
-    document.getElementById('year')?.textContent = new Date().getFullYear();
-    setLang(localStorage.getItem('gs_lang') || 'az');
+      // İl və ilkin dil
+      document.getElementById('year')?.textContent = new Date().getFullYear();
+      setLang(localStorage.getItem('gs_lang') || 'az');
+    });
   </script>
 </body>
 </html>
