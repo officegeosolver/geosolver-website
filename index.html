@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>GeoSolver</title>
+  <title>GeoSolver — GIS & AI</title>
   <meta name="description" content="Web/Mobile GIS, GeoServer & ArcGIS Enterprise, peyk təsvirlərində kompüter görməsi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,11 +17,7 @@
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
       --headerH:64px;
-
-      /* Hero şəkli (istəyə görə dəyiş) */
       --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');
-
-      /* Hero mətni soldan neçə px/vw içəri başlasın */
       --heroLeft: clamp(24px, 6vw, 120px);
     }
     *{box-sizing:border-box}
@@ -30,7 +26,7 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
 
-    /* Navbar */
+    /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
@@ -42,42 +38,28 @@
       font-weight:800; letter-spacing:.2px;
       color:#2563eb; position:relative; transition:color .15s ease, background .15s ease;
     }
-    nav a::after{
-      content:""; position:absolute; left:12px; right:12px; bottom:6px;
-      height:2px; background:#2563eb; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .18s ease;
-    }
+    nav a::after{content:""; position:absolute; left:12px; right:12px; bottom:6px; height:2px; background:#2563eb; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .18s ease}
     nav a:hover{background:rgba(37,99,235,.08); color:#1e40af}
     nav a:hover::after{transform:scaleX(1)}
     nav a.active{color:#1e40af; background:rgba(37,99,235,.10)}
     nav a.active::after{transform:scaleX(1)}
 
     .lang{display:flex;gap:6px;align-items:center}
-    .lang button{
-      cursor:pointer;background:#fff;border:1px solid #c7d2fe;
-      padding:6px 10px;border-radius:8px;font-weight:700;color:#1d4ed8
-    }
+    .lang button{cursor:pointer;background:#fff;border:1px solid #c7d2fe;padding:6px 10px;border-radius:8px;font-weight:700;color:#1d4ed8}
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO (tam ekran, mətn solda və içəridən başlayır) */
+    /* HERO */
     .hero-visual{
-      position:relative; border-radius:0; overflow:hidden;
-      min-height:calc(100vh - var(--headerH));
-      display:flex; align-items:center;
-      background:
+      position:relative; min-height:calc(100vh - var(--headerH));
+      display:flex; align-items:center; background:
         linear-gradient(to bottom right, rgba(2,6,23,.60), rgba(2,6,23,.35)),
         var(--hero);
       background-size:cover; background-position:center center;
     }
     .hero-visual .inner{
-      width:100%;
-      color:#fff;
-      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
-      max-width:700px; text-align:left;
-
-      /* əsas: mətni soldan içəri başlat */
-      margin-left: var(--heroLeft);
-      margin-right: var(--g3);
+      width:100%; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      max-width:700px; text-align:left; margin-left:var(--heroLeft); margin-right:var(--g3)
     }
     .hero-title{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:10px 0 8px; font-weight:800}
     .hero-sub{font-size:clamp(16px,2vw,20px); opacity:.95; max-width:70ch}
@@ -86,7 +68,11 @@
     .btn.soft{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35)}
     .btn.soft:hover{background:rgba(255,255,255,.22)}
 
-    /* Bölmə başlıqları */
+    /* SECTIONS */
+    section{padding:var(--g7) 0}
+    .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
+
+    /* Default heading style (kept gradient for other sections) */
     .section-heading{
       font-size:clamp(26px,3.2vw,40px);
       font-weight:800; line-height:1.15; margin:0; letter-spacing:.2px;
@@ -95,8 +81,6 @@
     }
     .section-sub{ text-align:center; color:#667085; margin-top:10px; font-size:clamp(14px,1.8vw,18px) }
 
-    section{padding:var(--g7) 0}
-    .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
 
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
@@ -104,8 +88,22 @@
     .card h3{margin:0 0 var(--g2);font-size:18px}
     .card p{margin:0;color:#334155}
 
-    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:var(--g3)}
-    .service .icon{width:72px;height:72px;border-radius:999px;display:grid;place-items:center;background:#eef6ff;border:1px solid var(--line);font-size:28px}
+    /* ===== SERVICES: style like your sample (big title, circle icons, centered) ===== */
+    #services .section-heading{
+      background:none; -webkit-background-clip:initial; background-clip:initial;
+      color:var(--ink); font-size:clamp(32px,4vw,48px); letter-spacing:.1px
+    }
+    #services .section-sub{color:#64748b; font-size:clamp(14px,1.6vw,18px); margin-top:12px}
+    #services .grid{gap:var(--g6)}
+    /* cards look like plain blocks (no borders/box) */
+    #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
+    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+    .service .icon{
+      width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
+      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
+    }
+    .service h3{margin:6px 0 0;font-size:clamp(20px,2.2vw,28px);font-weight:800;color:var(--ink)}
+    .service p{margin-top:6px;max-width:46ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
 
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
 
@@ -167,12 +165,11 @@
         <p class="section-sub" data-i18n="services_sub">Tam əhatəli olaraq göstərdiyimiz xidmətlər</p>
       </div>
 
-      <!-- YENİ STRUKTUR: 4 KART -->
       <div class="grid">
-        <!-- GIS və İT Konsaltinqi -->
+        <!-- GIS və İT Konsaltinq -->
         <article class="card service">
           <div class="icon">🧠</div>
-          <h3 data-i18n="srv_consult_t">GIS və İT Konsaltinqi</h3>
+          <h3 data-i18n="srv_consult_t">GIS və İT Konsaltinq</h3>
           <p data-i18n="srv_consult_d">Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.</p>
         </article>
 
@@ -304,33 +301,27 @@
         contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
 
-        /* YENİ XİDMƏTLƏR */
-        srv_consult_t:"GIS və İT Konsaltinqi",
+        /* XİDMƏTLƏR */
+        srv_consult_t:"GIS və İT Konsaltinq",
         srv_consult_d:"Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.",
-
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
         srv1_d:"İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.",
-
         srv4_t:"AI & Kompüter Görməsi",
         srv4_d:"Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi və super-resolution.",
-
         srv_gis_servers_t:"GIS serverlərinin qurulması",
         srv_gis_servers_d:"ArcGIS Enterprise və GeoServer: Portal/Server/Data Store, federasiya, HA, PostGIS/Oracle SDE, təhlükəsizlik, keş və paylama.",
 
-        /* Qalan mətnlər */
+        /* Qalan mətirlər */
         tr1_t:"Web GIS & GeoServer Bootcamp",tr1_d:"Leaflet/MapLibre ilə veb xəritə, GeoServer–PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.",
         tr2_t:"ArcGIS Enterprise Admin",tr2_d:"Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.",
         tr3_t:"CV/AI: Peyk Təsviri Analizi",tr3_d:"Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
-
         pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması",pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
         pr2_t:"Şəhər binalarının xəritələnməsi",pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
         pr3_t:"Enterprise GIS arxitekturası",pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
-
         about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə komandadır.",
         about_p2:"Missiyamız: məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
         about_li1:"OGC standartlarına sadiqlik",about_li2:"ArcGIS və Open Source balansı",about_li3:"SLA ilə dəstək və təlim",
         about_side_t:"Sürətli faktlar",
-
         contact_card_t:"Bir fincan qəhvə üstündə danışaq ☕",contact_addr_t:"Ünvan:", send_btn:"Göndər",
         rights:"Bütün hüquqlar qorunur.",
         ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
@@ -348,33 +339,26 @@
         contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
 
-        /* NEW SERVICES */
+        /* SERVICES */
         srv_consult_t:"IT & GIS Consultancy",
         srv_consult_d:"Strategy & audit, enterprise/GIS architecture, integration & modernisation (CI/CD, SSO, ETL), roadmap & implementation oversight.",
-
         srv1_t:"Web & Mobile GIS Application Development",
         srv1_d:"We build web and mobile applications tailored to your needs.",
-
         srv4_t:"AI & Computer Vision",
         srv4_d:"Object detection, change detection and super-resolution on satellite/UAV imagery.",
-
         srv_gis_servers_t:"GIS Server Deployment",
         srv_gis_servers_d:"ArcGIS Enterprise & GeoServer: Portal/Server/Data Store, federation, HA, PostGIS/Oracle SDE, security, caching and distribution.",
 
-        /* Rest */
         tr1_t:"Web GIS & GeoServer Bootcamp",tr1_d:"Web maps with Leaflet/MapLibre, GeoServer–PostGIS integration, WMS/WFS/WCS, auth & caching.",
         tr2_t:"ArcGIS Enterprise Admin",tr2_d:"Portal/Server federation, Data Store, SDE, HA architecture, secure sharing.",
         tr3_t:"CV/AI: Satellite Imagery",tr3_d:"Mask R-CNN/YOLO object detection, change detection, super-resolution hands-on labs.",
-
         pr1_t:"Crop-field object detection",pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
         pr2_t:"Urban building mapping",pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
         pr3_t:"Enterprise GIS architecture",pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
-
         about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map apps and AI-driven geospatial analytics.",
         about_p2:"Our mission: convert geospatial data into value with robust architecture, open standards and intelligent models.",
         about_li1:"Commitment to OGC standards",about_li2:"Balanced ArcGIS & Open Source",about_li3:"SLA-backed support & training",
         about_side_t:"Quick facts",
-
         contact_card_t:"Let's talk over coffee ☕",contact_addr_t:"Address:", send_btn:"Send",
         rights:"All rights reserved.",
         ph_name:"Name", ph_email:"Email", ph_msg:"Message"
@@ -418,4 +402,3 @@
   </script>
 </body>
 </html>
-
