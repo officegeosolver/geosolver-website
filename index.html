@@ -166,36 +166,35 @@
         <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
         <p class="section-sub" data-i18n="services_sub">Tam əhatəli olaraq göstərdiyimiz xidmətlər</p>
       </div>
+
+      <!-- YENİ STRUKTUR: 4 KART -->
       <div class="grid">
+        <!-- GIS və İT Konsaltinqi -->
+        <article class="card service">
+          <div class="icon">🧠</div>
+          <h3 data-i18n="srv_consult_t">GIS və İT Konsaltinqi</h3>
+          <p data-i18n="srv_consult_d">Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.</p>
+        </article>
+
+        <!-- Veb & Mobil CİS Tətbiqlərinin Hazırlanması -->
         <article class="card service">
           <div class="icon">📈</div>
-          <h3 data-i18n="srv1_t">Web & Mobil GIS</h3>
-          <p data-i18n="srv1_d">React/Leaflet, MapLibre, ArcGIS API ilə xəritə tətbiqləri, analitika, real-time qatlar.</p>
+          <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
+          <p data-i18n="srv1_d">İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.</p>
         </article>
+
+        <!-- AI & Kompüter Görməsi -->
         <article class="card service">
           <div class="icon">🛰️</div>
           <h3 data-i18n="srv4_t">AI & Kompüter Görməsi</h3>
-          <p data-i18n="srv4_d">Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi, super-resolution.</p>
+          <p data-i18n="srv4_d">Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi və super-resolution.</p>
         </article>
-        <article class="card service">
-          <div class="icon">🧭</div>
-          <h3 data-i18n="srv5_t">Məkan Analitikası</h3>
-          <p data-i18n="srv5_d">Marşrutlaşdırma, sıxlıq analizləri, servis zonaları, geokodlaşdırma və ETL.</p>
-        </article>
+
+        <!-- GIS serverlərinin qurulması -->
         <article class="card service">
           <div class="icon">🗄️</div>
-          <h3 data-i18n="srv2_t">GeoServer & OGC</h3>
-          <p data-i18n="srv2_d">GeoServer qurulumu, PostGIS inteqrasiyası, WMS/WFS/WCS, təhlükəsizlik və keş.</p>
-        </article>
-        <article class="card service">
-          <div class="icon">🏢</div>
-          <h3 data-i18n="srv3_t">ArcGIS Enterprise</h3>
-          <p data-i18n="srv3_d">Portal/Server/Data Store, federasiya, yük balansı, SDE Oracle/PostgreSQL.</p>
-        </article>
-        <article class="card service">
-          <div class="icon">☁️</div>
-          <h3 data-i18n="srv6_t">DevOps & Bulud</h3>
-          <p data-i18n="srv6_d">Docker/K8s, CI/CD, Cloud (Alibaba/AWS), təhlükəsizlik və monitorinq.</p>
+          <h3 data-i18n="srv_gis_servers_t">GIS serverlərinin qurulması</h3>
+          <p data-i18n="srv_gis_servers_d">ArcGIS Enterprise və GeoServer: Portal/Server/Data Store, federasiya, HA, PostGIS/Oracle SDE, təhlükəsizlik, keş və paylama.</p>
         </article>
       </div>
     </section>
@@ -305,13 +304,20 @@
         contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
 
-        srv1_t:"Web & Mobil GIS",srv1_d:"React/Leaflet, MapLibre, ArcGIS API ilə xəritə tətbiqləri, analitika, real-time qatlar.",
-        srv2_t:"GeoServer & OGC",srv2_d:"GeoServer qurulumu, PostGIS inteqrasiyası, WMS/WFS/WCS, təhlükəsizlik və keş.",
-        srv3_t:"ArcGIS Enterprise",srv3_d:"Portal/Server/Data Store, federasiya, yük balansı, SDE Oracle/PostgreSQL.",
-        srv4_t:"AI & Kompüter Görməsi",srv4_d:"Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi, super-resolution.",
-        srv5_t:"Məkan Analitikası",srv5_d:"Marşrutlaşdırma, sıxlıq analizləri, servis zonaları, geokodlaşdırma və ETL.",
-        srv6_t:"DevOps & Bulud",srv6_d:"Docker/K8s, CI/CD, Cloud (Alibaba/AWS), təhlükəsizlik və monitorinq.",
+        /* YENİ XİDMƏTLƏR */
+        srv_consult_t:"GIS və İT Konsaltinqi",
+        srv_consult_d:"Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.",
 
+        srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
+        srv1_d:"İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.",
+
+        srv4_t:"AI & Kompüter Görməsi",
+        srv4_d:"Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi və super-resolution.",
+
+        srv_gis_servers_t:"GIS serverlərinin qurulması",
+        srv_gis_servers_d:"ArcGIS Enterprise və GeoServer: Portal/Server/Data Store, federasiya, HA, PostGIS/Oracle SDE, təhlükəsizlik, keş və paylama.",
+
+        /* Qalan mətnlər */
         tr1_t:"Web GIS & GeoServer Bootcamp",tr1_d:"Leaflet/MapLibre ilə veb xəritə, GeoServer–PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.",
         tr2_t:"ArcGIS Enterprise Admin",tr2_d:"Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.",
         tr3_t:"CV/AI: Peyk Təsviri Analizi",tr3_d:"Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
@@ -342,13 +348,20 @@
         contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
 
-        srv1_t:"Web & Mobile GIS",srv1_d:"Map apps with React/Leaflet, MapLibre, ArcGIS API; analytics and real-time layers.",
-        srv2_t:"GeoServer & OGC",srv2_d:"GeoServer setup, PostGIS integration, WMS/WFS/WCS, security and caching.",
-        srv3_t:"ArcGIS Enterprise",srv3_d:"Portal/Server/Data Store, federation, load balancing, SDE Oracle/PostgreSQL.",
-        srv4_t:"AI & Computer Vision",srv4_d:"Object detection, change detection, and super-resolution on satellite/UAV imagery.",
-        srv5_t:"Spatial Analytics",srv5_d:"Routing, density studies, service areas, geocoding and ETL.",
-        srv6_t:"DevOps & Cloud",srv6_d:"Docker/K8s, CI/CD, Cloud (Alibaba/AWS), security and monitoring.",
+        /* NEW SERVICES */
+        srv_consult_t:"IT & GIS Consultancy",
+        srv_consult_d:"Strategy & audit, enterprise/GIS architecture, integration & modernisation (CI/CD, SSO, ETL), roadmap & implementation oversight.",
 
+        srv1_t:"Web & Mobile GIS Application Development",
+        srv1_d:"We build web and mobile applications tailored to your needs.",
+
+        srv4_t:"AI & Computer Vision",
+        srv4_d:"Object detection, change detection and super-resolution on satellite/UAV imagery.",
+
+        srv_gis_servers_t:"GIS Server Deployment",
+        srv_gis_servers_d:"ArcGIS Enterprise & GeoServer: Portal/Server/Data Store, federation, HA, PostGIS/Oracle SDE, security, caching and distribution.",
+
+        /* Rest */
         tr1_t:"Web GIS & GeoServer Bootcamp",tr1_d:"Web maps with Leaflet/MapLibre, GeoServer–PostGIS integration, WMS/WFS/WCS, auth & caching.",
         tr2_t:"ArcGIS Enterprise Admin",tr2_d:"Portal/Server federation, Data Store, SDE, HA architecture, secure sharing.",
         tr3_t:"CV/AI: Satellite Imagery",tr3_d:"Mask R-CNN/YOLO object detection, change detection, super-resolution hands-on labs.",
@@ -405,4 +418,3 @@
   </script>
 </body>
 </html>
-
