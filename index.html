@@ -71,8 +71,6 @@
     /* SECTIONS */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
-
-    /* Default heading style (kept gradient for other sections) */
     .section-heading{
       font-size:clamp(26px,3.2vw,40px);
       font-weight:800; line-height:1.15; margin:0; letter-spacing:.2px;
@@ -88,14 +86,13 @@
     .card h3{margin:0 0 var(--g2);font-size:18px}
     .card p{margin:0;color:#334155}
 
-    /* ===== SERVICES: style like your sample (big title, circle icons, centered) ===== */
+    /* SERVICES (sample style: centered blocks with circle icons) */
     #services .section-heading{
-      background:none; -webkit-background-clip:initial; background-clip:initial;
-      color:var(--ink); font-size:clamp(32px,4vw,48px); letter-spacing:.1px
+      /* Burada artıq default gradient var — digərlərinə uyğundur */
+      font-size:clamp(32px,4vw,48px); letter-spacing:.1px;
     }
     #services .section-sub{color:#64748b; font-size:clamp(14px,1.6vw,18px); margin-top:12px}
     #services .grid{gap:var(--g6)}
-    /* cards look like plain blocks (no borders/box) */
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon{
@@ -166,28 +163,24 @@
       </div>
 
       <div class="grid">
-        <!-- GIS və İT Konsaltinq -->
         <article class="card service">
           <div class="icon">🧠</div>
-          <h3 data-i18n="srv_consult_t">GIS və İT Konsaltinq</h3>
+          <h3 data-i18n="srv_consult_t">GIS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.</p>
         </article>
 
-        <!-- Veb & Mobil CİS Tətbiqlərinin Hazırlanması -->
         <article class="card service">
           <div class="icon">📈</div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
-          <p data-i18n="srv1_d">ArcGIS API, React/Leaflet və MapLibre ilə yüksək performanslı xəritə tətbiqləri — interaktiv xəritə təcrübələri, ağıllı filtrasiya, hesabatlılıq və təhlükəsiz inteqrasiya. Kompleks enterprise proqram təminatları qurur, etibarlı sistem inteqrasiyalarını təmin edir, legacy sisteminizi modernləşdiririk.İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.</p>
+          <p data-i18n="srv1_d">İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.</p>
         </article>
 
-        <!-- AI & Kompüter Görməsi -->
         <article class="card service">
           <div class="icon">🛰️</div>
           <h3 data-i18n="srv4_t">AI & Kompüter Görməsi</h3>
           <p data-i18n="srv4_d">Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi və super-resolution.</p>
         </article>
 
-        <!-- GIS serverlərinin qurulması -->
         <article class="card service">
           <div class="icon">🗄️</div>
           <h3 data-i18n="srv_gis_servers_t">GIS serverlərinin qurulması</h3>
@@ -301,17 +294,15 @@
         contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
 
-        /* XİDMƏTLƏR */
-        srv_consult_t:"GIS və İT Konsaltinq",
+        srv_consult_t:"GIS və İT Konsaltinqi",
         srv_consult_d:"Strategiya və audit, enterprise/GIS arxitektura, inteqrasiya və modernizasiya (CI/CD, SSO, ETL), yol xəritəsi və icra nəzarəti.",
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
-        srv1_d:"ArcGIS API, React/Leaflet və MapLibre ilə yüksək performanslı xəritə tətbiqləri — interaktiv xəritə təcrübələri, ağıllı filtrasiya, hesabatlılıq və təhlükəsiz inteqrasiya. Kompleks enterprise proqram təminatları qurur, etibarlı sistem inteqrasiyalarını təmin edir, legacy sisteminizi modernləşdiririk.İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.",
+        srv1_d:"İstəyinizə uyğun veb və mobil tətbiqlər hazırlayırıq.",
         srv4_t:"AI & Kompüter Görməsi",
         srv4_d:"Peyk və UAV təsvirlərində obyekt aşkarlanması, dəyişiklik analizi və super-resolution.",
         srv_gis_servers_t:"GIS serverlərinin qurulması",
         srv_gis_servers_d:"ArcGIS Enterprise və GeoServer: Portal/Server/Data Store, federasiya, HA, PostGIS/Oracle SDE, təhlükəsizlik, keş və paylama.",
 
-        /* Qalan mətirlər */
         tr1_t:"Web GIS & GeoServer Bootcamp",tr1_d:"Leaflet/MapLibre ilə veb xəritə, GeoServer–PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.",
         tr2_t:"ArcGIS Enterprise Admin",tr2_d:"Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.",
         tr3_t:"CV/AI: Peyk Təsviri Analizi",tr3_d:"Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
@@ -339,7 +330,6 @@
         contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
 
-        /* SERVICES */
         srv_consult_t:"IT & GIS Consultancy",
         srv_consult_d:"Strategy & audit, enterprise/GIS architecture, integration & modernisation (CI/CD, SSO, ETL), roadmap & implementation oversight.",
         srv1_t:"Web & Mobile GIS Application Development",
