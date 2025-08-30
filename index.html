@@ -18,8 +18,11 @@
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
       --headerH:64px;
 
-      /* HERO şəkli (istəyə görə dəyişə bilərsən) */
+      /* Hero şəkli (istəyə görə dəyiş) */
       --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');
+
+      /* Hero mətni soldan neçə px/vw içəri başlasın */
+      --heroLeft: clamp(24px, 6vw, 120px);
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
@@ -56,23 +59,25 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO (tam ekran, mətn solda) */
+    /* HERO (tam ekran, mətn solda və içəridən başlayır) */
     .hero-visual{
       position:relative; border-radius:0; overflow:hidden;
       min-height:calc(100vh - var(--headerH));
-      display:flex; align-items:center; /* mətni şaquli mərkəzlə */
+      display:flex; align-items:center;
       background:
         linear-gradient(to bottom right, rgba(2,6,23,.60), rgba(2,6,23,.35)),
         var(--hero);
       background-size:cover; background-position:center center;
     }
     .hero-visual .inner{
-      width:100%; max-width:var(--max);
-      padding:0 var(--g3);
+      width:100%;
       color:#fff;
-      display:flex; flex-direction:column; justify-content:center; align-items:flex-start; /* sola hizala */
-      max-width:700px; /* mətni oxunaqlı saxlamaq üçün */
-      text-align:left;
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      max-width:700px; text-align:left;
+
+      /* əsas: mətni soldan içəri başlat */
+      margin-left: var(--heroLeft);
+      margin-right: var(--g3);
     }
     .hero-title{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:10px 0 8px; font-weight:800}
     .hero-sub{font-size:clamp(16px,2vw,20px); opacity:.95; max-width:70ch}
@@ -110,8 +115,7 @@
     footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
     @media (max-width:720px){
-      .hero-visual{min-height:calc(100vh - var(--headerH))}
-      .hero-visual .inner{max-width:none}
+      .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
     }
   </style>
@@ -140,7 +144,7 @@
     </div>
   </header>
 
-  <!-- HERO (mətn solda) -->
+  <!-- HERO -->
   <div id="top" class="hero-visual">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">
@@ -291,7 +295,7 @@
       az:{
         nav_home:"Əsas səhifə",
         nav_services:"Xidmətlər",nav_projects:"Layihələr",nav_about:"Haqqımızda",nav_contact:"Əlaqə",nav_training:"Təlimlər",
-        hero_title:"Coğrafi məlumatlarınızı GIS və AI ilə daha güclü idarə edin",
+        hero_title:"Coğrafi məlumatlarınızı GIS və GEOAI ilə daha güclü idarə edin",
         hero_sub:"CIS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.",
         cta_view:"Layihələrə bax",
 
@@ -328,7 +332,7 @@
       en:{
         nav_home:"Home",
         nav_services:"Services",nav_projects:"Projects",nav_about:"About",nav_contact:"Contact",nav_training:"Training",
-        hero_title:"Manage your geospatial data more powerfully with GIS & AI",
+        hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See projects",
 
@@ -383,6 +387,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     setLang('az');
 
+    // mailto form
     const form = document.getElementById('contactForm');
     if(form){
       form.addEventListener('submit', (e)=>{
@@ -400,4 +405,3 @@
   </script>
 </body>
 </html>
-
