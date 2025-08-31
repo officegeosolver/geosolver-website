@@ -4,14 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GeoSolver</title>
-  <meta name="description" content="Web/Mobile GIS, GeoAI, GeoServer və ArcGIS Enterprise." />
+  <meta name="description" content="Web/Mobile GIS, GeoServer & ArcGIS Enterprise, peyk təsvirlərində kompüter görməsi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
-      --brand:#2563eb; --bg:#ffffff;
+      --brand:#2563eb; --accent:#f4bf37; --bg:#ffffff; --pill:#eef2ff;
+      --titleA:#6ea8ff; --titleB:#6366f1;
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
@@ -19,14 +20,11 @@
       --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');
       --heroLeft: clamp(24px, 6vw, 120px);
     }
-
     *{box-sizing:border-box}
     html,body{margin:0;padding:0}
-    html{scroll-behavior:smooth}
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
-    section,#top{scroll-margin-top:calc(var(--headerH) + 12px)}
 
     /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
@@ -86,8 +84,9 @@
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .card h3{margin:0 0 var(--g2);font-size:18px}
+    .card p{margin:0;color:#334155}
 
-    /* SERVICES */
+    /* Services look */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
@@ -95,8 +94,8 @@
       width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
       background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
     }
-    .service h3{margin:6px 0 0;font-size:clamp(18px,2vw,22px);font-weight:600;color:#334155}
-    .service p{margin-top:6px;max-width:56ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
+    .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:700;color:#1e293b}
+    .service p{margin-top:6px;max-width:46ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
 
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
 
@@ -151,7 +150,7 @@
   </div>
 
   <main class="container">
-    <!-- SERVICES -->
+    <!-- SERVICES (qısaldılmış nümunə) -->
     <section id="services">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
@@ -161,34 +160,14 @@
       <div class="grid">
         <article class="card service">
           <div class="icon">🧠</div>
-          <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
-          <p data-i18n="srv_consult_d">
-            Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.
-          </p>
+          <h3 data-i18n="srv_consult_t"> CİS və İT Konsaltinqi</h3>
+          <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
         </article>
 
         <article class="card service">
           <div class="icon">📈</div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
-          <p data-i18n="srv1_d">
-            Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.
-          </p>
-        </article>
-
-        <article class="card service">
-          <div class="icon">🛰️</div>
-          <h3 data-i18n="srv4_t">GeoAI</h3>
-          <p data-i18n="srv4_d">
-            CİS üçün süni intellekt həlləri təqdim edirik: peyk, ortofoto və dron təsvirlərindən obyekt aşkarlanması, dəyişiklik analizi, semantik seqmentasiya və super-resolution. Vizual məlumatları sürətlə və dəqiqliklə emal edərək xəritələr üçün istifadə oluna bilən vektor qatları və analitik nəticələr yaradırıq.
-          </p>
-        </article>
-
-        <article class="card service">
-          <div class="icon">🗄️</div>
-          <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
-          <p data-i18n="srv_gis_servers_d">
-            Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə xidmətlərinizi (məs., WMS/WFS) sabit və sürətli şəkildə dərc edir, giriş nəzarəti və rol modelini sazlayırıq.
-          </p>
+          <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.</p>
         </article>
       </div>
     </section>
@@ -199,7 +178,9 @@
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
         <p class="section-sub" data-i18n="training_sub">Praktiki proqramlar və bootcamp-lər</p>
       </div>
+
       <div class="grid">
+        <!-- ArcGIS Enterprise -->
         <article class="card">
           <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
           <p data-i18n="tr_ent_d">
@@ -207,51 +188,42 @@
           </p>
         </article>
 
+        <!-- ArcGIS Online -->
         <article class="card">
           <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
           <p data-i18n="tr_online_d">
-            Hamı üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.
+            Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.
           </p>
         </article>
 
+        <!-- GeoServer (as given) -->
         <article class="card">
-          <h3 data-i18n="tr_gs_t">GeoServer</h3>
-          <p data-i18n="tr_gs_d">
-            GeoServer + PostGIS quraşdırılması; workspace/store/layer; SLD/MBStyle ilə stil; WMS/WFS/WCS; GeoWebCache, rol-əsaslı təhlükəsizlik və performans tənzimləmələri.
+          <h3 data-i18n="tr_geoserver_t">GeoServer</h3>
+          <p data-i18n="tr_geoserver_d">
+            GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.
           </p>
         </article>
 
+        <!-- GeoAI (as given) -->
         <article class="card">
           <h3 data-i18n="tr_geoai_t">GeoAI</h3>
           <p data-i18n="tr_geoai_d">
-            Peyk/ortofoto/dron təsvirlərində obyekt aşkarlanması və seqmentasiya (YOLO/Mask R-CNN); məlumat hazırlığı və annotasiya, modelin öyrədilməsi, nəticənin PostGIS/ArcGIS-ə vektorlaşdırılması.
+            Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery
           </p>
         </article>
       </div>
     </section>
 
-    <!-- PROJECTS -->
+    <!-- PROJECTS (qısaldılmış) -->
     <section id="projects" class="projects">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="projects_title_colored">Layihələr</h2>
         <p class="section-sub" data-i18n="projects_sub">Seçilmiş işlərimizdən nümunələr</p>
       </div>
       <div class="grid">
-        <article class="card item">
-          <div class="thumb"></div>
-          <h3 data-i18n="pr1_t">Aqrar sahələr üçün obyekt aşkarlanması</h3>
-          <p data-i18n="pr1_d">1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.</p>
-        </article>
-        <article class="card item">
-          <div class="thumb"></div>
-          <h3 data-i18n="pr2_t">Şəhər binalarının xəritələnməsi</h3>
-          <p data-i18n="pr2_d">0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.</p>
-        </article>
-        <article class="card item">
-          <div class="thumb"></div>
-          <h3 data-i18n="pr3_t">Enterprise GIS arxitekturası</h3>
-          <p data-i18n="pr3_d">HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.</p>
-        </article>
+        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr1_t">Aqrar sahələr üçün obyekt aşkarlanması</h3><p data-i18n="pr1_d">1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.</p></article>
+        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr2_t">Şəhər binalarının xəritələnməsi</h3><p data-i18n="pr2_d">0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.</p></article>
+        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr3_t">Enterprise GIS arxitekturası</h3><p data-i18n="pr3_d">HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.</p></article>
       </div>
     </section>
 
@@ -318,161 +290,108 @@
     </div>
   </footer>
 
-  <!-- LANGUAGE + ACTIVE MENU BY SCROLL -->
+  <!-- LANGUAGE & FORM -->
   <script>
     const STR = {
       az:{
-        nav_home:"Əsas səhifə", nav_services:"Xidmətlər", nav_projects:"Layihələr",
-        nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
-
+        nav_home:"Əsas səhifə",
+        nav_services:"Xidmətlər",nav_projects:"Layihələr",nav_about:"Haqqımızda",nav_contact:"Əlaqə",nav_training:"Təlimlər",
         hero_title:"Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin",
         hero_sub:"CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.",
         cta_view:"Layihələrə bax",
 
-        services_title_colored:"Xidmətlərimiz",
-        services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
+        services_title_colored:"Xidmətlərimiz", services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
+        training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
+        projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
+        contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
+        about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
 
-        srv_consult_t:"CİS və İT Konsaltinqi",
+        srv_consult_t:" CİS və İT Konsaltinqi",
         srv_consult_d:"Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.",
-
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
         srv1_d:"Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.",
 
-        srv4_t:"GeoAI",
-        srv4_d:"CİS üçün süni intellekt həlləri təqdim edirik: peyk, ortofoto və dron təsvirlərindən obyekt aşkarlanması, dəyişiklik analizi, semantik seqmentasiya və super-resolution. Vizual məlumatları sürətlə və dəqiqliklə emal edərək xəritələr üçün istifadə oluna bilən vektor qatları və analitik nəticələr yaradırıq.",
-
-        srv_gis_servers_t:"CİS serverlərinin qurulması",
-        srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə xidmətlərinizi (məs., WMS/WFS) sabit və sürətli şəkildə dərc edir, giriş nəzarəti və rol modelini sazlayırıq.",
-
-        training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
-
-        /* NEW training texts */
+        /* Training items */
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
         tr_online_t:"ArcGIS Online",
-        tr_online_d:"Hamı üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.",
-        tr_gs_t:"GeoServer",
-        tr_gs_d:"GeoServer + PostGIS quraşdırılması; workspace/store/layer; SLD/MBStyle ilə stil; WMS/WFS/WCS; GeoWebCache, rol-əsaslı təhlükəsizlik və performans tənzimləmələri.",
+        tr_online_d:"Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.",
+        tr_geoserver_t:"GeoServer",
+        tr_geoserver_d:"GeoServer, məkan məlumatınızı veb-servis kimi dərc etməyə imkan verən açıq mənbəli server proqramıdır. Bu təlim GeoServer-in nə olduğunu, nə üçün və nə vaxt ona ehtiyacınız olduğunu izah edəcək. Kompüterinizdə lokal hostda quraşdırılmış versiyada nümunə verilənlərdən istifadə edərək GeoServer-in əsaslarını araşdıracağıq. Daha sonra öz verilənlərinizdən istifadə etməklə GeoServer-də layihənin qurulması addımlarını mərhələ-mərhələ keçəcəyik.",
         tr_geoai_t:"GeoAI",
-        tr_geoai_d:"Peyk/ortofoto/dron təsvirlərində obyekt aşkarlanması və seqmentasiya (YOLO/Mask R-CNN); məlumat hazırlığı və annotasiya, modelin öyrədilməsi, nəticənin PostGIS/ArcGIS-ə vektorlaşdırılması.",
+        tr_geoai_d:"ArcGIS-də GeoAI — süni intellekt (AI), maşın öyrənməsi (ML) və dərin öyrənmənin (DL) GIS ilə inteqrasiyasıdır ki, bilik əldə olunmasına və coğrafi problemlərin həllinə xidmət edir. Klasterləşdirmə və nümunə aşkarlanması, proqnozlaşdırma və qabaqlayıcı təhlil, həmçinin təsvirlərdən məlumat çıxarılması üzrə GeoAI iş axınlarını öyrənin.",
 
-        projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
-        pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması", pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
-        pr2_t:"Şəhər binalarının xəritələnməsi", pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
-        pr3_t:"Enterprise GIS arxitekturası", pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
+        pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması",pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
+        pr2_t:"Şəhər binalarının xəritələnməsi",pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
+        pr3_t:"Enterprise GIS arxitekturası",pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
 
-        about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
         about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə komandadır.",
         about_p2:"Missiyamız: məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
-        about_li1:"OGC standartlarına sadiqlik", about_li2:"ArcGIS və Open Source balansı", about_li3:"SLA ilə dəstək və təlim",
+        about_li1:"OGC standartlarına sadiqlik",about_li2:"ArcGIS və Open Source balansı",about_li3:"SLA ilə dəstək və təlim",
         about_side_t:"Sürətli faktlar",
 
-        contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
-        contact_card_t:"Bir fincan qəhvə üstündə danışaq ☕", contact_addr_t:"Ünvan:", send_btn:"Göndər",
+        contact_card_t:"Bir fincan qəhvə üstündə danışaq ☕",contact_addr_t:"Ünvan:", send_btn:"Göndər",
         rights:"Bütün hüquqlar qorunur.",
         ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
       },
       en:{
-        nav_home:"Home", nav_services:"Services", nav_projects:"Projects",
-        nav_about:"About", nav_contact:"Contact", nav_training:"Training",
-
+        nav_home:"Home",
+        nav_services:"Services",nav_projects:"Projects",nav_about:"About",nav_contact:"Contact",nav_training:"Training",
         hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See projects",
 
-        services_title_colored:"Our Services",
-        services_sub:"A comprehensive set of services we provide",
-
-        srv_consult_t:"GIS & IT Consultancy",
-        srv_consult_d:"We streamline your processes from both mapping and IT perspectives. We clarify business goals, audit the current system, compare architecture options, and deliver a clear, phased roadmap.",
-
-        srv1_t:"Web & Mobile GIS Application Development",
-        srv1_d:"You set the plan, we bring the map to life. We build web and mobile GIS apps with clean UI, fast maps, smart filters and handy reporting. Whatever your data stack is, we integrate reliably and deliver robust, hassle-free solutions.",
-
-        srv4_t:"GeoAI",
-        srv4_d:"AI solutions for GIS: object detection, change detection, semantic segmentation and super-resolution on satellite, orthophoto and UAV imagery. We process visual data with speed and accuracy to produce usable vector layers and analytics.",
-
-        srv_gis_servers_t:"GIS Server Deployment",
-        srv_gis_servers_d:"We design and deploy reliable, scalable GIS server environments. From capacity planning to on-prem/cloud setup, we publish WMS/WFS services for stable high performance and configure access control and roles.",
-
+        services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
-
-        /* NEW training texts */
-        tr_ent_t:"ArcGIS Enterprise training",
-        tr_ent_d:"Build your foundation with ArcGIS Enterprise. This course helps you get started in a hands-on way: securely share a variety of resources, make apps and services easily accessible, manage content and permissions, and apply best practices that support operational workflows and cross-team collaboration.",
-        tr_online_t:"ArcGIS Online",
-        tr_online_d:"Maps and apps for everyone. ArcGIS Online enables people across your organization to discover, create, and share web maps and apps—anytime, anywhere. Learn the core workflows: publish content to your org’s Online site, build web maps and apps, and handle common administrative tasks.",
-        tr_gs_t:"GeoServer",
-        tr_gs_d:"Install GeoServer + PostGIS; workspace/store/layer; styling with SLD/MBStyle; WMS/WFS/WCS; GeoWebCache, role-based security and performance tuning.",
-        tr_geoai_t:"GeoAI",
-        tr_geoai_d:"Object detection & segmentation on satellite/orthophoto/UAV imagery (YOLO/Mask R-CNN); data prep & annotation, model training, vectorized outputs to PostGIS/ArcGIS.",
-
         projects_title_colored:"Projects", projects_sub:"Selected case studies",
-        pr1_t:"Crop-field object detection", pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
-        pr2_t:"Urban building mapping", pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
-        pr3_t:"Enterprise GIS architecture", pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
-
+        contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
+
+        srv_consult_t:"IT & GIS Consultancy",
+        srv_consult_d:"We streamline your processes from both GIS and IT perspectives. We clarify business goals, audit your current system, compare architecture alternatives, and deliver a clear, phased roadmap.",
+        srv1_t:"Web & Mobile GIS Application Development",
+        srv1_d:"Tell us the plan, we bring the map to life. We build web and mobile GIS apps to your needs—with clean UI, fast maps, smart filters and convenient reporting. Whatever your data platform is, we integrate reliably and deliver modern, stable solutions.",
+
+        /* Training items */
+        tr_ent_t:"ArcGIS Enterprise Training",
+        tr_ent_d:"Build your foundation with ArcGIS Enterprise. This plan focuses on practically mastering the platform—securely sharing a variety of resources, making apps and services easily accessible, managing content and permissions, and applying best practices that support operational workflows and cross-team collaboration.",
+        tr_online_t:"ArcGIS Online",
+        tr_online_d:"Maps and apps for everyone. ArcGIS Online enables staff across your organisation to discover, create, and share web maps and apps—anytime from anywhere. Learn core workflows: publish content to your org site, build web maps and apps, and perform common administrative tasks.",
+        tr_geoserver_t:"GeoServer",
+        tr_geoserver_d:"GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.",
+        tr_geoai_t:"GeoAI",
+        tr_geoai_d:"Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery",
+
+        pr1_t:"Crop-field object detection",pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
+        pr2_t:"Urban building mapping",pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
+        pr3_t:"Enterprise GIS architecture",pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
         about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map apps and AI-driven geospatial analytics.",
         about_p2:"Our mission: convert geospatial data into value with robust architecture, open standards and intelligent models.",
-        about_li1:"Commitment to OGC standards", about_li2:"Balanced ArcGIS & Open Source", about_li3:"SLA-backed support & training",
+        about_li1:"Commitment to OGC standards",about_li2:"Balanced ArcGIS & Open Source",about_li3:"SLA-backed support & training",
         about_side_t:"Quick facts",
 
-        contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
-        contact_card_t:"Let's talk over coffee ☕", contact_addr_t:"Address:", send_btn:"Send",
+        contact_card_t:"Let's talk over coffee ☕",contact_addr_t:"Address:", send_btn:"Send",
         rights:"All rights reserved.",
         ph_name:"Name", ph_email:"Email", ph_msg:"Message"
       }
     };
 
-    // ---- Language switcher ----
     function setLang(lang){
       const d = STR[lang] || STR.az;
       document.documentElement.lang = lang;
-
       document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k = el.getAttribute('data-i18n');
-        if (d[k] != null) el.textContent = d[k];
+        const k = el.getAttribute('data-i18n'); if(d[k]!=null) el.textContent = d[k];
       });
       document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
-        const k = el.getAttribute('data-i18n-ph');
-        if (d[k] != null) el.placeholder = d[k];
+        const k = el.getAttribute('data-i18n-ph'); if(d[k]!=null) el.placeholder = d[k];
       });
-
       document.querySelectorAll('.lang button').forEach(b=>{
-        const isAZ = (lang==='az' && b.textContent.trim().toLowerCase().includes('aze'));
-        const isEN = (lang==='en' && b.textContent.trim().toLowerCase().includes('eng'));
-        b.classList.toggle('active', isAZ || isEN);
+        b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang==='az'?'aze':'eng'));
       });
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      document.querySelector('nav a[href="#top"]')?.classList.add('active');
     }
 
-    // ---- Active nav by scroll ----
-    const sectionIds = ['top','services','training','projects','about','contact'];
-    const linkFor = id => document.querySelector(`nav a[href="#${id}"]`);
-    const headerH = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--headerH')) || 64;
-
-    const io = new IntersectionObserver((entries)=>{
-      let best = null, bestRatio = 0;
-      entries.forEach(e=>{
-        if (e.isIntersecting && e.intersectionRatio > bestRatio) {
-          best = e.target.id; bestRatio = e.intersectionRatio;
-        }
-      });
-      if (best){
-        document.querySelectorAll('nav a').forEach(a=>a.classList.remove('active'));
-        linkFor(best)?.classList.add('active');
-      }
-    },{
-      threshold:[0.25,0.5,0.75],
-      rootMargin:`-${headerH + 10}px 0px -40% 0px`
-    });
-
-    sectionIds.forEach(id=>{
-      const el = document.getElementById(id);
-      if (el) io.observe(el);
-    });
-
-    // Footer ili və ilkin dil
     document.getElementById('year').textContent = new Date().getFullYear();
     setLang('az');
 
