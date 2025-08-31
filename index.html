@@ -26,7 +26,6 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
 
-    /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
@@ -49,7 +48,6 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center; background:
@@ -68,7 +66,6 @@
     .btn.soft{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35)}
     .btn.soft:hover{background:rgba(255,255,255,.22)}
 
-    /* SECTIONS */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
     .section-heading{
@@ -86,7 +83,6 @@
     .card h3{margin:0 0 var(--g2);font-size:18px}
     .card p{margin:0;color:#334155}
 
-    /* Services look */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
@@ -95,7 +91,7 @@
       background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
     }
     .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:700;color:#1e293b}
-    .service p{margin-top:6px;max-width:46ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
+    .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
 
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
 
@@ -111,7 +107,6 @@
   </style>
 </head>
 <body>
-  <!-- NAVBAR -->
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
@@ -134,7 +129,6 @@
     </div>
   </header>
 
-  <!-- HERO -->
   <div id="top" class="hero-visual">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">
@@ -150,7 +144,7 @@
   </div>
 
   <main class="container">
-    <!-- SERVICES (qısaldılmış nümunə) -->
+    <!-- SERVICES — 4 KART TAM BƏRPA -->
     <section id="services">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
@@ -169,10 +163,22 @@
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.</p>
         </article>
+
+        <article class="card service">
+          <div class="icon">🛰️</div>
+          <h3 data-i18n="srv4_t">GeoAI</h3>
+          <p data-i18n="srv4_d">Biz, CİS və süni intellektin kəsişməsində geniş tətbiq sahələri üçün həllər təqdim edir. Peyk, ortofoto və dron təsvirlərini modern dərin öyrənmə yanaşmaları — xüsusilə CNN-lər və müasir vizual modellər — ilə yüksək sürət və dəqiqliklə emal edirik. Bu sayədə xəritələriniz üçün faydalanıla bilən vektor qatları və analitik nəticələr əldə edir, qərarverməni sürətləndirən, miqyaslana bilən və təhlükəsiz GeoAI həlləri təqdim edirik.</p>
+        </article>
+
+        <article class="card service">
+          <div class="icon">🗄️</div>
+          <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
+          <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə və məkan məlumatı xidmətlərinizi (məs., WMS/WFS) sürətli və sabit işləyəcək formada dərc edir, giriş nəzarəti və rol modelini qururuq.</p>
+        </article>
       </div>
     </section>
 
-    <!-- TRAINING -->
+    <!-- TRAINING (sən verdiyin GeoServer/GeoAI mətni ilə) -->
     <section id="training">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
@@ -180,41 +186,29 @@
       </div>
 
       <div class="grid">
-        <!-- ArcGIS Enterprise -->
         <article class="card">
           <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
-          <p data-i18n="tr_ent_d">
-            ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.
-          </p>
+          <p data-i18n="tr_ent_d">ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.</p>
         </article>
 
-        <!-- ArcGIS Online -->
         <article class="card">
           <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
-          <p data-i18n="tr_online_d">
-            Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.
-          </p>
+          <p data-i18n="tr_online_d">Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.</p>
         </article>
 
-        <!-- GeoServer (as given) -->
         <article class="card">
           <h3 data-i18n="tr_geoserver_t">GeoServer</h3>
-          <p data-i18n="tr_geoserver_d">
-            GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.
-          </p>
+          <p data-i18n="tr_geoserver_d">GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.</p>
         </article>
 
-        <!-- GeoAI (as given) -->
         <article class="card">
           <h3 data-i18n="tr_geoai_t">GeoAI</h3>
-          <p data-i18n="tr_geoai_d">
-            Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery
-          </p>
+          <p data-i18n="tr_geoai_d">Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery</p>
         </article>
       </div>
     </section>
 
-    <!-- PROJECTS (qısaldılmış) -->
+    <!-- Projects / About / Contact qalıb -->
     <section id="projects" class="projects">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="projects_title_colored">Layihələr</h2>
@@ -227,7 +221,6 @@
       </div>
     </section>
 
-    <!-- ABOUT -->
     <section id="about" class="about">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
@@ -252,7 +245,6 @@
       </div>
     </section>
 
-    <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
@@ -278,7 +270,6 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <footer>
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <p>© <span id="year"></span> GeoSolver. <span data-i18n="rights">Bütün hüquqlar qorunur.</span></p>
@@ -290,7 +281,6 @@
     </div>
   </footer>
 
-  <!-- LANGUAGE & FORM -->
   <script>
     const STR = {
       az:{
@@ -310,8 +300,11 @@
         srv_consult_d:"Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.",
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
         srv1_d:"Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.",
+        srv4_t:"GeoAI",
+        srv4_d:"Biz, CİS və süni intellektin kəsişməsində geniş tətbiq sahələri üçün həllər təqdim edir. Peyk, ortofoto və dron təsvirlərini modern dərin öyrənmə yanaşmaları — xüsusilə CNN-lər və müasir vizual modellər — ilə yüksək sürət və dəqiqliklə emal edirik. Bu sayədə xəritələriniz üçün faydalanıla bilən vektor qatları və analitik nəticələr əldə edir, qərarverməni sürətləndirən, miqyaslana bilən və təhlükəsiz GeoAI həlləri təqdim edirik.",
+        srv_gis_servers_t:"CİS serverlərinin qurulması",
+        srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə və məkan məlumatı xidmətlərinizi (məs., WMS/WFS) sürətli və sabit işləyəcək formada dərc edir, giriş nəzarəti və rol modelini qururuq.",
 
-        /* Training items */
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
         tr_online_t:"ArcGIS Online",
@@ -351,8 +344,11 @@
         srv_consult_d:"We streamline your processes from both GIS and IT perspectives. We clarify business goals, audit your current system, compare architecture alternatives, and deliver a clear, phased roadmap.",
         srv1_t:"Web & Mobile GIS Application Development",
         srv1_d:"Tell us the plan, we bring the map to life. We build web and mobile GIS apps to your needs—with clean UI, fast maps, smart filters and convenient reporting. Whatever your data platform is, we integrate reliably and deliver modern, stable solutions.",
+        srv4_t:"GeoAI",
+        srv4_d:"We deliver solutions at the intersection of GIS and AI. Using modern deep-learning approaches—especially CNNs and advanced vision models—we process satellite/orthophoto/UAV imagery with high speed and accuracy, turning them into usable vector layers and analytics that accelerate decisions.",
+        srv_gis_servers_t:"GIS Server Deployment",
+        srv_gis_servers_d:"We design and deploy a reliable, scalable GIS server environment for your organisation. Starting with business requirements and capacity planning, we choose on-prem or cloud deployment, publish fast/stable map & spatial services (e.g., WMS/WFS), and implement access control and role models.",
 
-        /* Training items */
         tr_ent_t:"ArcGIS Enterprise Training",
         tr_ent_d:"Build your foundation with ArcGIS Enterprise. This plan focuses on practically mastering the platform—securely sharing a variety of resources, making apps and services easily accessible, managing content and permissions, and applying best practices that support operational workflows and cross-team collaboration.",
         tr_online_t:"ArcGIS Online",
@@ -395,7 +391,6 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     setLang('az');
 
-    // mailto form
     const form = document.getElementById('contactForm');
     if(form){
       form.addEventListener('submit', (e)=>{
