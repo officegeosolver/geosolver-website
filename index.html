@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GeoSolver</title>
-  <meta name="description" content="Web/Mobile GIS, GeoServer, GeoAI və məkan analitikası." />
+  <meta name="description" content="Web/Mobile GIS, GeoAI, GeoServer və ArcGIS Enterprise." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -26,7 +26,6 @@
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
-    /* anchor offset */
     section,#top{scroll-margin-top:calc(var(--headerH) + 12px)}
 
     /* NAVBAR */
@@ -88,7 +87,7 @@
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .card h3{margin:0 0 var(--g2);font-size:18px}
 
-    /* SERVICES (körpü dizayn) */
+    /* SERVICES */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
@@ -164,9 +163,7 @@
           <div class="icon">🧠</div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">
-            Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq.
-            Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir
-            və aydın, mərhələli yol xəritəsi hazırlayırıq.
+            Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib işinizə dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.
           </p>
         </article>
 
@@ -174,9 +171,7 @@
           <div class="icon">📈</div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">
-            Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys,
-            sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur,
-            dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.
+            Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı və problemsiz işləyən müasir həll təqdim edirik.
           </p>
         </article>
 
@@ -184,9 +179,7 @@
           <div class="icon">🛰️</div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">
-            CİS üçün süni intellekt həlləri təqdim edirik: peyk, ortofoto və dron təsvirlərindən obyekt aşkarlanması,
-            dəyişiklik analizi, semantik seqmentasiya və super-resolution. Vizual məlumatları sürətlə və dəqiqliklə emal edərək
-            xəritələr üçün istifadə oluna bilən vektor qatları və analitik nəticələr yaradırıq.
+            CİS üçün süni intellekt həlləri təqdim edirik: peyk, ortofoto və dron təsvirlərindən obyekt aşkarlanması, dəyişiklik analizi, semantik seqmentasiya və super-resolution. Vizual məlumatları sürətlə və dəqiqliklə emal edərək xəritələr üçün istifadə oluna bilən vektor qatları və analitik nəticələr yaradırıq.
           </p>
         </article>
 
@@ -194,9 +187,7 @@
           <div class="icon">🗄️</div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">
-            Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq.
-            İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq.
-            Xəritə xidmətlərinizi (məs., WMS/WFS) sabit və sürətli şəkildə dərc edir, giriş nəzarəti və rol modelini sazlayırıq.
+            Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə xidmətlərinizi (məs., WMS/WFS) sabit və sürətli şəkildə dərc edir, giriş nəzarəti və rol modelini sazlayırıq.
           </p>
         </article>
       </div>
@@ -210,16 +201,31 @@
       </div>
       <div class="grid">
         <article class="card">
-          <h3 data-i18n="tr1_t">Web GIS & GeoServer Bootcamp</h3>
-          <p data-i18n="tr1_d">Leaflet/MapLibre ilə veb xəritə, GeoServer–PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.</p>
+          <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
+          <p data-i18n="tr_ent_d">
+            ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.
+          </p>
         </article>
+
         <article class="card">
-          <h3 data-i18n="tr2_t">ArcGIS Enterprise Admin</h3>
-          <p data-i18n="tr2_d">Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.</p>
+          <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
+          <p data-i18n="tr_online_d">
+            Hamı üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.
+          </p>
         </article>
+
         <article class="card">
-          <h3 data-i18n="tr3_t">CV/AI: Peyk Təsviri Analizi</h3>
-          <p data-i18n="tr3_d">Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.</p>
+          <h3 data-i18n="tr_gs_t">GeoServer</h3>
+          <p data-i18n="tr_gs_d">
+            GeoServer + PostGIS quraşdırılması; workspace/store/layer; SLD/MBStyle ilə stil; WMS/WFS/WCS; GeoWebCache, rol-əsaslı təhlükəsizlik və performans tənzimləmələri.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3 data-i18n="tr_geoai_t">GeoAI</h3>
+          <p data-i18n="tr_geoai_d">
+            Peyk/ortofoto/dron təsvirlərində obyekt aşkarlanması və seqmentasiya (YOLO/Mask R-CNN); məlumat hazırlığı və annotasiya, modelin öyrədilməsi, nəticənin PostGIS/ArcGIS-ə vektorlaşdırılması.
+          </p>
         </article>
       </div>
     </section>
@@ -231,9 +237,21 @@
         <p class="section-sub" data-i18n="projects_sub">Seçilmiş işlərimizdən nümunələr</p>
       </div>
       <div class="grid">
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr1_t">Aqrar sahələr üçün obyekt aşkarlanması</h3><p data-i18n="pr1_d">1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.</p></article>
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr2_t">Şəhər binalarının xəritələnməsi</h3><p data-i18n="pr2_d">0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.</p></article>
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr3_t">Enterprise GIS arxitekturası</h3><p data-i18n="pr3_d">HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.</p></article>
+        <article class="card item">
+          <div class="thumb"></div>
+          <h3 data-i18n="pr1_t">Aqrar sahələr üçün obyekt aşkarlanması</h3>
+          <p data-i18n="pr1_d">1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.</p>
+        </article>
+        <article class="card item">
+          <div class="thumb"></div>
+          <h3 data-i18n="pr2_t">Şəhər binalarının xəritələnməsi</h3>
+          <p data-i18n="pr2_d">0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.</p>
+        </article>
+        <article class="card item">
+          <div class="thumb"></div>
+          <h3 data-i18n="pr3_t">Enterprise GIS arxitekturası</h3>
+          <p data-i18n="pr3_d">HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.</p>
+        </article>
       </div>
     </section>
 
@@ -327,9 +345,16 @@
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə xidmətlərinizi (məs., WMS/WFS) sabit və sürətli şəkildə dərc edir, giriş nəzarəti və rol modelini sazlayırıq.",
 
         training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
-        tr1_t:"Web GIS & GeoServer Bootcamp", tr1_d:"Leaflet/MapLibre ilə veb xəritə, GeoServer–PostGIS inteqrasiyası, WMS/WFS/WCS, auth & keş.",
-        tr2_t:"ArcGIS Enterprise Admin", tr2_d:"Portal/Server federasiyası, Data Store, SDE, HA arxitektura, təhlükəsiz paylaşım.",
-        tr3_t:"CV/AI: Peyk Təsviri Analizi", tr3_d:"Mask R-CNN/YOLO obyekt aşkarlanması, dəyişiklik analizi, super-resolution praktiki lab.",
+
+        /* NEW training texts */
+        tr_ent_t:"ArcGIS Enterprise təlimi",
+        tr_ent_d:"ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
+        tr_online_t:"ArcGIS Online",
+        tr_online_d:"Hamı üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.",
+        tr_gs_t:"GeoServer",
+        tr_gs_d:"GeoServer + PostGIS quraşdırılması; workspace/store/layer; SLD/MBStyle ilə stil; WMS/WFS/WCS; GeoWebCache, rol-əsaslı təhlükəsizlik və performans tənzimləmələri.",
+        tr_geoai_t:"GeoAI",
+        tr_geoai_d:"Peyk/ortofoto/dron təsvirlərində obyekt aşkarlanması və seqmentasiya (YOLO/Mask R-CNN); məlumat hazırlığı və annotasiya, modelin öyrədilməsi, nəticənin PostGIS/ArcGIS-ə vektorlaşdırılması.",
 
         projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
         pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması", pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
@@ -371,9 +396,16 @@
         srv_gis_servers_d:"We design and deploy reliable, scalable GIS server environments. From capacity planning to on-prem/cloud setup, we publish WMS/WFS services for stable high performance and configure access control and roles.",
 
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
-        tr1_t:"Web GIS & GeoServer Bootcamp", tr1_d:"Web maps with Leaflet/MapLibre, GeoServer–PostGIS integration, WMS/WFS/WCS, auth & caching.",
-        tr2_t:"ArcGIS Enterprise Admin", tr2_d:"Portal/Server federation, Data Store, SDE, HA architecture, secure sharing.",
-        tr3_t:"CV/AI: Satellite Imagery", tr3_d:"Mask R-CNN/YOLO object detection, change detection, super-resolution hands-on labs.",
+
+        /* NEW training texts */
+        tr_ent_t:"ArcGIS Enterprise training",
+        tr_ent_d:"Build your foundation with ArcGIS Enterprise. This course helps you get started in a hands-on way: securely share a variety of resources, make apps and services easily accessible, manage content and permissions, and apply best practices that support operational workflows and cross-team collaboration.",
+        tr_online_t:"ArcGIS Online",
+        tr_online_d:"Maps and apps for everyone. ArcGIS Online enables people across your organization to discover, create, and share web maps and apps—anytime, anywhere. Learn the core workflows: publish content to your org’s Online site, build web maps and apps, and handle common administrative tasks.",
+        tr_gs_t:"GeoServer",
+        tr_gs_d:"Install GeoServer + PostGIS; workspace/store/layer; styling with SLD/MBStyle; WMS/WFS/WCS; GeoWebCache, role-based security and performance tuning.",
+        tr_geoai_t:"GeoAI",
+        tr_geoai_d:"Object detection & segmentation on satellite/orthophoto/UAV imagery (YOLO/Mask R-CNN); data prep & annotation, model training, vectorized outputs to PostGIS/ArcGIS.",
 
         projects_title_colored:"Projects", projects_sub:"Selected case studies",
         pr1_t:"Crop-field object detection", pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
@@ -393,7 +425,7 @@
       }
     };
 
-    // ---- Language switcher (active menu status preserved) ----
+    // ---- Language switcher ----
     function setLang(lang){
       const d = STR[lang] || STR.az;
       document.documentElement.lang = lang;
@@ -440,9 +472,8 @@
       if (el) io.observe(el);
     });
 
-    // Footer ili
+    // Footer ili və ilkin dil
     document.getElementById('year').textContent = new Date().getFullYear();
-    // Start dili
     setLang('az');
 
     // mailto form
