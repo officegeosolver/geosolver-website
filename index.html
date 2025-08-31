@@ -88,7 +88,6 @@
     .card p{margin:0;color:#334155}
 
     /* Services + Training shared look */
-    #services .grid{gap:var(--g6)}
     #services .card.service,
     #training .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
@@ -99,13 +98,17 @@
     .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:500;color:#1f2937}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
 
-    /* >>> Training grid: 2 sütun (böyük ekran), 1 sütun (mobil) <<< */
+    /* >>> Services grid: 2 sütun (böyük), 1 sütun (mobil) <<< */
+    #services .grid{grid-template-columns:repeat(2,minmax(280px,1fr));gap:var(--g6)}
+    @media (max-width:900px){
+      #services .grid{grid-template-columns:1fr}
+    }
+
+    /* >>> Training grid: 2 sütun (böyük), 1 sütun (mobil) <<< */
     #training .grid{grid-template-columns:repeat(2,minmax(280px,1fr));gap:var(--g6)}
     @media (max-width:900px){
       #training .grid{grid-template-columns:1fr}
     }
-
-    .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
 
     .input{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:#0f172a}
     .input:focus{outline:2px solid #93c5fd}
@@ -130,7 +133,6 @@
           <li><a class="active" href="#top" data-i18n="nav_home">Əsas səhifə</a></li>
           <li><a href="#services" data-i18n="nav_services">Xidmətlər</a></li>
           <li><a href="#training" data-i18n="nav_training">Təlimlər</a></li>
-          <li><a href="#projects" data-i18n="nav_projects">Layihələr</a></li>
           <li><a href="#about" data-i18n="nav_about">Haqqımızda</a></li>
           <li><a href="#contact" data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
@@ -148,13 +150,13 @@
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
       <div class="hero-cta">
-        <a class="btn soft" href="#projects" data-i18n="cta_view">Layihələrə bax</a>
+        <a class="btn soft" href="#services" data-i18n="cta_view">Layihələrə bax</a>
       </div>
     </div>
   </div>
 
   <main class="container">
-    <!-- SERVICES -->
+    <!-- SERVICES (2×2) -->
     <section id="services">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
@@ -188,7 +190,7 @@
       </div>
     </section>
 
-    <!-- TRAINING (2×2 layout) -->
+    <!-- TRAINING (2×2) -->
     <section id="training">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
@@ -219,19 +221,6 @@
           <h3 data-i18n="tr_geoai_t">GeoAI</h3>
           <p data-i18n="tr_geoai_d">Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery</p>
         </article>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="projects">
-      <div class="section-title">
-        <h2 class="section-heading" data-i18n="projects_title_colored">Layihələr</h2>
-        <p class="section-sub" data-i18n="projects_sub">Seçilmiş işlərimizdən nümunələr</p>
-      </div>
-      <div class="grid">
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr1_t">Aqrar sahələr üçün obyekt aşkarlanması</h3><p data-i18n="pr1_d">1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.</p></article>
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr2_t">Şəhər binalarının xəritələnməsi</h3><p data-i18n="pr2_d">0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.</p></article>
-        <article class="card item"><div class="thumb"></div><h3 data-i18n="pr3_t">Enterprise GIS arxitekturası</h3><p data-i18n="pr3_d">HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.</p></article>
       </div>
     </section>
 
@@ -303,14 +292,13 @@
     const STR = {
       az:{
         nav_home:"Əsas səhifə",
-        nav_services:"Xidmətlər",nav_projects:"Layihələr",nav_about:"Haqqımızda",nav_contact:"Əlaqə",nav_training:"Təlimlər",
+        nav_services:"Xidmətlər",nav_about:"Haqqımızda",nav_contact:"Əlaqə",nav_training:"Təlimlər",
         hero_title:"Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin",
         hero_sub:"CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.",
         cta_view:"Layihələrə bax",
 
         services_title_colored:"Xidmətlərimiz", services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
         training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
-        projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
         contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
 
@@ -328,16 +316,10 @@
         tr_online_t:"ArcGIS Online",
         tr_online_d:"Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.",
         tr_geoserver_t:"GeoServer",
-        tr_geoserver_d:"GeoServer, məkan məlumatınızı veb-servis kimi dərc etməyə imkan verən açıq mənbəli server proqramıdır. Bu təlim GeoServer-in nə olduğunu, nə üçün və nə vaxt ona ehtiyacınız olduğunu izah edəcək. Kompüterinizdə lokal hostda quraşdırılmış versiyada nümunə verilənlərdən istifadə edərək GeoServer-in əsaslarını araşdıracağıq. Daha sonra öz verilənlərinizdən istifadə etməklə GeoServer-də layihənin qurulması addımlarını mərhələ-mərhələ keçəcəyik.",
+        tr_geoserver_d:"GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.",
         tr_geoai_t:"GeoAI",
-        tr_geoai_d:"ArcGIS-də GeoAI — süni intellekt (AI), maşın öyrənməsi (ML) və dərin öyrənmənin (DL) GIS ilə inteqrasiyasıdır ki, bilik əldə olunmasına və coğrafi problemlərin həllinə xidmət edir. Klasterləşdirmə və nümunə aşkarlanması, proqnozlaşdırma və qabaqlayıcı təhlil, həmçinin təsvirlərdən məlumat çıxarılması üzrə GeoAI iş axınlarını öyrənin.",
+        tr_geoai_d:"Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery",
 
-        projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
-        pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması",pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
-        pr2_t:"Şəhər binalarının xəritələnməsi",pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
-        pr3_t:"Enterprise GIS arxitekturası",pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
-
-        about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
         about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə komandadır.",
         about_p2:"Missiyamız: məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
         about_li1:"OGC standartlarına sadiqlik",about_li2:"ArcGIS və Open Source balansı",about_li3:"SLA ilə dəstək və təlim",
@@ -350,14 +332,13 @@
       },
       en:{
         nav_home:"Home",
-        nav_services:"Services",nav_projects:"Projects",nav_about:"About",nav_contact:"Contact",nav_training:"Training",
+        nav_services:"Services",nav_about:"About",nav_contact:"Contact",nav_training:"Training",
         hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See projects",
 
         services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
-        projects_title_colored:"Projects", projects_sub:"Selected case studies",
         contact_title_colored:"Contact", contact_sub:"We reply within 24–48 hours",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
 
@@ -378,10 +359,6 @@
         tr_geoserver_d:"GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.",
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery",
-
-        pr1_t:"Crop-field object detection",pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
-        pr2_t:"Urban building mapping",pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
-        pr3_t:"Enterprise GIS architecture",pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
 
         about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map apps and AI-driven geospatial analytics.",
         about_p2:"Our mission: convert geospatial data into value with robust architecture, open standards and intelligent models.",
