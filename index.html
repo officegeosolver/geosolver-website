@@ -7,7 +7,8 @@
   <meta name="description" content="Web/Mobile GIS, GeoServer & ArcGIS Enterprise, peyk təsvirlərində kompüter görməsi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <!-- 500 (medium) əlavə olundu ki, başlıqlar bold olmasın -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
       --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
@@ -26,6 +27,7 @@
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
 
+    /* Navbar */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
@@ -37,7 +39,8 @@
       font-weight:800; letter-spacing:.2px;
       color:#2563eb; position:relative; transition:color .15s ease, background .15s ease;
     }
-    nav a::after{content:""; position:absolute; left:12px; right:12px; bottom:6px; height:2px; background:#2563eb; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .18s ease}
+    nav a::after{content:""; position:absolute; left:12px; right:12px; bottom:6px;
+      height:2px; background:#2563eb; border-radius:2px; transform:scaleX(0); transform-origin:left; transition:transform .18s ease}
     nav a:hover{background:rgba(37,99,235,.08); color:#1e40af}
     nav a:hover::after{transform:scaleX(1)}
     nav a.active{color:#1e40af; background:rgba(37,99,235,.10)}
@@ -48,6 +51,7 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
+    /* Hero */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center; background:
@@ -66,6 +70,7 @@
     .btn.soft{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35)}
     .btn.soft:hover{background:rgba(255,255,255,.22)}
 
+    /* Sections */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
     .section-heading{
@@ -80,17 +85,20 @@
 
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .card h3{margin:0 0 var(--g2);font-size:18px}
+    .card h3{margin:0 0 var(--g2)}
     .card p{margin:0;color:#334155}
 
+    /* Services style */
     #services .grid{gap:var(--g6)}
-    #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
+    #services .card.service,
+    #training .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon{
       width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
       background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
     }
-    .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:700;color:#1e293b}
+    /* BAŞLIQLAR ARTIQ BOLD DEYİL — medium(500) */
+    .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:500;color:#1f2937}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
 
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
@@ -107,6 +115,7 @@
   </style>
 </head>
 <body>
+  <!-- NAVBAR -->
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
@@ -129,6 +138,7 @@
     </div>
   </header>
 
+  <!-- HERO -->
   <div id="top" class="hero-visual">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">
@@ -144,7 +154,7 @@
   </div>
 
   <main class="container">
-    <!-- SERVICES — 4 KART TAM BƏRPA -->
+    <!-- SERVICES -->
     <section id="services">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
@@ -178,7 +188,7 @@
       </div>
     </section>
 
-    <!-- TRAINING (sən verdiyin GeoServer/GeoAI mətni ilə) -->
+    <!-- TRAINING — eyni dizayn, icon + title + text -->
     <section id="training">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
@@ -186,29 +196,33 @@
       </div>
 
       <div class="grid">
-        <article class="card">
+        <article class="card service">
+          <div class="icon">🏢</div>
           <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
           <p data-i18n="tr_ent_d">ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.</p>
         </article>
 
-        <article class="card">
+        <article class="card service">
+          <div class="icon">☁️</div>
           <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
           <p data-i18n="tr_online_d">Hami üçün xəritələr və tətbiqlər. ArcGIS Online təşkilatdakı əməkdaşlara veb xəritə və tətbiqləri kəşf etmək, yaratmaq və paylaşmaq imkanı verir — istənilən vaxt, istənilən yerdən. Bu təlimdə əsas iş axınlarını öyrənəcəksiniz: məzmunu təşkilat portalına dərc etmək, veb xəritə və tətbiqlər qurmaq və ümumi inzibati tapşırıqları icra etmək.</p>
         </article>
 
-        <article class="card">
+        <article class="card service">
+          <div class="icon">🌐</div>
           <h3 data-i18n="tr_geoserver_t">GeoServer</h3>
           <p data-i18n="tr_geoserver_d">GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your. computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.</p>
         </article>
 
-        <article class="card">
+        <article class="card service">
+          <div class="icon">🤖</div>
           <h3 data-i18n="tr_geoai_t">GeoAI</h3>
           <p data-i18n="tr_geoai_d">Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery</p>
         </article>
       </div>
     </section>
 
-    <!-- Projects / About / Contact qalıb -->
+    <!-- PROJECTS -->
     <section id="projects" class="projects">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="projects_title_colored">Layihələr</h2>
@@ -221,6 +235,7 @@
       </div>
     </section>
 
+    <!-- ABOUT -->
     <section id="about" class="about">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
@@ -245,6 +260,7 @@
       </div>
     </section>
 
+    <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
@@ -270,6 +286,7 @@
     </section>
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <p>© <span id="year"></span> GeoSolver. <span data-i18n="rights">Bütün hüquqlar qorunur.</span></p>
@@ -281,6 +298,7 @@
     </div>
   </footer>
 
+  <!-- LANGUAGE & FORM -->
   <script>
     const STR = {
       az:{
@@ -305,6 +323,7 @@
         srv_gis_servers_t:"CİS serverlərinin qurulması",
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə və məkan məlumatı xidmətlərinizi (məs., WMS/WFS) sürətli və sabit işləyəcək formada dərc edir, giriş nəzarəti və rol modelini qururuq.",
 
+        training_sub:"Praktiki proqramlar və bootcamp-lər",
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
         tr_online_t:"ArcGIS Online",
@@ -314,15 +333,18 @@
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"ArcGIS-də GeoAI — süni intellekt (AI), maşın öyrənməsi (ML) və dərin öyrənmənin (DL) GIS ilə inteqrasiyasıdır ki, bilik əldə olunmasına və coğrafi problemlərin həllinə xidmət edir. Klasterləşdirmə və nümunə aşkarlanması, proqnozlaşdırma və qabaqlayıcı təhlil, həmçinin təsvirlərdən məlumat çıxarılması üzrə GeoAI iş axınlarını öyrənin.",
 
+        projects_title_colored:"Layihələr", projects_sub:"Seçilmiş işlərimizdən nümunələr",
         pr1_t:"Aqrar sahələr üçün obyekt aşkarlanması",pr1_d:"1.5m → 0.5m super-resolution, əkin sahələrinin sərhədlərinin çıxarılması.",
         pr2_t:"Şəhər binalarının xəritələnməsi",pr2_d:"0.3m təsvirlərdə bina aşkarlanması, vektorlaşdırma və dashboard.",
         pr3_t:"Enterprise GIS arxitekturası",pr3_d:"HA ArcGIS, Portal federasiyası, təhlükəsiz paylama və SSO.",
 
+        about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
         about_p1:"GeoSolver Azərbaycanda GIS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə komandadır.",
         about_p2:"Missiyamız: məkan məlumatlarını etibarlı arxitektura, açıq standartlar və ağıllı modellərlə dəyərə çevirmək.",
         about_li1:"OGC standartlarına sadiqlik",about_li2:"ArcGIS və Open Source balansı",about_li3:"SLA ilə dəstək və təlim",
         about_side_t:"Sürətli faktlar",
 
+        contact_title_colored:"Əlaqə", contact_sub:"24–48 saat ərzində geri dönüş",
         contact_card_t:"Bir fincan qəhvə üstündə danışaq ☕",contact_addr_t:"Ünvan:", send_btn:"Göndər",
         rights:"Bütün hüquqlar qorunur.",
         ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
@@ -361,6 +383,7 @@
         pr1_t:"Crop-field object detection",pr1_d:"1.5m → 0.5m super-resolution; field boundaries extraction.",
         pr2_t:"Urban building mapping",pr2_d:"Building detection on 0.3m imagery; vectorization & dashboard.",
         pr3_t:"Enterprise GIS architecture",pr3_d:"HA ArcGIS, Portal federation, secure distribution & SSO.",
+
         about_p1:"GeoSolver is a team in Azerbaijan focused on GIS, web/map apps and AI-driven geospatial analytics.",
         about_p2:"Our mission: convert geospatial data into value with robust architecture, open standards and intelligent models.",
         about_li1:"Commitment to OGC standards",about_li2:"Balanced ArcGIS & Open Source",about_li3:"SLA-backed support & training",
@@ -391,6 +414,7 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     setLang('az');
 
+    // mailto form
     const form = document.getElementById('contactForm');
     if(form){
       form.addEventListener('submit', (e)=>{
