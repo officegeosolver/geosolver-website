@@ -7,7 +7,6 @@
   <meta name="description" content="Web/Mobile GIS, GeoServer & ArcGIS Enterprise, peyk təsvirlərində kompüter görməsi." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <!-- 500 (medium) əlavə olundu ki, başlıqlar bold olmasın -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root{
@@ -88,7 +87,7 @@
     .card h3{margin:0 0 var(--g2)}
     .card p{margin:0;color:#334155}
 
-    /* Services style */
+    /* Services + Training shared look */
     #services .grid{gap:var(--g6)}
     #services .card.service,
     #training .card.service{border:none;background:transparent;box-shadow:none;padding:0}
@@ -97,9 +96,14 @@
       width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
       background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
     }
-    /* BAŞLIQLAR ARTIQ BOLD DEYİL — medium(500) */
     .service h3{margin:6px 0 0;font-size:clamp(18px,1.9vw,22px);font-weight:500;color:#1f2937}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:clamp(14px,1.5vw,16px);line-height:1.7}
+
+    /* >>> Training grid: 2 sütun (böyük ekran), 1 sütun (mobil) <<< */
+    #training .grid{grid-template-columns:repeat(2,minmax(280px,1fr));gap:var(--g6)}
+    @media (max-width:900px){
+      #training .grid{grid-template-columns:1fr}
+    }
 
     .projects .thumb{aspect-ratio:16/9;border-radius:12px;background:#f8fafc;border:1px solid var(--line);margin-bottom:var(--g3)}
 
@@ -141,12 +145,8 @@
   <!-- HERO -->
   <div id="top" class="hero-visual">
     <div class="inner">
-      <h1 class="hero-title" data-i18n="hero_title">
-        Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin
-      </h1>
-      <p class="hero-sub" data-i18n="hero_sub">
-        CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.
-      </p>
+      <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
+      <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
       <div class="hero-cta">
         <a class="btn soft" href="#projects" data-i18n="cta_view">Layihələrə bax</a>
       </div>
@@ -188,7 +188,7 @@
       </div>
     </section>
 
-    <!-- TRAINING — eyni dizayn, icon + title + text -->
+    <!-- TRAINING (2×2 layout) -->
     <section id="training">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
@@ -323,7 +323,6 @@
         srv_gis_servers_t:"CİS serverlərinin qurulması",
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. İşə biznes tələbləri və tutum hesablaması ilə başlayır, düzgün yerləşdirməni (on-prem və ya bulud) planlayırıq. Xəritə və məkan məlumatı xidmətlərinizi (məs., WMS/WFS) sürətli və sabit işləyəcək formada dərc edir, giriş nəzarəti və rol modelini qururuq.",
 
-        training_sub:"Praktiki proqramlar və bootcamp-lər",
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə GIS təməlini qurun. Bu təlim Enterprise platformasının imkanlarını praktiki şəkildə mənimsətməyə yönəlib: müxtəlif resursları təhlükəsiz paylaşmaq, tətbiq və xidmətləri rahat əlçatan etmək, məzmunu və icazələri idarə etmək, həmçinin iş axınlarını və bölmələrarası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
         tr_online_t:"ArcGIS Online",
