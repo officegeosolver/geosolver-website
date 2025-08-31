@@ -84,29 +84,33 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
 
-    /* Generic card (used by none now for training/about) */
+    /* Generic card */
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Service look (frameless) */
+    /* Services (frameless tiles with circle icon) */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon{
       width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
-      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; font-size:36px; color:#2563eb
+      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; color:#2563eb;
+    }
+    /* SVG faylları <img> kimi istifadə etdiyimiz üçün ölçünü ayrıca təyin edirik */
+    .service .icon img{
+      width:36px; height:36px; display:block;
     }
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
-    /* Frameless tiles for TRAINING (same spirit as services, but left-aligned text) */
+    /* Training (frameless) */
     #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
     #training .plain h3{font-size:22px;font-weight:600;margin:0 0 6px;text-align:left}
     #training .plain p{margin:0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
 
-    /* Frameless ABOUT text */
+    /* About (frameless text) */
     #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
     #about .about-text p{margin:0 0 12px;color:#334155;line-height:1.75}
 
@@ -171,33 +175,45 @@
       </div>
 
       <div class="grid two">
+        <!-- CİS və İT Konsaltinqi -->
         <article class="card service">
-          <div class="icon">🧠</div>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
+          </div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
         </article>
 
+        <!-- Veb & Mobil CİS Tətbiqləri -->
         <article class="card service">
-          <div class="icon">📈</div>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
+          </div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
         </article>
 
+        <!-- GeoAI -->
         <article class="card service">
-          <div class="icon">🛰️</div>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
+          </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
         </article>
 
+        <!-- CİS serverlərinin qurulması -->
         <article class="card service">
-          <div class="icon">🗄️</div>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
+          </div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, WMS/WFS kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
         </article>
       </div>
     </section>
 
-    <!-- TRAINING (frameless items) -->
+    <!-- TRAINING -->
     <section id="training">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
@@ -227,7 +243,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (frameless text) -->
+    <!-- ABOUT -->
     <section id="about" class="about">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
@@ -235,7 +251,7 @@
       </div>
 
       <div class="about-text" data-i18n-html="about_long_1">
-        <!-- default AZ content (will be replaced on language switch) -->
+        <!-- AZ default (will be replaced on language switch) -->
         <p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
         <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
         <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
