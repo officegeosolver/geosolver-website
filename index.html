@@ -5,19 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>GeoSolver</title>
   <meta name="description" content="Web/Mobile GIS, GeoAI, GeoServer & ArcGIS Enterprise." />
-
-  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-
-  <!-- Preload hero image to avoid grey flash -->
+  <!-- Hero şəkli öncədən yüklə: boz kadr olmasın -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg">
 
   <style>
     :root{
       --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
       --brand:#2563eb; --bg:#ffffff;
+      --titleA:#6ea8ff; --titleB:#6366f1;
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
@@ -56,15 +54,15 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO — ONLY IMAGE, no gradients, no grey flash */
+    /* HERO — yalnız şəkil, heç bir örtük yoxdur */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center;
-      background-color:transparent;
+      background-image: var(--hero);
       background-repeat:no-repeat;
       background-size:cover;
       background-position:center center;
-      will-change:opacity, background-image;
+      background-color:transparent;
     }
     .hero-visual .inner{
       width:100%; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
@@ -91,20 +89,45 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
 
+    /* Generic card */
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .card h3{margin:0 0 var(--g2);font-size:22px;font-weight:600}
+    .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* ===== Contact (clean, no frame) ===== */
-    #contact{padding:var(--g7) 0}
-    .contact-wrap{border:none;background:none;padding:0}
-    .contact-list{
-      display:flex;flex-direction:column;align-items:center;gap:10px;margin:0;padding:0;list-style:none;
-      font-size:clamp(18px,2.2vw,22px);
+    /* Services (yalnız SVG ikonlar) */
+    #services .grid{gap:var(--g6)}
+    #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
+    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+    .service .icon{
+      display:grid; place-items:center; background:transparent; border:0; box-shadow:none; border-radius:0; width:auto; height:auto;
     }
-    .contact-list a{color:#0f172a;text-decoration:none;font-weight:600;letter-spacing:.2px}
-    .contact-list a:hover{text-decoration:underline}
+    .service .icon img{width:56px; height:56px; display:block}
+    .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
+    .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
+
+    /* Training (frameless) */
+    #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
+    #training .plain h3{font-size:22px;font-weight:600;margin:0 0 6px;text-align:left}
+    #training .plain p{margin:0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
+
+    /* About (frameless text) */
+    #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
+    #about .about-text p{margin:0 0 12px;color:#334155;line-height:1.75}
+
+    /* Contact – sadə, framesiz */
+    .contact-plain{
+      display:flex;justify-content:center
+    }
+    .contact-plain ul{
+      list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;align-items:center;
+      font-size:clamp(18px,2.2vw,22px)
+    }
+    .contact-plain a{font-weight:600;color:#0f172a;text-decoration:none}
+    .contact-plain a:hover{text-decoration:underline}
+
+    .input{background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px;color:#0f172a}
+    .input:focus{outline:2px solid #93c5fd}
 
     footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
@@ -124,11 +147,11 @@
       </a>
       <nav aria-label="primary">
         <ul>
-          <li><a class="active" href="#top" data-i18n="nav_home" data-nav="top">Əsas səhifə</a></li>
-          <li><a href="#services" data-i18n="nav_services" data-nav="services">Xidmətlər</a></li>
-          <li><a href="#training" data-i18n="nav_training" data-nav="training">Təlimlər</a></li>
-          <li><a href="#about" data-i18n="nav_about" data-nav="about">Haqqımızda</a></li>
-          <li><a href="#contact" data-i18n="nav_contact" data-nav="contact">Əlaqə</a></li>
+          <li><a class="active" href="#top" data-nav="top"    data-i18n="nav_home">Əsas səhifə</a></li>
+          <li><a href="#services"          data-nav="services" data-i18n="nav_services">Xidmətlər</a></li>
+          <li><a href="#training"          data-nav="training" data-i18n="nav_training">Təlimlər</a></li>
+          <li><a href="#about"             data-nav="about"    data-i18n="nav_about">Haqqımızda</a></li>
+          <li><a href="#contact"           data-nav="contact"  data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
       </nav>
       <div class="lang" role="group" aria-label="Language switcher">
@@ -139,7 +162,7 @@
   </header>
 
   <!-- HERO -->
-  <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');">
+  <div id="top" class="hero-visual">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
@@ -160,7 +183,7 @@
       <div class="grid two">
         <article class="card service">
           <div class="icon">
-            <img alt="Compass icon" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
           </div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
@@ -168,7 +191,7 @@
 
         <article class="card service">
           <div class="icon">
-            <img alt="Monitor-smartphone icon" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
           </div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
@@ -176,7 +199,7 @@
 
         <article class="card service">
           <div class="icon">
-            <img alt="Brain-circuit icon" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
@@ -184,7 +207,7 @@
 
         <article class="card service">
           <div class="icon">
-            <img alt="Database icon" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
           </div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, WMS/WFS kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
@@ -240,14 +263,13 @@
       </div>
     </section>
 
-    <!-- CONTACT (no frame, no extra line) -->
+    <!-- CONTACT (framesiz, sadə) -->
     <section id="contact" class="contact">
-      <div class="section-title" style="margin-bottom: var(--g5)">
-        <h2 class="section-heading" data-i18n="contact_title_colored">Contact With Us</h2>
+      <div class="section-title">
+        <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
       </div>
-
-      <div class="contact-wrap">
-        <ul class="contact-list">
+      <div class="contact-plain">
+        <ul>
           <li><a href="tel:+994553167804">+994 (55) 316 78 04</a></li>
           <li><a href="mailto:officegeosolver@gmail.com">officegeosolver@gmail.com</a></li>
         </ul>
@@ -271,13 +293,15 @@
   <script>
     const STR = {
       az:{
-        nav_home:"Əsas səhifə", nav_services:"Xidmətlər", nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
+        nav_home:"Əsas səhifə",
+        nav_services:"Xidmətlər", nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
 
         hero_title:"Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin",
         hero_sub:"CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.",
         cta_view:"Xidmətlərə bax",
 
         services_title_colored:"Xidmətlərimiz", services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
+
         srv_consult_t:"CİS və İT Konsaltinqi",
         srv_consult_d:"Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.",
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
@@ -308,18 +332,21 @@
           <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
         `,
 
-        contact_title_colored:"Contact With Us",
-        rights:"Bütün hüquqlar qorunur."
+        contact_title_colored:"Əlaqə",
+        rights:"Bütün hüquqlar qorunur.",
+        ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
       },
 
       en:{
-        nav_home:"Home", nav_services:"Services", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
+        nav_home:"Home",
+        nav_services:"Services", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
 
         hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See services",
 
         services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
+
         srv_consult_t:"GIS & IT Consultancy",
         srv_consult_d:"We streamline processes from both mapping and IT perspectives. We clarify business goals, audit your current system, compare architecture options, and deliver a clear, phased roadmap.",
         srv1_t:"Web & Mobile GIS Application Development",
@@ -331,11 +358,11 @@
 
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
         tr_ent_t:"ArcGIS Enterprise",
-        tr_ent_d:"Build your foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions and applying cross-team collaboration best practices.",
+        tr_ent_d:"Build your foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions and applying collaboration best practices across teams.",
         tr_online_t:"ArcGIS Online",
         tr_online_d:"Maps and apps for everyone. Learn to publish content to your org, create web maps and apps, and perform common administrative tasks to keep everything discoverable and usable across the organization.",
         tr_gs_t:"GeoServer",
-        tr_gs_d:"GeoServer is open-source server software that lets you publish geospatial data as web services. We explain what it is, when you need it, explore the basics on localhost with sample data, and set up a project using your own data.",
+        tr_gs_d:"GeoServer is open-source server software that allows you to publish your geospatial data as a web service. This course explains what GeoServer is, why and when you need it, explores the basics on localhost with sample data, and walks through setting up a project using your own data.",
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"GeoAI in ArcGIS integrates AI/ML/DL with GIS to produce knowledge and solve geographic problems. Explore workflows for clustering/pattern detection, prediction/forecasting, and information extraction from imagery.",
 
@@ -350,28 +377,24 @@
           <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to participate in international projects via remote collaboration.</p>
         `,
 
-        contact_title_colored:"Contact With Us",
-        rights:"All rights reserved."
+        contact_title_colored:"Contact",
+        rights:"All rights reserved.",
+        ph_name:"Name", ph_email:"Email", ph_msg:"Message"
       }
     };
 
     function setLang(lang){
       const d = STR[lang] || STR.az;
       document.documentElement.lang = lang;
-
-      // Replace textContent targets
       document.querySelectorAll('[data-i18n]').forEach(el=>{
-        const k = el.getAttribute('data-i18n');
-        if (d[k] != null) el.textContent = d[k];
+        const k = el.getAttribute('data-i18n'); if(d[k]!=null) el.textContent = d[k];
       });
-
-      // Replace innerHTML targets (long rich text)
+      document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+        const k = el.getAttribute('data-i18n-ph'); if(d[k]!=null) el.placeholder = d[k];
+      });
       document.querySelectorAll('[data-i18n-html]').forEach(el=>{
-        const k = el.getAttribute('data-i18n-html');
-        if (d[k] != null) el.innerHTML = d[k];
+        const k = el.getAttribute('data-i18n-html'); if(d[k]!=null) el.innerHTML = d[k];
       });
-
-      // Toggle language buttons
       document.querySelectorAll('.lang button').forEach(b=>{
         b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang==='az'?'aze':'eng'));
       });
