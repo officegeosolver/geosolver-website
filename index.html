@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-  <!-- Hero şəkli öncədən yüklə: boz kadr olmasın -->
+  <!-- Hero şəkli öncədən yüklə -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg">
 
   <style>
@@ -54,7 +54,7 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO — yalnız şəkil, heç bir örtük yoxdur */
+    /* HERO — yalnız şəkil, overlay YOXDUR */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center;
@@ -95,14 +95,15 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services (yalnız SVG ikonlar) */
+    /* Services — yalnız SVG ikonlar, dairəvi fon saxlanılır */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon{
-      display:grid; place-items:center; background:transparent; border:0; box-shadow:none; border-radius:0; width:auto; height:auto;
+      width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
+      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; color:#2563eb;
     }
-    .service .icon img{width:56px; height:56px; display:block}
+    .service .icon img{width:36px; height:36px; display:block}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
@@ -115,10 +116,8 @@
     #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
     #about .about-text p{margin:0 0 12px;color:#334155;line-height:1.75}
 
-    /* Contact – sadə, framesiz */
-    .contact-plain{
-      display:flex;justify-content:center
-    }
+    /* Contact – framesiz, sadə siyahı */
+    .contact-plain{display:flex;justify-content:center}
     .contact-plain ul{
       list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;align-items:center;
       font-size:clamp(18px,2.2vw,22px)
@@ -161,8 +160,8 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <div id="top" class="hero-visual">
+  <!-- HERO (yalnız şəkil) -->
+  <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
@@ -263,7 +262,7 @@
       </div>
     </section>
 
-    <!-- CONTACT (framesiz, sadə) -->
+    <!-- CONTACT (framesiz) -->
     <section id="contact" class="contact">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
@@ -289,7 +288,7 @@
     </div>
   </footer>
 
-  <!-- LANGUAGE -->
+  <!-- LANGUAGE & NAV fix -->
   <script>
     const STR = {
       az:{
@@ -403,20 +402,42 @@
     document.getElementById('year').textContent = new Date().getFullYear();
     setLang('az');
 
-    // Active nav item on scroll
-    const sections = ['top','services','training','about','contact'].map(id => document.getElementById(id));
-    const navLinks = new Map([...document.querySelectorAll('nav a[data-nav]')].map(a=>[a.getAttribute('data-nav'),a]));
-    const obs = new IntersectionObserver(entries=>{
-      entries.forEach(ent=>{
-        if(ent.isIntersecting){
-          const id = ent.target.id;
-          navLinks.forEach(a=>a.classList.remove('active'));
-          const link = navLinks.get(id);
-          if(link) link.classList.add('active');
-        }
-      });
-    },{rootMargin:'-40% 0px -50% 0px', threshold:0.01});
-    sections.forEach(sec=>sec && obs.observe(sec));
+    // ===== NAV aktivləşdirmə (stabil) =====
+    const sectionIds = ['top','services','training','about','contact'];
+    const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
+    const navLinks = new Map(
+      [...document.querySelectorAll('nav a[data-nav]')].map(a => [a.getAttribute('data-nav'), a])
+    );
+
+    function setActive(id){
+      navLinks.forEach(a => a.classList.remove('active'));
+      const link = navLinks.get(id);
+      if (link) link.classList.add('active');
+    }
+
+    function setActiveByScroll(){
+      const y = window.scrollY + window.innerHeight * 0.35; // ekranın 35%-i
+      let current = 'top';
+      for (const sec of sections){
+        const top = sec.offsetTop;
+        const bottom = top + sec.offsetHeight;
+        if (y >= top && y < bottom){ current = sec.id; break; }
+      }
+      setActive(current);
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      let best = null;
+      for (const ent of entries){
+        if (!ent.isIntersecting) continue;
+        if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent;
+      }
+      if (best) setActive(best.target.id);
+    }, { threshold: [0.55], rootMargin: '0px 0px -10% 0px' });
+
+    sections.forEach(sec => observer.observe(sec));
+    window.addEventListener('load', setActiveByScroll);
+    window.addEventListener('hashchange', setActiveByScroll);
   </script>
 </body>
 </html>
