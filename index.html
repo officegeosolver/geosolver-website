@@ -10,6 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <!-- Hero şəkli öncədən yüklə -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg">
+  <!-- Logo öncədən yüklə -->
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo.png">
 
   <style>
     :root{
@@ -33,7 +35,8 @@
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .logo{width:36px;height:36px;border-radius:10px;background:linear-gradient(135deg,#38bdf8,#22c55e);display:grid;place-items:center;color:#001314;font-weight:800}
+    /* Loqo şəkli */
+    .brand img.logo-img{width:36px;height:36px;display:block;border-radius:8px}
 
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{
@@ -142,7 +145,16 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <div class="logo">GΣ</div><span>GeoSolver</span>
+        <!-- Sənin loqon -->
+        <img
+          class="logo-img"
+          src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo.png"
+          alt="GeoSolver logo"
+          loading="eager"
+          fetchpriority="high"
+          width="36" height="36"
+        />
+        <span>GeoSolver</span>
       </a>
       <nav aria-label="primary">
         <ul>
@@ -440,8 +452,4 @@
     window.addEventListener('hashchange', setActiveByScroll);
   </script>
 </body>
-</html>F
-
-
-
-
+</html>
