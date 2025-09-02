@@ -21,7 +21,7 @@
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
-      --headerH:64px;
+      --headerH:72px; /* böyüdülmüş navbar hündürlüyü */
       --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');
       --heroLeft: clamp(24px, 6vw, 120px);
     }
@@ -35,8 +35,13 @@
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    /* Loqo şəkli */
-    .brand img.logo-img{width:36px;height:36px;display:block;border-radius:8px}
+    /* Loqo şəkli daha böyük və aydın */
+    .brand img.logo-img{
+      height:48px;        /* əvvəl 36px idi */
+      width:auto;         /* nisbəti qoruyur */
+      display:block;
+      border-radius:8px;
+    }
 
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{
@@ -137,6 +142,7 @@
     @media (max-width:720px){
       .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
+      .brand img.logo-img{height:36px;} /* mobil üçün bir qədər kiçik */
     }
   </style>
 </head>
@@ -145,16 +151,14 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <!-- Sənin loqon -->
+        <!-- Loqo yalnız şəkil kimi (mətnsiz) -->
         <img
           class="logo-img"
           src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo.png"
           alt="GeoSolver logo"
           loading="eager"
           fetchpriority="high"
-          width="36" height="36"
         />
-        <span>GeoSolver</span>
       </a>
       <nav aria-label="primary">
         <ul>
@@ -268,7 +272,7 @@
         <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
         <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
         <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
-        <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
+        <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
         <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
         <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
       </div>
@@ -338,7 +342,7 @@
           <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
           <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
           <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
-          <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
+          <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
           <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
           <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
         `,
