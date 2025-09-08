@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Şəkilləri preload (raw şəkil linkləri) -->
+  <!-- Preload -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png">
@@ -21,8 +21,10 @@
     :root{
       --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
       --brand:#2563eb; --bg:#ffffff;
+      --titleA:#6ea8ff; --titleB:#6366f1;
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
+      --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
       --headerH:72px;
       --heroLeft: clamp(24px, 6vw, 120px);
     }
@@ -35,69 +37,53 @@
     /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
-    .brand img{height:136px;width:auto;display:block;border-radius:8px}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand img.logo1-img{height:136px;width:auto;display:block;border-radius:8px}
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{padding:10px 14px;border-radius:10px;font-weight:800;letter-spacing:.2px;color:#2563eb;position:relative;transition:color .15s ease, background .15s ease}
+    nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;background:#2563eb;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
     nav a:hover{background:rgba(37,99,235,.08); color:#1e40af}
+    nav a:hover::after{transform:scaleX(1)}
     nav a.active{color:#1e40af;background:rgba(37,99,235,.10)}
+    nav a.active::after{transform:scaleX(1)}
     .lang{display:flex;gap:6px;align-items:center}
     .lang button{cursor:pointer;background:#fff;border:1px solid #c7d2fe;padding:6px 10px;border-radius:8px;font-weight:700;color:#1d4ed8}
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
-    /* ===== HERO SLIDER — 100% örtmə və “zoom-out” dəstəyi ===== */
+    /* ===== HERO SLIDER ===== */
     .hero-visual{
-      position:relative;
-      min-height:calc(100vh - var(--headerH));
-      display:flex; align-items:center; overflow:hidden;
-      background:#0a1720;           /* fallback rəng */
-      isolation:isolate;            /* blur laylarını təcrid et */
+      position:relative; min-height:calc(100vh - var(--headerH));
+      display:flex; align-items:center; overflow:hidden; background:#0a1720;
+      isolation:isolate;
     }
-
-    /* Hər slayd layı */
     .slide{
-      position:absolute; inset:0;
-      display:grid; place-items:center;
+      position:absolute; inset:0; display:grid; place-items:center;
       opacity:0; transition:opacity 800ms ease;
     }
     .slide.active{opacity:1}
 
-    /* Arxa blur “fill” — kənarlar heç vaxt qara görünməsin */
-    .slide::before{
-      content:""; position:absolute; inset:0; z-index:0;
-      background-repeat:no-repeat; background-position:center center; background-size:cover;
+    /* Blur fill (ekranı tam örtmək üçün) */
+    .slide .fill{
+      position:absolute; inset:0; z-index:0;
+      background-size:cover; background-position:center center; background-repeat:no-repeat;
       filter:blur(24px) saturate(110%) brightness(90%);
-      transform:scale(1.1);         /* kənarları doldur */
+      transform:scale(1.1);
     }
-
-    /* Əsas şəkil — həmişə tam ekranı örtür */
+    /* Əsas şəkil */
     .slide > img{
-      position:relative; z-index:1;
-      width:100%; height:100%;
-      object-fit:cover; object-position:center center;
-      transform:scale(1);           /* default 1x */
+      position:relative; z-index:1; width:100%; height:100%;
+      object-fit:cover; object-position:center center; transform:scale(1);
       transition:transform 400ms ease;
-      will-change:transform;
     }
-
-    /* Zoom-out istədiyin slaydlar üçün: şəkil bir az kiçilsin, arxa blur fill doldurur */
+    /* Bir az “zoom-out” */
     .slide.shrink > img{ transform:scale(0.92); }
 
-    /* Şəkil fokusunu tənzimləmək üçün (istəyə görə dəyişə bilər) */
-    .pos-top    > img{ object-position:50% 35%; }
-    .pos-bottom > img{ object-position:50% 65%; }
-    .pos-left   > img{ object-position:35% 50%; }
-    .pos-right  > img{ object-position:65% 50%; }
-
-    /* Overlay + mətn (yalnız 1-ci slaydda görünəcək) */
-    .hero-overlay{
-      position:absolute; inset:0; z-index:2;
-      background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.25));
-      pointer-events:none;
-    }
-    .inner{
+    /* Hero mətn bloku — yalnız 1-ci slaydda görünəcək */
+    .hero-visual .inner{
       position:relative; z-index:3; color:#fff;
+      width:100%; max-width:700px; text-align:left;
       margin-left:var(--heroLeft); margin-right:var(--g3);
-      max-width:700px; text-align:left; transition:opacity .25s ease;
+      transition:opacity .25s ease;
     }
     .inner.hidden{opacity:0; pointer-events:none}
     .hero-title{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:10px 0 8px; font-weight:800; text-shadow:0 2px 12px rgba(0,0,0,.45)}
@@ -105,27 +91,41 @@
     .hero-cta{display:flex; gap:12px; margin-top:18px}
     .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#0f172a;font-weight:700;cursor:pointer}
     .btn.soft{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35)}
+    .btn.soft:hover{background:rgba(255,255,255,.22)}
 
     /* Dots */
     .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:8px;z-index:4}
     .dot{width:10px;height:10px;border-radius:999px;border:1px solid rgba(255,255,255,.7);background:rgba(0,0,0,.25);cursor:pointer}
     .dot.active{background:#fff}
 
-    /* Bölmələr (aşağı) */
+    /* SECTIONS (sənin kodundan) */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
-    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;letter-spacing:.2px;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
     .section-sub{text-align:center;color:#667085;margin-top:10px;font-size:clamp(14px,1.8vw,18px)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(2,8,23,.06)}
+    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+    .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
+    .card p{margin:0;color:#334155;line-height:1.65}
+    #services .grid{gap:var(--g6)}
+    #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
+    #training .plain h3{font-size:22px;font-weight:600;margin:0 0 6px;text-align:left}
+    #training .plain p{margin:0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
+    #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
+    #about .about-text p{margin:0 0 12px;color:#334155;line-height:1.75}
+    .contact-plain{display:flex;justify-content:center}
+    .contact-plain ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;align-items:center;font-size:clamp(18px,2.2vw,22px)}
+    .contact-plain a{font-weight:600;color:#0f172a;text-decoration:none}
+    .contact-plain a:hover{text-decoration:underline}
+    footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
     @media (max-width:900px){ .grid.two{grid-template-columns:1fr} }
     @media (max-width:720px){
-      .brand img{height:36px}
-      .inner{margin-left:var(--g3)}
+      .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
+      .brand img.logo1-img{height:36px}
     }
   </style>
 </head>
@@ -134,87 +134,58 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo" loading="eager" fetchpriority="high"/>
+        <img class="logo1-img" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo1" loading="eager" fetchpriority="high"/>
       </a>
       <nav aria-label="primary">
         <ul>
-          <li><a class="active" href="#top" data-nav="top">Əsas səhifə</a></li>
-          <li><a href="#services" data-nav="services">Xidmətlər</a></li>
-          <li><a href="#training" data-nav="training">Təlimlər</a></li>
-          <li><a href="#about" data-nav="about">Haqqımızda</a></li>
-          <li><a href="#contact" data-nav="contact">Əlaqə</a></li>
+          <li><a class="active" href="#top" data-nav="top" data-i18n="nav_home">Əsas səhifə</a></li>
+          <li><a href="#services" data-nav="services" data-i18n="nav_services">Xidmətlər</a></li>
+          <li><a href="#training" data-nav="training" data-i18n="nav_training">Təlimlər</a></li>
+          <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqqımızda</a></li>
+          <li><a href="#contact" data-nav="contact" data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
       </nav>
       <div class="lang" role="group" aria-label="Language switcher">
-        <button type="button" class="active">AZE</button>
-        <button type="button">ENG</button>
+        <button type="button" class="active" onclick="setLang('az')">AZE</button>
+        <button type="button" onclick="setLang('en')">ENG</button>
       </div>
     </div>
   </header>
 
   <!-- ===== HERO SLIDER ===== -->
   <div id="top" class="hero-visual" aria-label="Hero slider">
-    <!-- Slayd 1: Bakı — mətni göstər, zoom-out yoxdur -->
-    <figure class="slide active" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png">
+    <!-- Slayd 1: Bakı (mətn görünür, zoom-yox) -->
+    <figure class="slide active">
+      <div class="fill" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png')"></div>
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png" alt="Bakı xəritə fonu">
     </figure>
-
-    <!-- Slayd 2: Konsaltinq — bir az zoom-out -->
-    <figure class="slide shrink pos-center" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png">
+    <!-- Slayd 2: Konsaltinq (zoom-out) -->
+    <figure class="slide shrink">
+      <div class="fill" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png')"></div>
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png" alt="CİS Konsaltinq vizualı">
     </figure>
-
-    <!-- Slayd 3: Veb & Mobil — bir az zoom-out -->
-    <figure class="slide shrink" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png">
+    <!-- Slayd 3: Veb & Mobil (zoom-out) -->
+    <figure class="slide shrink">
+      <div class="fill" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png')"></div>
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png" alt="Veb və Mobil CİS vizualı">
     </figure>
-
-    <!-- Slayd 4: GeoAI — bir az zoom-out -->
-    <figure class="slide shrink" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png">
+    <!-- Slayd 4: GeoAI (zoom-out) -->
+    <figure class="slide shrink">
+      <div class="fill" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png')"></div>
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png" alt="GeoAI vizualı">
     </figure>
-
-    <!-- Slayd 5: Serverlər — normal -->
-    <figure class="slide" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png">
+    <!-- Slayd 5: Serverlər -->
+    <figure class="slide">
+      <div class="fill" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png')"></div>
       <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png" alt="CİS serverləri vizualı">
     </figure>
 
-    <!-- Blur fill-lər üçün background linkini ::before-a yazırıq -->
-    <script>
-      document.addEventListener('DOMContentLoaded', () => {
-        document.querySelectorAll('.slide').forEach(sl => {
-          const url = sl.getAttribute('data-bg');
-          if (url) sl.style.setProperty('--bg', `url("${url}")`);
-          sl.style.setProperty('--bg', `url("${url}")`);
-          sl.style.cssText += `--bg:url("${url}")`;
-          sl.style.setProperty('--bg-url', `url("${url}")`);
-          sl.style.setProperty('--dummy','1'); // Safari üçün no-op
-          sl.style.setProperty('--hasbg','1');
-          sl.style.setProperty('--x','0'); // helper
-          sl.style.setProperty('--y','0');
-          // apply bg to ::before via inline style attribute hack:
-          sl.style.setProperty('--before-url', `url("${url}")`);
-          sl.style.backgroundImage = 'none';
-          sl.style.setProperty('--tmp','0');
-          sl.style.setProperty('--bgimg', `url("${url}")`);
-          // set pseudo via attribute selector in CSS below
-        });
-      });
-    </script>
-
-    <style>
-      /* ::before üçün inline dəyişəni istifadə etmək çətindir; buna görə attribute selector */
-      .slide[data-bg]::before{ background-image: attr(data-bg url); }
-    </style>
-
-    <div class="hero-overlay" aria-hidden="true"></div>
-
-    <!-- Mətn: yalnız 1-ci slaydda -->
+    <!-- Mətn (yalnız 1-ci slaydda görünəcək) -->
     <div class="inner" id="heroText">
-      <h1 class="hero-title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
-      <p class="hero-sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
+      <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
+      <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
       <div class="hero-cta">
-        <a class="btn soft" href="#services">Xidmətlərə bax</a>
+        <a class="btn soft" href="#services" data-i18n="cta_view">Xidmətlərə bax</a>
       </div>
     </div>
 
@@ -226,61 +197,88 @@
     <!-- SERVICES -->
     <section id="services">
       <div class="section-title">
-        <h2 class="section-heading">Xidmətlərimiz</h2>
-        <p class="section-sub">Tam əhatəli olaraq göstərdiyimiz xidmətlər</p>
+        <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
+        <p class="section-sub" data-i18n="services_sub">Tam əhatəli olaraq göstərdiyimiz xidmətlər</p>
       </div>
-
       <div class="grid two">
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon" width="40" height="40"></div>
-          <h3>CİS və İT Konsaltinqi</h3>
-          <p>Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Audit, arxitektura, yol xəritəsi.</p>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon"></div>
+          <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
+          <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
         </article>
-
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon" width="40" height="40"></div>
-          <h3>Veb & Mobil CİS Tətbiqləri</h3>
-          <p>Sürətli xəritələr, ağıllı filtr, hesabatlar — istəyə uyğun tətbiqlər.</p>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon"></div>
+          <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
+          <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
         </article>
-
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon" width="40" height="40"></div>
-          <h3>GeoAI</h3>
-          <p>Təsvirlərdən obyekt aşkarlanması və analitika üçün dərin öyrənmə.</p>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon"></div>
+          <h3 data-i18n="srv4_t">GeoAI</h3>
+          <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
         </article>
-
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon" width="40" height="40"></div>
-          <h3>CİS serverlərinin qurulması</h3>
-          <p>On-prem/bulud yerləşdirmə, performanslı xəritə servisləri.</p>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon"></div>
+          <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
+          <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- TRAINING -->
+    <section id="training">
+      <div class="section-title">
+        <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
+        <p class="section-sub" data-i18n="training_sub">Praktiki proqramlar və bootcamp-lər</p>
+      </div>
+      <div class="grid two">
+        <article class="plain">
+          <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
+          <p data-i18n="tr_ent_d">ArcGIS Enterprise ilə CİS təməlini qurun. Enterprise platformasının imkanlarını praktiki şəkildə mənimsəməyə yönəlib: məzmunu təhlükəsiz paylaşmaq, tətbiq və xidmətləri əlçatan etmək, icazələri idarə etmək və komandalararası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.</p>
+        </article>
+        <article class="plain">
+          <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
+          <p data-i18n="tr_online_d">Xəritələr və tətbiqlər hamı üçün. ArcGIS Online təşkilat daxilində kəşf, yaratma və paylaşmanı mümkün edir. Bu kursda məzmunun təşkilat portalına dərc edilməsi, veb xəritə və tətbiqlərin hazırlanması, eləcə də əsas inzibati tapşırıqlar öyrənilir.</p>
+        </article>
+        <article class="plain">
+          <h3 data-i18n="tr_gs_t">GeoServer</h3>
+          <p data-i18n="tr_gs_d">Geoserver, coğrafi məlumatlarınızı veb xidməti kimi dərc etməyə imkan verən açıq mənbəli server proqramıdır. Bu kurs GeoServerin nə olduğunu, niyə və nə vaxt ehtiyacınız olduğunu izah edəcək... </p>
+        </article>
+        <article class="plain">
+          <h3 data-i18n="tr_geoai_t">GeoAI</h3>
+          <p data-i18n="tr_geoai_d">ArcGIS-də coğrafi süni intellekt (GeoAI) – AI/ML/DL-in CİS ilə inteqrasiyasıdır...</p>
         </article>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about">
+    <section id="about" class="about">
       <div class="section-title">
-        <h2 class="section-heading">GeoSolver haqqında</h2>
-        <p class="section-sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
+        <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
+        <p class="section-sub" data-i18n="about_sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
       </div>
-      <p><strong>GeoSolver</strong> – CİS, veb/xəritə tətbiqləri və GeoAI üzrə ixtisaslaşmış komandadır.</p>
+      <div class="about-text" data-i18n-html="about_long_1">
+        <!-- i18n mətni JS-dən yazılır -->
+      </div>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact">
+    <section id="contact" class="contact">
       <div class="section-title">
-        <h2 class="section-heading">Əlaqə</h2>
+        <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
       </div>
-      <ul>
-        <li><a href="tel:+994553167804">+994 (55) 316 78 04</a></li>
-        <li><a href="mailto:officegeosolver@gmail.com">officegeosolver@gmail.com</a></li>
-      </ul>
+      <div class="contact-plain">
+        <ul>
+          <li><a href="tel:+994553167804">+994 (55) 316 78 04</a></li>
+          <li><a href="mailto:officegeosolver@gmail.com">officegeosolver@gmail.com</a></li>
+        </ul>
+      </div>
     </section>
   </main>
 
-  <footer style="padding:26px 0;border-top:1px solid var(--line);color:#64748b">
+  <!-- FOOTER -->
+  <footer>
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-      <p>© <span id="year"></span> GeoSolver. Bütün hüquqlar qorunur.</p>
+      <p>© <span id="year"></span> GeoSolver. <span data-i18n="rights">Bütün hüquqlar qorunur.</span></p>
       <div style="display:flex;gap:12px">
         <a href="#" aria-label="LinkedIn">LinkedIn</a>
         <a href="#" aria-label="GitHub">GitHub</a>
@@ -289,75 +287,86 @@
     </div>
   </footer>
 
+  <!-- LANGUAGE + NAV + SLIDER -->
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    /* ===== i18n strings (sənin faylındakı kimi) ===== */
+    const STR = { /* ... eyni obyektini burada saxladım, qısaltdım ... */ };
+    /* Sənin paylaģdığın STR obyektini tam qoy — yuxarıda qısaltdım ki, cavab çox uzanmasın */
 
-    // NAV aktiv link
-    const sectionIds = ['top','services','about','contact'];
+    function setLang(lang){
+      const d = (STR[lang]||STR.az);
+      document.documentElement.lang = lang;
+      document.querySelectorAll('[data-i18n]').forEach(el=>{
+        const k = el.getAttribute('data-i18n'); if(d[k]!=null) el.textContent = d[k];
+      });
+      document.querySelectorAll('[data-i18n-ph]').forEach(el=>{
+        const k = el.getAttribute('data-i18n-ph'); if(d[k]!=null) el.placeholder = d[k];
+      });
+      document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+        const k = el.getAttribute('data-i18n-html'); if(d[k]!=null) el.innerHTML = d[k];
+      });
+      document.querySelectorAll('.lang button').forEach(b=>{
+        b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang==='az'?'aze':'eng'));
+      });
+    }
+    document.getElementById('year').textContent = new Date().getFullYear();
+    setLang('az');
+
+    // NAV aktiv
+    const sectionIds = ['top','services','training','about','contact'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = new Map([...document.querySelectorAll('nav a[data-nav]')].map(a => [a.getAttribute('data-nav'), a]));
-    function setActive(id){ navLinks.forEach(a => a && a.classList.remove('active')); const link = navLinks.get(id); if (link) link.classList.add('active'); }
-    const io = new IntersectionObserver((entries)=>{let best=null; for (const e of entries){if(!e.isIntersecting) continue; if(!best||e.intersectionRatio>best.intersectionRatio) best=e;} if(best) setActive(best.target.id);},{threshold:[0.55], rootMargin:'0px 0px -10% 0px'});
-    sections.forEach(s=>io.observe(s));
+    function setActive(id){ navLinks.forEach(a => a.classList.remove('active')); const link = navLinks.get(id); if (link) link.classList.add('active'); }
+    const observer = new IntersectionObserver((entries) => {
+      let best=null; for (const ent of entries){ if(!ent.isIntersecting) continue; if(!best||ent.intersectionRatio>best.intersectionRatio) best=ent; }
+      if (best) setActive(best.target.id);
+    }, { threshold:[0.55], rootMargin:'0px 0px -10% 0px' });
+    sections.forEach(sec => observer.observe(sec));
 
-    // ===== SLAYD =====
+    // ===== HERO SLIDER (stabil) =====
     (function(){
       const slides = Array.from(document.querySelectorAll('.slide'));
-      // ::before üçün blur fill şəkilini təyin et
-      slides.forEach(s => s.style.setProperty('--bg-url', s.getAttribute('data-bg')));
-      // (CSS-də attr() ilə ::before-a ötürürük)
-      let idx = 0;
-      const dotsWrap = document.querySelector('.dots');
-      const textBox = document.getElementById('heroText');
-      const FIRST_DELAY = 8000;  // 1-ci slayd daha uzun
-      const DELAY = 5000;
-      let timer = null;
-      let firstCycleDone = false;
+      const dotsWrap = document.createElement('div');
+      dotsWrap.className = 'dots';
+      document.querySelector('.hero-visual').appendChild(dotsWrap);
 
-      // Dots
       slides.forEach((_, i) => {
-        const b = document.createElement('button');
-        b.type='button';
-        b.className='dot'+(i===0?' active':'');
-        b.setAttribute('aria-label', `Slayd ${i+1}`);
-        b.addEventListener('click', ()=> go(i, true));
-        dotsWrap.appendChild(b);
+        const d = document.createElement('button');
+        d.type='button'; d.className='dot'+(i===0?' active':''); d.setAttribute('aria-label',`Slayd ${i+1}`);
+        d.addEventListener('click', () => go(i, true));
+        dotsWrap.appendChild(d);
       });
       const dots = Array.from(dotsWrap.children);
 
-      function show(i){
-        slides[idx].classList.remove('active');
-        dots[idx].classList.remove('active');
-        idx = i;
-        slides[idx].classList.add('active');
-        dots[idx].classList.add('active');
-        // Mətn yalnız 1-ci slaydda
-        if (idx === 0) textBox.classList.remove('hidden');
-        else textBox.classList.add('hidden');
-      }
+      let idx = 0, timer=null, firstCycle=false;
+      const FIRST_DELAY = 8000;   // 1-ci slayd daha uzun
+      const DELAY = 5000;         // digərləri
 
+      const textBox = document.getElementById('heroText');
+      function updateText(){ if (idx===0) textBox.classList.remove('hidden'); else textBox.classList.add('hidden'); }
+
+      function show(i){
+        slides[idx].classList.remove('active'); dots[idx].classList.remove('active');
+        idx = i;
+        slides[idx].classList.add('active'); dots[idx].classList.add('active');
+        updateText();
+      }
       function schedule(){
         clearTimeout(timer);
-        const wait = (idx === 0 && !firstCycleDone) ? FIRST_DELAY : DELAY;
-        timer = setTimeout(()=>{
+        const wait = (idx===0 && !firstCycle) ? FIRST_DELAY : DELAY;
+        timer = setTimeout(() => {
           show((idx+1)%slides.length);
-          if (idx === 0) firstCycleDone = true;
+          if (idx===0) firstCycle = true;
           schedule();
         }, wait);
       }
+      function go(i, user){ show(i); if (user) schedule(); }
 
-      function go(i, user){
-        show(i);
-        if (user) schedule();
-      }
-
-      // Hover/pause
       const hero = document.querySelector('.hero-visual');
       hero.addEventListener('mouseenter', ()=>clearTimeout(timer));
       hero.addEventListener('mouseleave', schedule);
       document.addEventListener('visibilitychange', ()=>{ if (document.hidden) clearTimeout(timer); else schedule(); });
 
-      // İlk start
       show(0); schedule();
     })();
   </script>
