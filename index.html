@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Şəkilləri raw.githubusercontent.com ilə preload -->
+  <!-- Şəkilləri preload (raw şəkil linkləri) -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png">
@@ -40,31 +40,63 @@
     nav a{padding:10px 14px;border-radius:10px;font-weight:800;letter-spacing:.2px;color:#2563eb;position:relative;transition:color .15s ease, background .15s ease}
     nav a:hover{background:rgba(37,99,235,.08); color:#1e40af}
     nav a.active{color:#1e40af;background:rgba(37,99,235,.10)}
-
     .lang{display:flex;gap:6px;align-items:center}
     .lang button{cursor:pointer;background:#fff;border:1px solid #c7d2fe;padding:6px 10px;border-radius:8px;font-weight:700;color:#1d4ed8}
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
 
-    /* HERO (tam örtmə) */
+    /* ===== HERO SLIDER — 100% örtmə və “zoom-out” dəstəyi ===== */
     .hero-visual{
-      position:relative; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;
+      position:relative;
       min-height:calc(100vh - var(--headerH));
-      display:flex; align-items:center; overflow:hidden; background:#000;
+      display:flex; align-items:center; overflow:hidden;
+      background:#0a1720;           /* fallback rəng */
+      isolation:isolate;            /* blur laylarını təcrid et */
     }
-    /* Şəkillər — həmişə ekranı tam doldur */
-    .hero-visual .bg{
+
+    /* Hər slayd layı */
+    .slide{
       position:absolute; inset:0;
+      display:grid; place-items:center;
+      opacity:0; transition:opacity 800ms ease;
+    }
+    .slide.active{opacity:1}
+
+    /* Arxa blur “fill” — kənarlar heç vaxt qara görünməsin */
+    .slide::before{
+      content:""; position:absolute; inset:0; z-index:0;
+      background-repeat:no-repeat; background-position:center center; background-size:cover;
+      filter:blur(24px) saturate(110%) brightness(90%);
+      transform:scale(1.1);         /* kənarları doldur */
+    }
+
+    /* Əsas şəkil — həmişə tam ekranı örtür */
+    .slide > img{
+      position:relative; z-index:1;
       width:100%; height:100%;
       object-fit:cover; object-position:center center;
-      opacity:0; transition:opacity 800ms ease;
-      display:block;
+      transform:scale(1);           /* default 1x */
+      transition:transform 400ms ease;
+      will-change:transform;
     }
-    .hero-visual .bg.active{opacity:1}
 
-    /* Overlay + mətn */
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.25))}
+    /* Zoom-out istədiyin slaydlar üçün: şəkil bir az kiçilsin, arxa blur fill doldurur */
+    .slide.shrink > img{ transform:scale(0.92); }
+
+    /* Şəkil fokusunu tənzimləmək üçün (istəyə görə dəyişə bilər) */
+    .pos-top    > img{ object-position:50% 35%; }
+    .pos-bottom > img{ object-position:50% 65%; }
+    .pos-left   > img{ object-position:35% 50%; }
+    .pos-right  > img{ object-position:65% 50%; }
+
+    /* Overlay + mətn (yalnız 1-ci slaydda görünəcək) */
+    .hero-overlay{
+      position:absolute; inset:0; z-index:2;
+      background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.25));
+      pointer-events:none;
+    }
     .inner{
-      position:relative; z-index:3; color:#fff; margin-left:var(--heroLeft); margin-right:var(--g3);
+      position:relative; z-index:3; color:#fff;
+      margin-left:var(--heroLeft); margin-right:var(--g3);
       max-width:700px; text-align:left; transition:opacity .25s ease;
     }
     .inner.hidden{opacity:0; pointer-events:none}
@@ -82,8 +114,8 @@
     /* Bölmələr (aşağı) */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
-    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
-    .section-sub{color:#667085;margin-top:10px;font-size:clamp(14px,1.8vw,18px)}
+    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
+    .section-sub{text-align:center;color:#667085;margin-top:10px;font-size:clamp(14px,1.8vw,18px)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
@@ -120,14 +152,60 @@
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- ===== HERO SLIDER ===== -->
   <div id="top" class="hero-visual" aria-label="Hero slider">
-    <!-- 5 şəkil: həmişə tam ekran -->
-    <img class="bg active" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png" alt="Bakı xəritə fonu">
-    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png" alt="CİS Konsaltinq">
-    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png" alt="Veb & Mobil CİS">
-    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png" alt="GeoAI">
-    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png" alt="CİS serverləri">
+    <!-- Slayd 1: Bakı — mətni göstər, zoom-out yoxdur -->
+    <figure class="slide active" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png">
+      <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png" alt="Bakı xəritə fonu">
+    </figure>
+
+    <!-- Slayd 2: Konsaltinq — bir az zoom-out -->
+    <figure class="slide shrink pos-center" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png">
+      <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png" alt="CİS Konsaltinq vizualı">
+    </figure>
+
+    <!-- Slayd 3: Veb & Mobil — bir az zoom-out -->
+    <figure class="slide shrink" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png">
+      <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png" alt="Veb və Mobil CİS vizualı">
+    </figure>
+
+    <!-- Slayd 4: GeoAI — bir az zoom-out -->
+    <figure class="slide shrink" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png">
+      <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png" alt="GeoAI vizualı">
+    </figure>
+
+    <!-- Slayd 5: Serverlər — normal -->
+    <figure class="slide" data-bg="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png">
+      <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png" alt="CİS serverləri vizualı">
+    </figure>
+
+    <!-- Blur fill-lər üçün background linkini ::before-a yazırıq -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        document.querySelectorAll('.slide').forEach(sl => {
+          const url = sl.getAttribute('data-bg');
+          if (url) sl.style.setProperty('--bg', `url("${url}")`);
+          sl.style.setProperty('--bg', `url("${url}")`);
+          sl.style.cssText += `--bg:url("${url}")`;
+          sl.style.setProperty('--bg-url', `url("${url}")`);
+          sl.style.setProperty('--dummy','1'); // Safari üçün no-op
+          sl.style.setProperty('--hasbg','1');
+          sl.style.setProperty('--x','0'); // helper
+          sl.style.setProperty('--y','0');
+          // apply bg to ::before via inline style attribute hack:
+          sl.style.setProperty('--before-url', `url("${url}")`);
+          sl.style.backgroundImage = 'none';
+          sl.style.setProperty('--tmp','0');
+          sl.style.setProperty('--bgimg', `url("${url}")`);
+          // set pseudo via attribute selector in CSS below
+        });
+      });
+    </script>
+
+    <style>
+      /* ::before üçün inline dəyişəni istifadə etmək çətindir; buna görə attribute selector */
+      .slide[data-bg]::before{ background-image: attr(data-bg url); }
+    </style>
 
     <div class="hero-overlay" aria-hidden="true"></div>
 
@@ -140,6 +218,7 @@
       </div>
     </div>
 
+    <!-- Nöqtələr -->
     <div class="dots" role="tablist" aria-label="Slayd indikatorları"></div>
   </div>
 
@@ -213,7 +292,7 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // NAV aktiv link (eyni qalır)
+    // NAV aktiv link
     const sectionIds = ['top','services','about','contact'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = new Map([...document.querySelectorAll('nav a[data-nav]')].map(a => [a.getAttribute('data-nav'), a]));
@@ -221,69 +300,65 @@
     const io = new IntersectionObserver((entries)=>{let best=null; for (const e of entries){if(!e.isIntersecting) continue; if(!best||e.intersectionRatio>best.intersectionRatio) best=e;} if(best) setActive(best.target.id);},{threshold:[0.55], rootMargin:'0px 0px -10% 0px'});
     sections.forEach(s=>io.observe(s));
 
-    // ===== Sadə, etibarlı SLAYD =====
+    // ===== SLAYD =====
     (function(){
-      const imgs = Array.from(document.querySelectorAll('.hero-visual .bg'));
+      const slides = Array.from(document.querySelectorAll('.slide'));
+      // ::before üçün blur fill şəkilini təyin et
+      slides.forEach(s => s.style.setProperty('--bg-url', s.getAttribute('data-bg')));
+      // (CSS-də attr() ilə ::before-a ötürürük)
+      let idx = 0;
       const dotsWrap = document.querySelector('.dots');
       const textBox = document.getElementById('heroText');
-      const FIRST_DELAY = 8000;  // 1-ci slayd daha uzun qalsın
+      const FIRST_DELAY = 8000;  // 1-ci slayd daha uzun
       const DELAY = 5000;
+      let timer = null;
+      let firstCycleDone = false;
 
       // Dots
-      imgs.forEach((_, i) => {
+      slides.forEach((_, i) => {
         const b = document.createElement('button');
         b.type='button';
         b.className='dot'+(i===0?' active':'');
         b.setAttribute('aria-label', `Slayd ${i+1}`);
-        b.addEventListener('click', ()=> go(i,true));
+        b.addEventListener('click', ()=> go(i, true));
         dotsWrap.appendChild(b);
       });
       const dots = Array.from(dotsWrap.children);
 
-      let idx = 0;
-      let timer = null;
-      let firstCycleDone = false;
-
       function show(i){
-        imgs[idx].classList.remove('active');
+        slides[idx].classList.remove('active');
         dots[idx].classList.remove('active');
         idx = i;
-        imgs[idx].classList.add('active');
+        slides[idx].classList.add('active');
         dots[idx].classList.add('active');
-
         // Mətn yalnız 1-ci slaydda
         if (idx === 0) textBox.classList.remove('hidden');
         else textBox.classList.add('hidden');
       }
 
-      function scheduleNext(){
+      function schedule(){
         clearTimeout(timer);
         const wait = (idx === 0 && !firstCycleDone) ? FIRST_DELAY : DELAY;
         timer = setTimeout(()=>{
-          show((idx+1)%imgs.length);
+          show((idx+1)%slides.length);
           if (idx === 0) firstCycleDone = true;
-          scheduleNext();
+          schedule();
         }, wait);
       }
 
       function go(i, user){
         show(i);
-        if (user) scheduleNext();
+        if (user) schedule();
       }
 
-      // Hoverda pauza/başlat
+      // Hover/pause
       const hero = document.querySelector('.hero-visual');
       hero.addEventListener('mouseenter', ()=>clearTimeout(timer));
-      hero.addEventListener('mouseleave', scheduleNext);
+      hero.addEventListener('mouseleave', schedule);
+      document.addEventListener('visibilitychange', ()=>{ if (document.hidden) clearTimeout(timer); else schedule(); });
 
-      // Səhifə görünməyəndə pauza
-      document.addEventListener('visibilitychange', ()=> {
-        if (document.hidden) clearTimeout(timer); else scheduleNext();
-      });
-
-      // Başlat
-      show(0);
-      scheduleNext();
+      // İlk start
+      show(0); schedule();
     })();
   </script>
 </body>
