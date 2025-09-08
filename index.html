@@ -9,9 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
   <!-- Hero şəkli öncədən yüklə -->
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg">
-  <!-- logo3 öncədən yüklə -->
-  <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo3.png">
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png">
+  <!-- logo1 öncədən yüklə -->
+  <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png">
 
   <style>
     :root{
@@ -22,7 +22,7 @@
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
       --headerH:72px; /* böyüdülmüş navbar hündürlüyü */
-      --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');
+      --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');
       --heroLeft: clamp(24px, 6vw, 120px);
     }
     *{box-sizing:border-box}
@@ -36,7 +36,7 @@
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     /* Loqo şəkli daha böyük və aydın */
-    .brand img.logo3-img{
+    .brand img.logo1-img{
       height:136px;        /* əvvəl 36px idi */
       width:auto;         /* nisbəti qoruyur */
       display:block;
@@ -142,7 +142,7 @@
     @media (max-width:720px){
       .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
-      .brand img.logo3-img{height:36px;} /* mobil üçün bir qədər kiçik */
+      .brand img.logo1-img{height:36px;} /* mobil üçün bir qədər kiçik */
     }
   </style>
 </head>
@@ -153,9 +153,9 @@
       <a href="#top" class="brand" aria-label="GeoSolver home">
         <!-- Loqo yalnız şəkil kimi (mətnsiz) -->
         <img
-          class="logo3-img"
-          src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo3.png"
-          alt="GeoSolver logo3"
+          class="logo1-img"
+          src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png"
+          alt="GeoSolver logo1"
           loading="eager"
           fetchpriority="high"
         />
@@ -177,7 +177,7 @@
   </header>
 
   <!-- HERO (yalnız şəkil) -->
-  <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map.jpg');">
+  <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');">
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
