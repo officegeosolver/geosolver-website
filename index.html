@@ -35,10 +35,9 @@
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    /* Loqo şəkli daha böyük və aydın */
     .brand img.logo1-img{
-      height:136px;        /* əvvəl 36px idi */
-      width:auto;         /* nisbəti qoruyur */
+      height:136px;
+      width:auto;
       display:block;
       border-radius:8px;
     }
@@ -62,7 +61,7 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO — yalnız şəkil, overlay YOXDUR */
+    /* HERO — yalnız şəkil */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center;
@@ -103,15 +102,15 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services — yalnız SVG ikonlar, dairəvi fon saxlanılır */
+    /* Services — İKON ARXA FONU YOXDUR */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon{
-      width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
-      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; color:#2563eb;
+      width:auto; height:auto; display:grid; place-items:center;
+      background:transparent; box-shadow:none; border:0; border-radius:0;
     }
-    .service .icon img{width:36px; height:36px; display:block}
+    .service .icon img{width:40px; height:40px; display:block}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
@@ -151,7 +150,6 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <!-- Loqo yalnız şəkil kimi (mətnsiz) -->
         <img
           class="logo1-img"
           src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png"
@@ -457,7 +455,3 @@
   </script>
 </body>
 </html>
-
-
-
-
