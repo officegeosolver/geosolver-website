@@ -9,14 +9,12 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Hero şəkillərini öncədən yüklə -->
+  <!-- Şəkilləri raw.githubusercontent.com ilə preload -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png">
-
-  <!-- logo -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png">
 
   <style>
@@ -25,7 +23,6 @@
       --brand:#2563eb; --bg:#ffffff;
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
-      --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
       --headerH:72px;
       --heroLeft: clamp(24px, 6vw, 120px);
     }
@@ -38,88 +35,66 @@
     /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
-    .brand img.logo1-img{height:136px;width:auto;display:block;border-radius:8px}
+    .brand img{height:136px;width:auto;display:block;border-radius:8px}
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{padding:10px 14px;border-radius:10px;font-weight:800;letter-spacing:.2px;color:#2563eb;position:relative;transition:color .15s ease, background .15s ease}
-    nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;background:#2563eb;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
     nav a:hover{background:rgba(37,99,235,.08); color:#1e40af}
-    nav a:hover::after{transform:scaleX(1)}
     nav a.active{color:#1e40af;background:rgba(37,99,235,.10)}
-    nav a.active::after{transform:scaleX(1)}
 
     .lang{display:flex;gap:6px;align-items:center}
     .lang button{cursor:pointer;background:#fff;border:1px solid #c7d2fe;padding:6px 10px;border-radius:8px;font-weight:700;color:#1d4ed8}
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
-    .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO SLIDER (tam örtmə) */
+    /* HERO (tam örtmə) */
     .hero-visual{
-      position:relative;min-height:calc(100vh - var(--headerH));
-      display:flex;align-items:center;overflow:hidden;
-      background:#08151d; /* PNG şəffaf hissələr olsa, mavi-qara fon */
+      position:relative; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw;
+      min-height:calc(100vh - var(--headerH));
+      display:flex; align-items:center; overflow:hidden; background:#000;
     }
-    .slides{position:absolute;inset:0;overflow:hidden}
-    .slide{
-      position:absolute;inset:0;opacity:0;transition:opacity 800ms ease;will-change:opacity;
-      background-repeat:no-repeat;background-size:cover;background-position:center center;
+    /* Şəkillər — həmişə ekranı tam doldur */
+    .hero-visual .bg{
+      position:absolute; inset:0;
+      width:100%; height:100%;
+      object-fit:cover; object-position:center center;
+      opacity:0; transition:opacity 800ms ease;
+      display:block;
     }
-    .slide.active{opacity:1}
+    .hero-visual .bg.active{opacity:1}
+
+    /* Overlay + mətn */
+    .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.2) 40%,rgba(0,0,0,.25))}
+    .inner{
+      position:relative; z-index:3; color:#fff; margin-left:var(--heroLeft); margin-right:var(--g3);
+      max-width:700px; text-align:left; transition:opacity .25s ease;
+    }
+    .inner.hidden{opacity:0; pointer-events:none}
+    .hero-title{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:10px 0 8px; font-weight:800; text-shadow:0 2px 12px rgba(0,0,0,.45)}
+    .hero-sub{font-size:clamp(16px,2vw,20px); opacity:.95; max-width:70ch; text-shadow:0 2px 12px rgba(0,0,0,.35)}
+    .hero-cta{display:flex; gap:12px; margin-top:18px}
+    .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#0f172a;font-weight:700;cursor:pointer}
+    .btn.soft{background:rgba(255,255,255,.16); color:#fff; border:1px solid rgba(255,255,255,.35)}
 
     /* Dots */
-    .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:8px;z-index:2}
+    .dots{position:absolute;left:50%;transform:translateX(-50%);bottom:16px;display:flex;gap:8px;z-index:4}
     .dot{width:10px;height:10px;border-radius:999px;border:1px solid rgba(255,255,255,.7);background:rgba(0,0,0,.25);cursor:pointer}
     .dot.active{background:#fff}
 
-    /* Overlay + mətn bloku */
-    .hero-overlay{position:absolute;inset:0;background:linear-gradient(0deg,rgba(0,0,0,.45),rgba(0,0,0,.25) 35%,rgba(0,0,0,.15) 70%,rgba(0,0,0,.25))}
-    .hero-visual .inner{
-      position:relative;z-index:2;width:100%;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;
-      max-width:700px;text-align:left;margin-left:var(--heroLeft);margin-right:var(--g3);transition:opacity .3s ease
-    }
-    .inner.hidden{opacity:0;pointer-events:none}
-    .hero-title{font-size:clamp(36px,6vw,64px);line-height:1.05;margin:10px 0 8px;font-weight:800;text-shadow:0 2px 12px rgba(0,0,0,.45)}
-    .hero-sub{font-size:clamp(16px,2vw,20px);opacity:.95;max-width:70ch;text-shadow:0 2px 12px rgba(0,0,0,.35)}
-    .hero-cta{display:flex;gap:12px;margin-top:18px}
-    .btn{padding:12px 16px;border-radius:999px;border:1px solid var(--line);background:#fff;color:#0f172a;font-weight:700;cursor:pointer}
-    .btn.soft{background:rgba(255,255,255,.16);color:#fff;border:1px solid rgba(255,255,255,.35)}
-    .btn.soft:hover{background:rgba(255,255,255,.22)}
-
-    /* SECTIONS (aşağı hissə dəyişməyib) */
+    /* Bölmələr (aşağı) */
     section{padding:var(--g7) 0}
     .section-title{display:flex;flex-direction:column;align-items:center;gap:8px;margin-bottom:var(--g5)}
-    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;letter-spacing:.2px;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent;text-align:center}
-    .section-sub{text-align:center;color:#667085;margin-top:10px;font-size:clamp(14px,1.8vw,18px)}
+    .section-heading{font-size:clamp(26px,3.2vw,40px);font-weight:800;line-height:1.15;margin:0;background:linear-gradient(90deg,#6ea8ff,#6366f1);-webkit-background-clip:text;background-clip:text;color:transparent}
+    .section-sub{color:#667085;margin-top:10px;font-size:clamp(14px,1.8vw,18px)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
-    .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
-    .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
-    .card p{margin:0;color:#334155;line-height:1.65}
-    #services .grid{gap:var(--g6)}
-    #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
-    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
-    .service .icon img{width:40px;height:40px;display:block}
-    .service h3{margin:2px 0 0;font-size:22px;font-weight:600}
-    .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
-    #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
-    #training .plain h3{font-size:22px;font-weight:600;margin:0 0 6px;text-align:left}
-    #training .plain p{margin:0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
-    #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
-    #about .about-text p{margin:0 0 12px;color:#334155;line-height:1.75}
-    .contact-plain{display:flex;justify-content:center}
-    .contact-plain ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;align-items:center;font-size:clamp(18px,2.2vw,22px)}
-    .contact-plain a{font-weight:600;color:#0f172a;text-decoration:none}
-    .contact-plain a:hover{text-decoration:underline}
-    footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
+    .card:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(2,8,23,.06)}
 
-    /* Mobil */
     @media (max-width:900px){ .grid.two{grid-template-columns:1fr} }
     @media (max-width:720px){
-      .brand img.logo1-img{height:36px}
-      .hero-visual .inner{margin-left:var(--g3);max-width:none}
+      .brand img{height:36px}
+      .inner{margin-left:var(--g3)}
       .hero-title{font-size:clamp(28px,8vw,44px)}
     }
-    @media (prefers-reduced-motion: reduce){ .slide{transition:none} }
   </style>
 </head>
 <body>
@@ -127,7 +102,7 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <img class="logo1-img" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo1" loading="eager" fetchpriority="high"/>
+        <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo" loading="eager" fetchpriority="high"/>
       </a>
       <nav aria-label="primary">
         <ul>
@@ -145,20 +120,18 @@
     </div>
   </header>
 
-  <!-- HERO SLIDER -->
+  <!-- HERO -->
   <div id="top" class="hero-visual" aria-label="Hero slider">
-    <div class="slides" aria-live="polite">
-      <!-- Slaydlar: background-image ilə 100% örtmə -->
-      <figure class="slide active" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png')"></figure>
-      <figure class="slide" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png')"></figure>
-      <figure class="slide" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png')"></figure>
-      <figure class="slide" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png')"></figure>
-      <figure class="slide" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png')"></figure>
-    </div>
+    <!-- 5 şəkil: həmişə tam ekran -->
+    <img class="bg active" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_bacground4.png" alt="Bakı xəritə fonu">
+    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/GIS_KONSALTING.png" alt="CİS Konsaltinq">
+    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/mobil_web.png" alt="Veb & Mobil CİS">
+    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/geoai.png" alt="GeoAI">
+    <img class="bg" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/gis_server.png" alt="CİS serverləri">
 
     <div class="hero-overlay" aria-hidden="true"></div>
 
-    <!-- Mətn: yalnız 1-ci slaydda görünəcək -->
+    <!-- Mətn: yalnız 1-ci slaydda -->
     <div class="inner" id="heroText">
       <h1 class="hero-title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
@@ -167,7 +140,6 @@
       </div>
     </div>
 
-    <!-- Nöqtələr -->
     <div class="dots" role="tablist" aria-label="Slayd indikatorları"></div>
   </div>
 
@@ -181,91 +153,53 @@
 
       <div class="grid two">
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon"></div>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon" width="40" height="40"></div>
           <h3>CİS və İT Konsaltinqi</h3>
-          <p>Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
+          <p>Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Audit, arxitektura, yol xəritəsi.</p>
         </article>
 
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon"></div>
-          <h3>Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
-          <p>Planı siz deyin, xəritəni biz canlandıraq. İstəyə uyğun veb və mobil CİS tətbiqləri — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla.</p>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon" width="40" height="40"></div>
+          <h3>Veb & Mobil CİS Tətbiqləri</h3>
+          <p>Sürətli xəritələr, ağıllı filtr, hesabatlar — istəyə uyğun tətbiqlər.</p>
         </article>
 
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon"></div>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon" width="40" height="40"></div>
           <h3>GeoAI</h3>
-          <p>Peyk/ortofoto/dron təsvirlərini dərin öyrənmə ilə emal edib xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
+          <p>Təsvirlərdən obyekt aşkarlanması və analitika üçün dərin öyrənmə.</p>
         </article>
 
         <article class="card service">
-          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon"></div>
+          <div class="icon"><img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon" width="40" height="40"></div>
           <h3>CİS serverlərinin qurulması</h3>
-          <p>On-prem və ya bulud yerləşdirmə, tələbin hesablanması və sabit/sürətli xəritə servislərinin qurulması.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- TRAINING -->
-    <section id="training">
-      <div class="section-title">
-        <h2 class="section-heading">Təlimlər</h2>
-        <p class="section-sub">Praktiki proqramlar və bootcamp-lər</p>
-      </div>
-
-      <div class="grid two">
-        <article class="plain">
-          <h3>ArcGIS Enterprise təlimi</h3>
-          <p>Enterprise platformasının imkanlarını praktik şəkildə mənimsəyin: təhlükəsiz paylaşım, app/service ekspozu, icazə idarəetməsi və s.</p>
-        </article>
-
-        <article class="plain">
-          <h3>ArcGIS Online</h3>
-          <p>Orq-a məzmun dərc etmə, veb xəritə və tətbiq hazırlama, əsas admin tapşırıqlar.</p>
-        </article>
-
-        <article class="plain">
-          <h3>GeoServer</h3>
-          <p>Açıq mənbəli GeoServer ilə verilənlərinizi veb xidməti kimi dərc etmə əsasları və layihə qurulması.</p>
-        </article>
-
-        <article class="plain">
-          <h3>GeoAI</h3>
-          <p>Klasterləşdirmə, proqnozlaşdırma və təsvirlərdən məlumat çıxarılması üçün GeoAI iş axınları.</p>
+          <p>On-prem/bulud yerləşdirmə, performanslı xəritə servisləri.</p>
         </article>
       </div>
     </section>
 
     <!-- ABOUT -->
-    <section id="about" class="about">
+    <section id="about">
       <div class="section-title">
         <h2 class="section-heading">GeoSolver haqqında</h2>
         <p class="section-sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
       </div>
-
-      <div class="about-text">
-        <p><strong>GeoSolver</strong> CİS, veb/xəritə tətbiqləri və AI əsaslı məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
-        <p>Məqsədimiz güclü arxitektura və ağıllı modellərlə geoverilənləri real biznes dəyərinə çevirməkdir.</p>
-        <p>Həm open-source, həm də Esri stack-ində dayanıqlı serverlər və yüksək keyfiyyətli datasetlər qururuq, üstündə performant tətbiqlər hazırlayırıq.</p>
-      </div>
+      <p><strong>GeoSolver</strong> – CİS, veb/xəritə tətbiqləri və GeoAI üzrə ixtisaslaşmış komandadır.</p>
     </section>
 
     <!-- CONTACT -->
-    <section id="contact" class="contact">
+    <section id="contact">
       <div class="section-title">
         <h2 class="section-heading">Əlaqə</h2>
       </div>
-      <div class="contact-plain">
-        <ul>
-          <li><a href="tel:+994553167804">+994 (55) 316 78 04</a></li>
-          <li><a href="mailto:officegeosolver@gmail.com">officegeosolver@gmail.com</a></li>
-        </ul>
-      </div>
+      <ul>
+        <li><a href="tel:+994553167804">+994 (55) 316 78 04</a></li>
+        <li><a href="mailto:officegeosolver@gmail.com">officegeosolver@gmail.com</a></li>
+      </ul>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
+  <footer style="padding:26px 0;border-top:1px solid var(--line);color:#64748b">
     <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
       <p>© <span id="year"></span> GeoSolver. Bütün hüquqlar qorunur.</p>
       <div style="display:flex;gap:12px">
@@ -279,22 +213,78 @@
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // NAV aktiv link
-    const sectionIds = ['top','services','training','about','contact'];
+    // NAV aktiv link (eyni qalır)
+    const sectionIds = ['top','services','about','contact'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = new Map([...document.querySelectorAll('nav a[data-nav]')].map(a => [a.getAttribute('data-nav'), a]));
-    function setActive(id){ navLinks.forEach(a => a.classList.remove('active')); const link = navLinks.get(id); if (link) link.classList.add('active'); }
-    const observer = new IntersectionObserver((entries) => {
-      let best = null;
-      for (const ent of entries){ if (!ent.isIntersecting) continue; if (!best || ent.intersectionRatio > best.intersectionRatio) best = ent; }
-      if (best) setActive(best.target.id);
-    }, { threshold: [0.55], rootMargin: '0px 0px -10% 0px' });
-    sections.forEach(sec => observer.observe(sec));
+    function setActive(id){ navLinks.forEach(a => a && a.classList.remove('active')); const link = navLinks.get(id); if (link) link.classList.add('active'); }
+    const io = new IntersectionObserver((entries)=>{let best=null; for (const e of entries){if(!e.isIntersecting) continue; if(!best||e.intersectionRatio>best.intersectionRatio) best=e;} if(best) setActive(best.target.id);},{threshold:[0.55], rootMargin:'0px 0px -10% 0px'});
+    sections.forEach(s=>io.observe(s));
 
-    // ===== HERO SLIDER =====
+    // ===== Sadə, etibarlı SLAYD =====
     (function(){
-      const container = document.querySelector('.hero-visual');
-      const slides = Array.from(document.querySelectorAll('.slide'));
+      const imgs = Array.from(document.querySelectorAll('.hero-visual .bg'));
       const dotsWrap = document.querySelector('.dots');
       const textBox = document.getElementById('heroText');
-      const prefersReduced = window.match
+      const FIRST_DELAY = 8000;  // 1-ci slayd daha uzun qalsın
+      const DELAY = 5000;
+
+      // Dots
+      imgs.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.type='button';
+        b.className='dot'+(i===0?' active':'');
+        b.setAttribute('aria-label', `Slayd ${i+1}`);
+        b.addEventListener('click', ()=> go(i,true));
+        dotsWrap.appendChild(b);
+      });
+      const dots = Array.from(dotsWrap.children);
+
+      let idx = 0;
+      let timer = null;
+      let firstCycleDone = false;
+
+      function show(i){
+        imgs[idx].classList.remove('active');
+        dots[idx].classList.remove('active');
+        idx = i;
+        imgs[idx].classList.add('active');
+        dots[idx].classList.add('active');
+
+        // Mətn yalnız 1-ci slaydda
+        if (idx === 0) textBox.classList.remove('hidden');
+        else textBox.classList.add('hidden');
+      }
+
+      function scheduleNext(){
+        clearTimeout(timer);
+        const wait = (idx === 0 && !firstCycleDone) ? FIRST_DELAY : DELAY;
+        timer = setTimeout(()=>{
+          show((idx+1)%imgs.length);
+          if (idx === 0) firstCycleDone = true;
+          scheduleNext();
+        }, wait);
+      }
+
+      function go(i, user){
+        show(i);
+        if (user) scheduleNext();
+      }
+
+      // Hoverda pauza/başlat
+      const hero = document.querySelector('.hero-visual');
+      hero.addEventListener('mouseenter', ()=>clearTimeout(timer));
+      hero.addEventListener('mouseleave', scheduleNext);
+
+      // Səhifə görünməyəndə pauza
+      document.addEventListener('visibilitychange', ()=> {
+        if (document.hidden) clearTimeout(timer); else scheduleNext();
+      });
+
+      // Başlat
+      show(0);
+      scheduleNext();
+    })();
+  </script>
+</body>
+</html>
