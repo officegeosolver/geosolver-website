@@ -21,8 +21,7 @@
       --max:1200px;
       --g1:8px; --g2:12px; --g3:16px; --g4:24px; --g5:32px; --g6:48px; --g7:64px;
       --card-r:16px; --shadow:0 12px 30px rgba(2,8,23,.06);
-      --headerH:72px; /* böyüdülmüş navbar hündürlüyü */
-      --hero:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');
+      --headerH:72px;
       --heroLeft: clamp(24px, 6vw, 120px);
     }
     *{box-sizing:border-box}
@@ -35,14 +34,9 @@
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    /* Loqo şəkli daha böyük və aydın */
     .brand img.logo1-img{
-      height:136px;        /* əvvəl 36px idi */
-      width:auto;         /* nisbəti qoruyur */
-      display:block;
-      border-radius:8px;
+      height:136px; width:auto; display:block; border-radius:8px;
     }
-
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{
       padding:10px 14px;border-radius:10px;font-weight:800;letter-spacing:.2px;
@@ -62,17 +56,20 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
-    /* HERO — yalnız şəkil, overlay YOXDUR */
+    /* HERO – “zoom-out” şəkil */
     .hero-visual{
       position:relative; min-height:calc(100vh - var(--headerH));
-      display:flex; align-items:center;
-      background-image: var(--hero);
-      background-repeat:no-repeat;
-      background-size:cover;
-      background-position:center center;
-      background-color:transparent;
+      display:flex; align-items:center; overflow:hidden; background:#000; /* kənarlarda boşluq olmasın deyə */
     }
+    .hero-visual .hero-img{
+      position:absolute; inset:0; margin:auto;
+      width:120vw; height:120vh; object-fit:cover; object-position:center center;
+      transform:scale(0.9);              /* <-- burada “zoom-out” */
+      will-change:transform;
+    }
+    /* Daha çox “zoom-out” istəsən, 0.85/0.8 edə bilərsən */
     .hero-visual .inner{
+      position:relative; z-index:1;
       width:100%; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
       max-width:700px; text-align:left; margin-left:var(--heroLeft); margin-right:var(--g3)
     }
@@ -103,16 +100,17 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services — yalnız SVG ikonlar, dairəvi fon saxlanılır */
+    /* SERVICES – ikon fonunu TAM yığışdırdıq */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
-    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
+    .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px}
     .service .icon{
-      width:96px;height:96px;border-radius:999px;display:grid;place-items:center;
-      background:#eaf3ff; box-shadow:inset 0 0 0 2px #dbeafe; border:0; color:#2563eb;
+      width:auto; height:auto; padding:0;              /* dairəvi fon YOXDUR */
+      background:transparent; box-shadow:none; border:0;
+      display:grid; place-items:center;
     }
-    .service .icon img{width:36px; height:36px; display:block}
-    .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
+    .service .icon img{width:40px; height:40px; display:block} /* lazım olsa 36–44px arası dəyiş */
+    .service h3{margin:2px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
     /* Training (frameless) */
@@ -142,7 +140,8 @@
     @media (max-width:720px){
       .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
-      .brand img.logo1-img{height:36px;} /* mobil üçün bir qədər kiçik */
+      .brand img.logo1-img{height:36px;}
+      .hero-visual .hero-img{ width:100vw; height:100vh; transform:none; } /* mobil: klassik cover */
     }
   </style>
 </head>
@@ -151,7 +150,6 @@
   <header>
     <div class="container nav">
       <a href="#top" class="brand" aria-label="GeoSolver home">
-        <!-- Loqo yalnız şəkil kimi (mətnsiz) -->
         <img
           class="logo1-img"
           src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png"
@@ -176,8 +174,12 @@
     </div>
   </header>
 
-  <!-- HERO (yalnız şəkil) -->
-  <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');">
+  <!-- HERO -->
+  <div id="top" class="hero-visual">
+    <!-- “Zoom-out” üçün şəkli img kimi istifadə edirik -->
+    <img class="hero-img"
+         src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png"
+         alt="Baku map background" loading="eager" fetchpriority="high" />
     <div class="inner">
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
@@ -278,7 +280,7 @@
       </div>
     </section>
 
-    <!-- CONTACT (framesiz) -->
+    <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="section-title">
         <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
@@ -307,16 +309,13 @@
   <!-- LANGUAGE & NAV fix -->
   <script>
     const STR = {
-      az:{
+      az:{ /* ...AZ strings eyni qalır... */ 
         nav_home:"Əsas səhifə",
         nav_services:"Xidmətlər", nav_about:"Haqqımızda", nav_contact:"Əlaqə", nav_training:"Təlimlər",
-
         hero_title:"Coğrafi məlumatlarınızı GIS və GeoAI ilə daha güclü idarə edin",
         hero_sub:"CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.",
         cta_view:"Xidmətlərə bax",
-
         services_title_colored:"Xidmətlərimiz", services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
-
         srv_consult_t:"CİS və İT Konsaltinqi",
         srv_consult_d:"Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.",
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
@@ -325,7 +324,6 @@
         srv4_d:"CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.",
         srv_gis_servers_t:"CİS serverlərinin qurulması",
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.",
-
         training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə CİS təməlini qurun. Enterprise platformasının imkanlarını praktiki şəkildə mənimsəməyə yönəlib: məzmunu təhlükəsiz paylaşmaq, tətbiq və xidmətləri əlçatan etmək, icazələri idarə etmək və komandalararası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
@@ -335,33 +333,24 @@
         tr_gs_d:"Geoserver, coğrafi məlumatlarınızı veb xidməti kimi dərc etməyə imkan verən açıq mənbəli server proqramıdır. Bu kurs GeoServerin nə olduğunu, niyə və nə vaxt ehtiyacınız olduğunu izah edəcək. Biz kompüterinizdə quraşdırılmış yerli host versiyasında nümunə məlumatlardan istifadə edərək GeoServer-in əsaslarını araşdıracağıq. Sonra öz məlumatlarınızdan istifadə edərək GeoServer-də layihənin qurulması addımlarını keçəcəyik.",
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"ArcGIS-də coğrafi süni intellekt (GeoAI) – süni intellektin (AI), maşın öyrənməsinin (ML) və dərin öyrənmənin (DL) CİS ilə inteqrasiyasıdır ki, bu da bilik yaratmaq və coğrafi problemləri həll etmək üçün istifadə olunur. Klasterləşdirmə və pattern aşkarlanması, proqnozlaşdırma və qabaqcadan təxmin etmə, həmçinin təsvirlərdən məlumat çıxarılması ilə bağlı tapşırıqlar üçün GeoAI iş axınlarını öyrənirik",
-
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
-        about_long_1: `
-          <p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
+        about_long_1:`<p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
           <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
           <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
           <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
           <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
           <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
-          <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
-        `,
-
+          <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>`,
         contact_title_colored:"Əlaqə",
-        rights:"Bütün hüquqlar qorunur.",
-        ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
+        rights:"Bütün hüquqlar qorunur."
       },
-
-      en:{
+      en:{ /* ...EN strings eyni qalır... */
         nav_home:"Home",
         nav_services:"Services", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
-
         hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See services",
-
         services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
-
         srv_consult_t:"GIS & IT Consultancy",
         srv_consult_d:"We streamline processes from both mapping and IT perspectives. We clarify business goals, audit your current system, compare architecture options, and deliver a clear, phased roadmap.",
         srv1_t:"Web & Mobile GIS Application Development",
@@ -370,7 +359,6 @@
         srv4_d:"We deliver solutions at the intersection of GIS and AI, processing satellite/orthophoto/UAV imagery with modern deep-learning approaches to produce vector layers and analytics for your maps.",
         srv_gis_servers_t:"GIS Server Deployment",
         srv_gis_servers_d:"We design and build a reliable and scalable GIS server environment for your organization. We calculate requirements and capacity, plan on-prem or cloud deployment, and configure services such as map services to run quickly and reliably.",
-
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
         tr_ent_t:"ArcGIS Enterprise",
         tr_ent_d:"Build your foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions and applying collaboration best practices across teams.",
@@ -380,21 +368,16 @@
         tr_gs_d:"Geoserver is open-source server software that allows you to publish your geospatial data as a web service. This course will explain what GeoServer is, why and when you need it. We will explore the basics of GeoServer using sample data on a local host version installed on your computer. Then we will walk through the steps of setting up a project in GeoServer using your own data.",
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery.",
-
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
-        about_long_1: `
-          <p><strong>GeoSolver</strong> is a team in Azerbaijan specializing in GIS, web/map applications and AI-driven geospatial analytics.</p>
+        about_long_1:`<p><strong>GeoSolver</strong> is a team in Azerbaijan specializing in GIS, web/map applications and AI-driven geospatial analytics.</p>
           <p>Our aim is to turn geospatial data into real business value with robust architecture and intelligent models.</p>
           <p>We build strong GIS servers and high-quality spatial datasets on both open-source and Esri stacks. On top of these structured datasets we deliver reliable, user-friendly and high-performance GIS applications.</p>
           <p>We also apply GeoAI across domains to create smart solutions and move the GIS ecosystem forward.</p>
           <p>With cloud and DevOps practices—Docker/Kubernetes, CI/CD and observability—we ensure resilient, scalable operations.</p>
           <p>We provide hands-on training and consultancy for teams and continue SLA-backed support during operations.</p>
-          <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to participate in international projects via remote collaboration.</p>
-        `,
-
+          <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to participate in international projects via remote collaboration.</p>`,
         contact_title_colored:"Contact",
-        rights:"All rights reserved.",
-        ph_name:"Name", ph_email:"Email", ph_msg:"Message"
+        rights:"All rights reserved."
       }
     };
 
@@ -432,7 +415,7 @@
     }
 
     function setActiveByScroll(){
-      const y = window.scrollY + window.innerHeight * 0.35; // ekranın 35%-i
+      const y = window.scrollY + window.innerHeight * 0.35;
       let current = 'top';
       for (const sec of sections){
         const top = sec.offsetTop;
@@ -457,7 +440,3 @@
   </script>
 </body>
 </html>
-
-
-
-
