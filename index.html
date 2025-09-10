@@ -9,13 +9,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
-  <!-- Hero və logo preload -->
+  <!-- Hero şəkli öncədən yüklə -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png">
+  <!-- logo1 öncədən yüklə -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png">
 
-  <!-- Esri Calcite Components (ikonlar üçün) -->
-  <script type="module" src="https://js.arcgis.com/calcite-components/3.1.0/calcite.esm.js"></script>
-  <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/3.1.0/calcite.css"/>
+  <!-- Calcite Components (təlim ikonları üçün) -->
+  <script type="module" src="https://js.arcgis.com/calcite-components/3.0.0/calcite.esm.js"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/3.0.0/calcite.css"/>
 
   <style>
     :root{
@@ -64,17 +65,26 @@
       padding:6px 10px; border-radius:8px; cursor:pointer;
     }
 
-    /* HERO — full-bleed */
+    /* HERO — FULL-BLEED düzəlişləri */
     .hero-visual{
-      position:relative; min-height:calc(100vh - var(--headerH));
+      position:relative;
+      min-height:calc(100vh - var(--headerH));
       display:flex; align-items:center;
       background-image: var(--hero);
-      background-repeat:no-repeat; background-size:cover; background-position:center center;
-      width:100vw; margin-left:calc(50% - 50vw); margin-right:calc(50% - 50vw);
+      background-repeat:no-repeat;
+      background-size:cover;
+      background-position:center center;
+      background-color:transparent;
+      width:100vw;
+      margin-left:calc(50% - 50vw);
+      margin-right:calc(50% - 50vw);
     }
     .hero-visual .inner{
-      width:100%; color:#fff; display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
-      max-width:700px; text-align:left; margin-left:var(--heroLeft); margin-right:var(--g3)
+      width:100%;
+      color:#fff;
+      display:flex; flex-direction:column; justify-content:center; align-items:flex-start;
+      max-width:700px; text-align:left;
+      margin-left:var(--heroLeft); margin-right:var(--g3)
     }
     .hero-title{font-size:clamp(36px,6vw,64px); line-height:1.05; margin:10px 0 8px; font-weight:800; text-shadow:0 2px 12px rgba(0,0,0,.45)}
     .hero-sub{font-size:clamp(16px,2vw,20px); opacity:.95; max-width:70ch; text-shadow:0 2px 12px rgba(0,0,0,.35)}
@@ -91,28 +101,27 @@
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:var(--g4)}
     .grid.two{grid-template-columns:repeat(2,minmax(260px,1fr))}
 
-    /* Card */
+    /* Generic card */
     .card{border:1px solid var(--line);background:#fff;border-radius:16px;padding:var(--g4);transition:transform .2s ease,box-shadow .2s ease}
     .card:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services (Esri/Calcite ikonları ilə) */
+    /* Services (SVG ikonların olduğu kimi qalır) */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-    .service .icon{display:flex;align-items:center;justify-content:center}
-    .service calcite-icon{width:40px;height:40px}
+    .service .icon img{width:40px; height:40px; display:block}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
-    /* Training (eyni ikon seti) */
+    /* Training (Calcite ikonlar — eyni ölçü və rəng) */
     #training .train{display:flex;flex-direction:column;align-items:center;text-align:left;gap:10px}
+    #training .train .icon{color:var(--brand)}
+    #training .train calcite-icon{width:40px;height:40px}
     #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
     #training .plain h3{font-size:22px;font-weight:600;margin:0;text-align:left}
     #training .plain p{margin:6px 0 0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
-    #training .train .icon{display:flex;align-items:center;justify-content:center}
-    #training .train calcite-icon{width:40px;height:40px}
 
     /* About */
     #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
@@ -121,13 +130,15 @@
     /* Contact */
     .contact-plain{display:flex;justify-content:center}
     .contact-plain ul{
-      list-style:none;margin:0;padding:0; display:flex;flex-direction:row;gap:16px;align-items:center;flex-wrap:wrap
+      list-style:none;margin:0;padding:0;
+      display:flex;flex-direction:row;gap:16px;align-items:center;flex-wrap:wrap
     }
     .contact-plain li{margin:0;padding:0}
     .contact-item{
-      display:flex;align-items:center;gap:10px; padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff
+      display:flex;align-items:center;gap:10px;
+      padding:10px 14px;border:1px solid var(--line);border-radius:12px;background:#fff
     }
-    .contact-item .icon{display:flex;align-items:center;justify-content:center;color:#2563eb}
+    .contact-item .icon{display:flex;align-items:center;justify-content:center;color:var(--brand)}
     .contact-item .icon svg{width:22px;height:22px;display:block}
     .contact-item a{font-weight:600;color:#0f172a;text-decoration:none}
     .contact-item a:hover{text-decoration:underline}
@@ -141,11 +152,19 @@
     @media (max-width:900px){ .grid.two{grid-template-columns:1fr} }
     @media (max-width:768px){
       .brand img.logo1-img{height:36px;}
+      /* Hamburger görünür, menyu gizlənir */
       .menu-toggle{display:block;}
       nav ul{
-        display:none; flex-direction:column; position:absolute; top:calc(var(--headerH) - 4px);
-        left:0; right:0; background:#fff; border-top:1px solid var(--line);
-        padding:12px 16px; gap:10px; box-shadow:0 10px 24px rgba(2,8,23,.08);
+        display:none;
+        flex-direction:column;
+        position:absolute;
+        top:calc(var(--headerH) - 4px);
+        left:0; right:0;
+        background:#fff;
+        border-top:1px solid var(--line);
+        padding:12px 16px;
+        gap:10px;
+        box-shadow:0 10px 24px rgba(2,8,23,.08);
       }
       nav ul.open{display:flex;}
       nav a{padding:10px 12px}
@@ -165,8 +184,8 @@
         <img class="logo1-img" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo1" loading="eager" fetchpriority="high"/>
       </a>
 
-      <!-- HAMBURGER -->
-      <button class="menu-toggle" aria-label="Menyunu aç" aria-expanded="false">☰</button>
+      <!-- HAMBURGER düyməsi -->
+      <button class="menu-toggle" aria-label="Menyunu aç">☰</button>
 
       <nav aria-label="primary">
         <ul>
@@ -206,32 +225,32 @@
 
       <div class="grid two">
         <article class="card service">
-          <div class="icon" aria-hidden="true">
-            <calcite-icon icon="compass" scale="l"></calcite-icon>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
           </div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
         </article>
 
         <article class="card service">
-          <div class="icon" aria-hidden="true">
-            <calcite-icon icon="monitor" scale="l"></calcite-icon>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
           </div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
         </article>
 
         <article class="card service">
-          <div class="icon" aria-hidden="true">
-            <calcite-icon icon="classify-objects" scale="l"></calcite-icon>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
         </article>
 
         <article class="card service">
-          <div class="icon" aria-hidden="true">
-            <calcite-icon icon="server" scale="l"></calcite-icon>
+          <div class="icon">
+            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
           </div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
@@ -382,45 +401,47 @@
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"ArcGIS-də coğrafi süni intellekt (GeoAI) – süni intellektin (AI), maşın öyrənməsinin (ML) və dərin öyrənmənin (DL) CİS ilə inteqrasiyasıdır ki, bu da bilik yaratmaq və coğrafi problemləri həll etmək üçün istifadə olunur. Klasterləşdirmə və pattern aşkarlanması, proqnozlaşdırma və qabaqcadan təxmin etmə, həmçinin təsvirlərdən məlumat çıxarılması ilə bağlı tapşırıqlar üçün GeoAI iş axınlarını öyrənirik",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
+        about_long_1:`<p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
+          <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
+          <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
+          <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
+          <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
+          <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
+          <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>`,
         contact_title_colored:"Əlaqə", rights:"Bütün hüquqlar qorunur.", ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
       },
-      en:{
+      en:{ 
         nav_home:"Home", nav_services:"Services", nav_about:"About", nav_contact:"Contact", nav_training:"Training",
         hero_title:"Manage your geospatial data more powerfully with GIS & GeoAI",
         hero_sub:"High-performance services with GIS technologies and artificial intelligence.",
         cta_view:"See services",
-        services_title_colored:"Our Services",
-        services_sub:"The comprehensive set of services we provide",
+        services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
         srv_consult_t:"GIS & IT Consultancy",
-        srv_consult_d:"We streamline your processes from both the mapping and IT perspective. We clarify business goals, audit your current system, compare architecture options, and prepare a clear, phased roadmap.",
+        srv_consult_d:"We streamline processes from both mapping and IT perspectives. We clarify business goals, audit your current system, compare architecture options, and deliver a clear, phased roadmap.",
         srv1_t:"Web & Mobile GIS Application Development",
-        srv1_d:"You set the plan, we bring the map to life. We build web and mobile GIS apps tailored to your needs—with clean UI, fast maps, smart filters, and convenient reporting. Whatever platform your data lives on, we integrate reliably and deliver modern, durable solutions.",
+        srv1_d:"You set the plan, we bring the map to life. We build tailored web and mobile GIS apps—with clean UI, fast maps, smart filters, and convenient reporting. Whatever platform your data lives on, we integrate reliably and deliver modern, stable solutions.",
         srv4_t:"GeoAI",
-        srv4_d:"We deliver solutions at the intersection of GIS and AI. We process satellite, orthophoto, and UAV imagery with modern deep-learning approaches to generate vector layers and analytic outputs for your maps.",
+        srv4_d:"We deliver solutions at the intersection of GIS and AI, processing satellite/orthophoto/UAV imagery with modern deep-learning approaches to produce vector layers and analytics for your maps.",
         srv_gis_servers_t:"GIS Server Deployment",
-        srv_gis_servers_d:"We design and build a reliable, scalable GIS server environment for your organization. We estimate requirements and capacity, plan on-prem or cloud deployment, and configure services—such as map services—to run quickly and stably.",
-        training_title_colored:"Training",
-        training_sub:"Hands-on programs and bootcamps",
+        srv_gis_servers_d:"We design and build a reliable and scalable GIS server environment for your organization. We estimate requirements and capacity, plan on-prem or cloud deployment, and configure services such as map services to run quickly and reliably.",
+        training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
         tr_ent_t:"ArcGIS Enterprise",
-        tr_ent_d:"Establish your GIS foundation with ArcGIS Enterprise. A hands-on program focused on adopting the platform: securely sharing content, exposing apps and services, managing permissions, and applying collaboration best practices across teams.",
+        tr_ent_d:"Build your GIS foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions, and applying collaboration best practices across teams.",
         tr_online_t:"ArcGIS Online",
-        tr_online_d:"Maps and apps for everyone. Learn to publish content to your organization’s portal, build web maps and apps, and perform the core administrative tasks needed to keep everything discoverable and usable.",
+        tr_online_d:"Maps and apps for everyone. Learn to publish content to your org portal, build web maps and apps, and perform core administrative tasks so everything stays discoverable and usable.",
         tr_gs_t:"GeoServer",
-        tr_gs_d:"GeoServer is open-source server software that lets you publish geospatial data as web services. We explain what it is, why and when you need it, explore the basics on a local host with sample data, then walk through setting up a project using your own data.",
+        tr_gs_d:"GeoServer is open-source server software that lets you publish geospatial data as web services. We explain what it is, why/when you need it, explore the basics on a local host with sample data, then walk through setting up a project using your own data.",
         tr_geoai_t:"GeoAI",
-        tr_geoai_d:"Geospatial AI (GeoAI) in ArcGIS integrates AI, machine learning, and deep learning with GIS to produce knowledge and solve geographic problems. Explore workflows for clustering and pattern detection, prediction and forecasting, and extracting information from imagery.",
-        about_title_colored:"About GeoSolver",
-        about_sub:"A team turning geospatial data into value",
+        tr_geoai_d:"Geospatial AI (GeoAI) in ArcGIS integrates AI, ML, and DL with GIS to produce knowledge and solve geographic problems. Explore workflows for clustering and pattern detection, prediction/forecasting, and extracting information from imagery.",
+        about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
         about_long_1:`<p><strong>GeoSolver</strong> is a team in Azerbaijan specializing in GIS, web/map applications, and AI-driven geospatial analytics.</p>
-          <p>Our aim is to turn geospatial data into real business value with robust architecture and intelligent models.</p>
-          <p>We build strong GIS servers and high-quality spatial datasets on both open-source and Esri stacks. On top of these structured datasets, we deliver reliable, user-friendly and high-performance GIS applications.</p>
-          <p>We also apply GeoAI across domains to build smart solutions and move the GIS ecosystem forward.</p>
-          <p>With cloud and DevOps practices—Docker/Kubernetes, CI/CD and observability—we ensure resilient and scalable operations.</p>
+          <p>Our goal is to turn geospatial data into real business value with robust architecture and intelligent models.</p>
+          <p>We build strong GIS servers and high-quality spatial datasets on both open-source and Esri stacks. On top of these structured datasets, we deliver reliable, user-friendly, high-performance GIS applications.</p>
+          <p>We also apply GeoAI across domains to create smart solutions and move the GIS ecosystem forward.</p>
+          <p>With cloud and DevOps practices—Docker/Kubernetes, CI/CD, and observability—we ensure resilient, scalable operations.</p>
           <p>We provide hands-on training and consultancy for teams and continue SLA-backed support during operations.</p>
-          <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to participate in international projects via remote collaboration.</p>`,
-        contact_title_colored:"Contact",
-        rights:"All rights reserved.",
-        ph_name:"Name", ph_email:"Email", ph_msg:"Message"
+          <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to join international projects via remote collaboration.</p>`,
+        contact_title_colored:"Contact", rights:"All rights reserved.", ph_name:"Name", ph_email:"Email", ph_msg:"Message"
       }
     };
 
@@ -491,7 +512,9 @@
     }
 
     menuBtn.addEventListener("click", toggleMenu);
+    // Linkə klik edəndə menyunu bağla
     navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeMenu));
+    // Ekran böyüyəndə menyunu bağla
     window.addEventListener('resize', ()=>{ if (window.innerWidth > 768) closeMenu(); });
   </script>
 </body>
