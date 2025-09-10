@@ -31,17 +31,19 @@
       --heroLeft: clamp(24px, 6vw, 120px);
     }
     *{box-sizing:border-box}
-    html,body{margin:0;padding:0; overflow-x:hidden;} /* <-- sağdakı boşluğun qarşısı */
+    html,body{margin:0;padding:0; overflow-x:hidden;}
     body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-    img{max-width:100%; height:auto; display:block;} /* <-- şəkillərin daşmasının qarşısı */
+    img{max-width:100%; height:auto; display:block;}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
 
     /* NAVBAR */
     header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH)}
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH);position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand img.logo1-img{height:136px;width:auto;display:block;border-radius:8px}
+
+    /* Desktop menyu */
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
     nav a{padding:10px 14px;border-radius:10px;font-weight:800;letter-spacing:.2px;color:#2563eb;position:relative;transition:color .15s ease, background .15s ease}
     nav a::after{content:"";position:absolute;left:12px;right:12px;bottom:6px;height:2px;background:#2563eb;border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform .18s ease}
@@ -55,6 +57,14 @@
     .lang button.active{background:#1d4ed8;color:#fff;border-color:#1d4ed8}
     .lang button:focus{outline:2px solid #93c5fd}
 
+    /* HAMBURGER düyməsi (mobil) */
+    .menu-toggle{
+      display:none;
+      font-size:26px; line-height:1;
+      background:none; border:1px solid #c7d2fe; color:#1d4ed8;
+      padding:6px 10px; border-radius:8px; cursor:pointer;
+    }
+
     /* HERO — FULL-BLEED düzəlişləri */
     .hero-visual{
       position:relative;
@@ -65,8 +75,8 @@
       background-size:cover;
       background-position:center center;
       background-color:transparent;
-      width:100vw;                                /* tam viewport eni */
-      margin-left:calc(50% - 50vw);               /* sol/sağda boşluq qalmasın */
+      width:100vw;
+      margin-left:calc(50% - 50vw);
       margin-right:calc(50% - 50vw);
     }
     .hero-visual .inner{
@@ -97,7 +107,7 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services — İKON ARXA FONU YOXDUR */
+    /* Services */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
@@ -138,12 +148,31 @@
 
     footer{padding:26px 0;border-top:1px solid var(--line);color:#64748b}
 
+    /* Mobil görünüş */
     @media (max-width:900px){ .grid.two{grid-template-columns:1fr} }
-    @media (max-width:720px){
-      .hero-visual{ background-position:center; } /* mobil mərkəzləşmə */
+    @media (max-width:768px){
+      .brand img.logo1-img{height:36px;}
+      /* Hamburger görünür, menyu gizlənir */
+      .menu-toggle{display:block;}
+      nav ul{
+        display:none;
+        flex-direction:column;
+        position:absolute;
+        top:calc(var(--headerH) - 4px);
+        left:0; right:0;
+        background:#fff;
+        border-top:1px solid var(--line);
+        padding:12px 16px;
+        gap:10px;
+        box-shadow:0 10px 24px rgba(2,8,23,.08);
+      }
+      nav ul.open{display:flex;}
+      nav a{padding:10px 12px}
+
+      .lang{margin-left:auto;}
+      .hero-visual{ background-position:center; }
       .hero-visual .inner{margin-left: var(--g3); max-width:none}
       .hero-title{font-size:clamp(28px,8vw,44px)}
-      .brand img.logo1-img{height:36px;}
     }
   </style>
 </head>
@@ -154,6 +183,10 @@
       <a href="#top" class="brand" aria-label="GeoSolver home">
         <img class="logo1-img" src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png" alt="GeoSolver logo1" loading="eager" fetchpriority="high"/>
       </a>
+
+      <!-- HAMBURGER düyməsi -->
+      <button class="menu-toggle" aria-label="Menyunu aç">☰</button>
+
       <nav aria-label="primary">
         <ul>
           <li><a class="active" href="#top" data-nav="top" data-i18n="nav_home">Əsas səhifə</a></li>
@@ -163,6 +196,7 @@
           <li><a href="#contact" data-nav="contact" data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
       </nav>
+
       <div class="lang" role="group" aria-label="Language switcher">
         <button type="button" class="active" onclick="setLang('az')">AZE</button>
         <button type="button" onclick="setLang('en')">ENG</button>
@@ -337,7 +371,7 @@
     </div>
   </footer>
 
-  <!-- LANGUAGE & NAV fix -->
+  <!-- LANGUAGE, NAV & MENU -->
   <script>
     const STR = {
       az:{ 
@@ -365,13 +399,6 @@
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"ArcGIS-də coğrafi süni intellekt (GeoAI) – süni intellektin (AI), maşın öyrənməsinin (ML) və dərin öyrənmənin (DL) CİS ilə inteqrasiyasıdır ki, bu da bilik yaratmaq və coğrafi problemləri həll etmək üçün istifadə olunur. Klasterləşdirmə və pattern aşkarlanması, proqnozlaşdırma və qabaqcadan təxmin etmə, həmçinin təsvirlərdən məlumat çıxarılması ilə bağlı tapşırıqlar üçün GeoAI iş axınlarını öyrənirik",
         about_title_colored:"GeoSolver haqqında", about_sub:"Məkan məlumatlarını dəyərə çevirən komanda",
-        about_long_1:`<p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
-          <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
-          <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
-          <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
-          <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
-          <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
-          <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>`,
         contact_title_colored:"Əlaqə", rights:"Bütün hüquqlar qorunur.", ph_name:"Ad", ph_email:"Email", ph_msg:"Mesaj"
       },
       en:{ 
@@ -398,13 +425,6 @@
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"Geospatial artificial intelligence (GeoAI) in ArcGIS is the integration of artificial intelligence (AI), machine learning (ML), and deep learning (DL) with GIS to produce knowledge and solve geographic problems. Explore GeoAI workflows for tasks related to clustering and pattern detection, prediction and forecasting, and information extraction from imagery.",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
-        about_long_1:`<p><strong>GeoSolver</strong> is a team in Azerbaijan specializing in GIS, web/map applications and AI-driven geospatial analytics.</p>
-          <p>Our aim is to turn geospatial data into real business value with robust architecture and intelligent models.</p>
-          <p>We build strong GIS servers and high-quality spatial datasets on both open-source and Esri stacks. On top of these structured datasets we deliver reliable, user-friendly and high-performance GIS applications.</p>
-          <p>We also apply GeoAI across domains to create smart solutions and move the GIS ecosystem forward.</p>
-          <p>With cloud and DevOps practices—Docker/Kubernetes, CI/CD and observability—we ensure resilient, scalable operations.</p>
-          <p>We provide hands-on training and consultancy for teams and continue SLA-backed support during operations.</p>
-          <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to participate in international projects via remote collaboration.</p>`,
         contact_title_colored:"Contact", rights:"All rights reserved.", ph_name:"Name", ph_email:"Email", ph_msg:"Message"
       }
     };
@@ -463,6 +483,23 @@
     sections.forEach(sec => observer.observe(sec));
     window.addEventListener('load', setActiveByScroll);
     window.addEventListener('hashchange', setActiveByScroll);
+
+    // ==== HAMBURGER MENYU JS ====
+    const menuBtn = document.querySelector(".menu-toggle");
+    const navMenu = document.querySelector("nav ul");
+
+    function closeMenu(){ navMenu.classList.remove("open"); menuBtn.setAttribute('aria-expanded','false'); }
+    function toggleMenu(){
+      const open = !navMenu.classList.contains("open");
+      navMenu.classList.toggle("open", open);
+      menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    }
+
+    menuBtn.addEventListener("click", toggleMenu);
+    // Linkə klik edəndə menyunu bağla
+    navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeMenu));
+    // Ekran böyüyəndə menyunu bağla
+    window.addEventListener('resize', ()=>{ if (window.innerWidth > 768) closeMenu(); });
   </script>
 </body>
 </html>
