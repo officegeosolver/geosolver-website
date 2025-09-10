@@ -13,6 +13,10 @@
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png">
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png">
 
+  <!-- Esri Calcite Components (ikonlar üçün) -->
+  <script type="module" src="https://js.arcgis.com/calcite-components/3.1.0/calcite.esm.js"></script>
+  <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/3.1.0/calcite.css"/>
+
   <style>
     :root{
       --ink:#0f172a; --muted:#475569; --line:rgba(2,8,23,.08);
@@ -93,20 +97,22 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services */
+    /* Services (Esri/Calcite ikonları ilə) */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
-    .service .icon img{width:40px; height:40px; display:block}
+    .service .icon{display:flex;align-items:center;justify-content:center}
+    .service calcite-icon{width:40px;height:40px}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
 
-    /* Training (eyni ikon üslubu) */
+    /* Training (eyni ikon seti) */
     #training .train{display:flex;flex-direction:column;align-items:center;text-align:left;gap:10px}
     #training .plain{border:none;background:transparent;box-shadow:none;padding:0}
     #training .plain h3{font-size:22px;font-weight:600;margin:0;text-align:left}
     #training .plain p{margin:6px 0 0;color:#475569;line-height:1.7;text-align:left;max-width:70ch}
-    #training .train .icon img{width:40px; height:40px; display:block}
+    #training .train .icon{display:flex;align-items:center;justify-content:center}
+    #training .train calcite-icon{width:40px;height:40px}
 
     /* About */
     #about .about-text{border:none;background:transparent;box-shadow:none;padding:0;max-width:900px;margin:0 auto}
@@ -200,32 +206,32 @@
 
       <div class="grid two">
         <article class="card service">
-          <div class="icon">
-            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
+          <div class="icon" aria-hidden="true">
+            <calcite-icon icon="compass" scale="l"></calcite-icon>
           </div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
         </article>
 
         <article class="card service">
-          <div class="icon">
-            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
+          <div class="icon" aria-hidden="true">
+            <calcite-icon icon="monitor" scale="l"></calcite-icon>
           </div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
         </article>
 
         <article class="card service">
-          <div class="icon">
-            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
+          <div class="icon" aria-hidden="true">
+            <calcite-icon icon="classify-objects" scale="l"></calcite-icon>
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
         </article>
 
         <article class="card service">
-          <div class="icon">
-            <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
+          <div class="icon" aria-hidden="true">
+            <calcite-icon icon="server" scale="l"></calcite-icon>
           </div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
@@ -245,8 +251,7 @@
         <article class="plain">
           <div class="train">
             <div class="icon" aria-hidden="true">
-              <!-- eyni SVG seti (xətt qalınlığı uyğundur) -->
-              <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="ArcGIS Enterprise icon">
+              <calcite-icon icon="gis-server" scale="l"></calcite-icon>
             </div>
             <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
           </div>
@@ -257,7 +262,7 @@
         <article class="plain">
           <div class="train">
             <div class="icon" aria-hidden="true">
-              <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="ArcGIS Online icon">
+              <calcite-icon icon="arcgis-online" scale="l"></calcite-icon>
             </div>
             <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
           </div>
@@ -268,7 +273,7 @@
         <article class="plain">
           <div class="train">
             <div class="icon" aria-hidden="true">
-              <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GeoServer icon">
+              <calcite-icon icon="server" scale="l"></calcite-icon>
             </div>
             <h3 data-i18n="tr_gs_t">GeoServer</h3>
           </div>
@@ -279,7 +284,7 @@
         <article class="plain">
           <div class="train">
             <div class="icon" aria-hidden="true">
-              <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
+              <calcite-icon icon="classify-objects" scale="l"></calcite-icon>
             </div>
             <h3 data-i18n="tr_geoai_t">GeoAI</h3>
           </div>
