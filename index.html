@@ -32,13 +32,16 @@
     }
     *{box-sizing:border-box}
     html,body{margin:0;padding:0; overflow-x:hidden;}
-    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    html{scroll-behavior:smooth}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);padding-top:var(--headerH)}
     img{max-width:100%; height:auto; display:block;}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
+    /* Anchor offset for fixed header */
+    section, #top{scroll-margin-top:calc(var(--headerH) + 12px)}
 
     /* NAVBAR */
-    header{position:sticky;top:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+    header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH);position:relative}
     .brand{display:flex;align-items:center;gap:10px;font-weight:700}
     .brand img.logo1-img{height:136px;width:auto;display:block;border-radius:8px}
@@ -161,7 +164,6 @@
       }
       nav ul.open{display:flex;}
       nav a{padding:10px 12px}
-
       .lang{margin-left:auto;}
       .hero-visual{ background-position:center; }
       .hero-visual .inner{margin-left: var(--g3); max-width:none}
@@ -183,12 +185,10 @@
       <nav aria-label="primary">
         <ul>
           <li><a class="active" href="#top" data-nav="top" data-i18n="nav_home">Əsas səhifə</a></li>
-          <!-- YENİ: Haqqımızda (ikinci link #1 — Əsas səhifədən dərhal sonra) -->
-          <li><a href="#about" data-nav="about2" data-i18n="nav_about">Haqqımızda</a></li>
+          <!-- QALSIN: Haqqımızda yalnız BURADA -->
+          <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqqımızda</a></li>
           <li><a href="#services" data-nav="services" data-i18n="nav_services">Xidmətlər</a></li>
           <li><a href="#training" data-nav="training" data-i18n="nav_training">Təlimlər</a></li>
-          <!-- Mövcud Haqqımızda (ikinci link #2 — əvvəlki yerində qalır) -->
-          <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqqımızda</a></li>
           <li><a href="#contact" data-nav="contact" data-i18n="nav_contact">Əlaqə</a></li>
         </ul>
       </nav>
@@ -242,7 +242,7 @@
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
-          <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq. Bu istiqamətdə coğrafi məlumatların <strong>monitorinqi</strong> və anomaliya aşkarlanması, eləcə də obyekt aşkarlanması və land cover təsnifatı həyata keçirilir.</p>
+          <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq. Bu istiqamətdə coğrafi məlumatların monitorinqi və anomaliya aşkarlanması, eləcə də obyekt aşkarlanması və land cover təsnifatı həyata keçirilir.</p>
         </article>
 
         <article class="card service">
@@ -457,7 +457,7 @@
         tr_online_t:"ArcGIS Online",
         tr_online_d:"Maps and apps for everyone. Learn to publish content to your org portal, build web maps and apps, and perform core administrative tasks so everything stays discoverable and usable.",
         tr_gs_t:"GeoServer",
-        tr_gs_d:"GeoServer is open-source server software that lets you publish geospatial data as web services. We explain what it is, why/when you need it, explore the basics on a local host with sample data, then walk through setting up a project using your own data.",
+        tr_gs_d:"GeoServer is open-source server software that lets you publish geospatial data as web services. We cover the basics and step through setting up a real project.",
         tr_geoai_t:"GeoAI",
         tr_geoai_d:"Geospatial AI (GeoAI) in ArcGIS integrates AI, ML, and DL with GIS to produce knowledge and solve geographic problems. Explore workflows for clustering and pattern detection, prediction/forecasting, and extracting information from imagery.",
         about_title_colored:"About GeoSolver", about_sub:"A team turning geospatial data into value",
@@ -493,7 +493,7 @@
     setLang('az');
 
     // NAV aktivləşdirmə
-    const sectionIds = ['top','services','training','about','contact'];
+    const sectionIds = ['top','about','services','training','contact'];
     const sections = sectionIds.map(id => document.getElementById(id)).filter(Boolean);
     const navLinks = new Map([...document.querySelectorAll('nav a[data-nav]')].map(a => [a.getAttribute('data-nav'), a]));
 
@@ -543,6 +543,17 @@
     navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeMenu));
     // Ekran böyüyəndə menyunu bağla
     window.addEventListener('resize', ()=>{ if (window.innerWidth > 768) closeMenu(); });
+
+    // ======= Yeniləmə (refresh) zamanı həmişə ana səhifəyə qayıt =======
+    (function(){
+      const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
+      const isReload = (navEntry && navEntry.type === 'reload') || (performance.navigation && performance.navigation.type === 1);
+      if (isReload){
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+        window.scrollTo(0,0);
+        setActive('top');
+      }
+    })();
   </script>
 </body>
 </html>
