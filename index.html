@@ -14,7 +14,7 @@
   <!-- logo1 öncədən yüklə -->
   <link rel="preload" as="image" href="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/logo1.png">
 
-  <!-- Calcite Components (təlim ikonları üçün) -->
+  <!-- Calcite Components (təlim ikonları və bəziləri üçün) -->
   <script type="module" src="https://js.arcgis.com/calcite-components/3.0.0/calcite.esm.js"></script>
   <link rel="stylesheet" href="https://js.arcgis.com/calcite-components/3.0.0/calcite.css"/>
 
@@ -107,13 +107,17 @@
     .card h3{margin:0 0 var(--g2);font-size:20px;font-weight:600}
     .card p{margin:0;color:#334155;line-height:1.65}
 
-    /* Services (SVG ikonların olduğu kimi qalır) */
+    /* Services */
     #services .grid{gap:var(--g6)}
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon img{width:40px; height:40px; display:block}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
-    .service p{margin-top:6px;max-width:52ch;color:#475569;font-size:15px}
+    .service p{margin-top:6px;max-width:56ch;color:#475569;font-size:15px}
+    /* Subxidmət siyahısı */
+    .service ul.sub{margin:8px 0 0; padding:0; list-style:none; display:flex; flex-direction:column; gap:6px;}
+    .service ul.sub li{font-size:14px; color:#334155; display:flex; align-items:flex-start; gap:8px}
+    .service ul.sub li::before{content:"•"; color:var(--brand); line-height:1.1}
 
     /* Training (Calcite ikonlar — eyni ölçü və rəng) */
     #training .train{display:flex;flex-direction:column;align-items:center;text-align:left;gap:10px}
@@ -224,36 +228,74 @@
       </div>
 
       <div class="grid two">
+        <!-- Consultancy -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
           </div>
           <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
           <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.</p>
+          <ul class="sub">
+            <li data-i18n="srv_consult_s1">Məlumatların CİS sistemlərinə uyğunlaşdırılması və xəritəyə inteqrasiya</li>
+            <li data-i18n="srv_consult_s2">CİS arxitekturasının layihələndirilməsi və formalaşdırılması</li>
+          </ul>
         </article>
 
+        <!-- Web & Mobile GIS -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
           </div>
           <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
           <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.</p>
+          <ul class="sub">
+            <li data-i18n="srv_web_s1">Sahədən mobil tətbiqlərlə məlumat toplanması (Field data collection)</li>
+            <li data-i18n="srv_web_s2">Offline xəritələr və sinxronizasiya</li>
+          </ul>
         </article>
 
+        <!-- GeoAI -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
           <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.</p>
+          <ul class="sub">
+            <li data-i18n="srv_ai_s1">Coğrafi məlumatların monitoringi və anomalya aşkarlanması</li>
+            <li data-i18n="srv_ai_s2">Obyekt aşkarlanması və land cover təsnifatı</li>
+          </ul>
         </article>
 
+        <!-- GIS Servers -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
           </div>
           <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
           <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.</p>
+          <ul class="sub">
+            <li data-i18n="srv_srv_s1">CİS sistemlərinin formalaşdırılması və mühitin hazırlanması</li>
+            <li data-i18n="srv_srv_s2">Yüksək mövcudluq, təhlükəsizlik və performans tənzimləmələri</li>
+          </ul>
+        </article>
+
+        <!-- NEW: 3D Cadastre -->
+        <article class="card service">
+          <div class="icon" aria-hidden="true">
+            <!-- Sadə 3D kub SVG -->
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2l9 5-9 5-9-5 9-5z"/>
+              <path d="M3 7v10l9 5 9-5V7"/>
+              <path d="M12 12v10"/>
+            </svg>
+          </div>
+          <h3 data-i18n="srv_3d_t">3D Kadastr və Vizualizasiya</h3>
+          <p data-i18n="srv_3d_d">Əmlakların və torpaq sahələrinin 3D modelləşdirilməsi, hüquqi məlumatların 3D kadastrla əlaqələndirilməsi və interaktiv vizuallaşdırma.</p>
+          <ul class="sub">
+            <li data-i18n="srv_3d_s1">3D geodatabase dizaynı və idarəetmə</li>
+            <li data-i18n="srv_3d_s2">3D web scene və dashboard-lar</li>
+          </ul>
         </article>
       </div>
     </section>
@@ -409,12 +451,24 @@
         services_title_colored:"Xidmətlərimiz", services_sub:"Tam əhatəli olaraq göstərdiyimiz xidmətlər",
         srv_consult_t:"CİS və İT Konsaltinqi",
         srv_consult_d:"Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq.",
+        srv_consult_s1:"Məlumatların CİS sistemlərinə uyğunlaşdırılması və xəritəyə inteqrasiya",
+        srv_consult_s2:"CİS arxitekturasının layihələndirilməsi və formalaşdırılması",
         srv1_t:"Veb & Mobil CİS Tətbiqlərinin Hazırlanması",
         srv1_d:"Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik.",
+        srv_web_s1:"Sahədən mobil tətbiqlərlə məlumat toplanması (Field data collection)",
+        srv_web_s2:"Offline xəritələr və sinxronizasiya",
         srv4_t:"GeoAI",
         srv4_d:"CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq.",
+        srv_ai_s1:"Coğrafi məlumatların monitoringi və anomalya aşkarlanması",
+        srv_ai_s2:"Obyekt aşkarlanması və land cover təsnifatı",
         srv_gis_servers_t:"CİS serverlərinin qurulması",
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik.",
+        srv_srv_s1:"CİS sistemlərinin formalaşdırılması və mühitin hazırlanması",
+        srv_srv_s2:"Yüksək mövcudluq, təhlükəsizlik və performans tənzimləmələri",
+        srv_3d_t:"3D Kadastr və Vizualizasiya",
+        srv_3d_d:"Əmlakların və torpaq sahələrinin 3D modelləşdirilməsi, hüquqi məlumatların 3D kadastrla əlaqələndirilməsi və interaktiv vizuallaşdırma.",
+        srv_3d_s1:"3D geodatabase dizaynı və idarəetmə",
+        srv_3d_s2:"3D web scene və dashboard-lar",
         training_title_colored:"Təlimlər", training_sub:"Praktiki proqramlar və bootcamp-lər",
         tr_ent_t:"ArcGIS Enterprise təlimi",
         tr_ent_d:"ArcGIS Enterprise ilə CİS təməlini qurun. Enterprise platformasının imkanlarını praktiki şəkildə mənimsəməyə yönəlib: məzmunu təhlükəsiz paylaşmaq, tətbiq və xidmətləri əlçatan etmək, icazələri idarə etmək və komandalararası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.",
@@ -442,12 +496,24 @@
         services_title_colored:"Our Services", services_sub:"A comprehensive set of services we provide",
         srv_consult_t:"GIS & IT Consultancy",
         srv_consult_d:"We streamline processes from both mapping and IT perspectives. We clarify business goals, audit your current system, compare architecture options, and deliver a clear, phased roadmap.",
+        srv_consult_s1:"Data preparation and GIS alignment with map integration",
+        srv_consult_s2:"Designing and forming the GIS architecture",
         srv1_t:"Web & Mobile GIS Application Development",
         srv1_d:"You set the plan, we bring the map to life. We build tailored web and mobile GIS apps—with clean UI, fast maps, smart filters, and convenient reporting. Whatever platform your data lives on, we integrate reliably and deliver modern, stable solutions.",
+        srv_web_s1:"Field data collection via mobile apps",
+        srv_web_s2:"Offline maps and synchronization",
         srv4_t:"GeoAI",
         srv4_d:"We deliver solutions at the intersection of GIS and AI, processing satellite/orthophoto/UAV imagery with modern deep-learning approaches to produce vector layers and analytics for your maps.",
+        srv_ai_s1:"Geospatial monitoring and anomaly detection",
+        srv_ai_s2:"Object detection and land-cover classification",
         srv_gis_servers_t:"GIS Server Deployment",
         srv_gis_servers_d:"We design and build a reliable and scalable GIS server environment for your organization. We estimate requirements and capacity, plan on-prem or cloud deployment, and configure services such as map services to run quickly and reliably.",
+        srv_srv_s1:"Forming GIS systems and preparing the environment",
+        srv_srv_s2:"High availability, security and performance tuning",
+        srv_3d_t:"3D Cadastre & Visualization",
+        srv_3d_d:"3D modeling of properties and parcels, linking legal records with 3D cadastre and interactive visualization.",
+        srv_3d_s1:"3D geodatabase design and management",
+        srv_3d_s2:"3D web scenes and dashboards",
         training_title_colored:"Training", training_sub:"Hands-on programs and bootcamps",
         tr_ent_t:"ArcGIS Enterprise",
         tr_ent_d:"Build your GIS foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions, and applying collaboration best practices across teams.",
@@ -543,4 +609,3 @@
   </script>
 </body>
 </html>
-
