@@ -185,7 +185,6 @@
       <nav aria-label="primary">
         <ul>
           <li><a class="active" href="#top" data-nav="top" data-i18n="nav_home">Əsas səhifə</a></li>
-          <!-- Haqqımızda MÜTLƏQ 2-ci sırada -->
           <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqqımızda</a></li>
           <li><a href="#services" data-nav="services" data-i18n="nav_services">Xidmətlər</a></li>
           <li><a href="#training" data-nav="training" data-i18n="nav_training">Təlimlər</a></li>
@@ -203,7 +202,6 @@
   <!-- HERO -->
   <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');">
     <div class="inner">
-      <!-- AZ-da “GIS” → “CİS” -->
       <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı CİS və GeoAI ilə daha güclü idarə edin</h1>
       <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
       <div class="hero-cta">
@@ -213,6 +211,23 @@
   </div>
 
   <main class="container">
+    <!-- ABOUT (indi 2-ci sırada göstərilir) -->
+    <section id="about" class="about">
+      <div class="section-title">
+        <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
+        <p class="section-sub" data-i18n="about_sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
+      </div>
+      <div class="about-text" data-i18n-html="about_long_1">
+        <p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
+        <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
+        <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
+        <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
+        <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
+        <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
+        <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
+      </div>
+    </section>
+
     <!-- SERVICES -->
     <section id="services">
       <div class="section-title">
@@ -314,23 +329,6 @@
           </div>
           <p data-i18n="tr_geoai_d">ArcGIS-də coğrafi süni intellekt (GeoAI) – süni intellektin (AI), maşın öyrənməsinin (ML) və dərin öyrənmənin (DL) CİS ilə inteqrasiyasıdır ki, bu da bilik yaratmaq və coğrafi problemləri həll etmək üçün istifadə olunur. Klasterləşdirmə və pattern aşkarlanması, proqnozlaşdırma və qabaqcadan təxmin etmə, həmçinin təsvirlərdən məlumat çıxarılması ilə bağlı tapşırıqlar üçün GeoAI iş axınlarını öyrənirik.</p>
         </article>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="about">
-      <div class="section-title">
-        <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
-        <p class="section-sub" data-i18n="about_sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
-      </div>
-      <div class="about-text" data-i18n-html="about_long_1">
-        <p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
-        <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
-        <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
-        <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
-        <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
-        <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
-        <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
       </div>
     </section>
 
