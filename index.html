@@ -185,7 +185,7 @@
       <nav aria-label="primary">
         <ul>
           <li><a class="active" href="#top" data-nav="top" data-i18n="nav_home">Əsas səhifə</a></li>
-          <!-- QALSIN: Haqqımızda yalnız BURADA -->
+          <!-- Haqqımızda MÜTLƏQ 2-ci sırada -->
           <li><a href="#about" data-nav="about" data-i18n="nav_about">Haqqımızda</a></li>
           <li><a href="#services" data-nav="services" data-i18n="nav_services">Xidmətlər</a></li>
           <li><a href="#training" data-nav="training" data-i18n="nav_training">Təlimlər</a></li>
@@ -487,6 +487,8 @@
       document.querySelectorAll('.lang button').forEach(b=>{
         b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang==='az'?'aze':'eng'));
       });
+      // Dil dəyişəndə də naviqasiya sırası qorunsun
+      enforceNavOrder();
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
@@ -544,15 +546,44 @@
     // Ekran böyüyəndə menyunu bağla
     window.addEventListener('resize', ()=>{ if (window.innerWidth > 768) closeMenu(); });
 
-    // ======= Yeniləmə (refresh) zamanı həmişə ana səhifəyə qayıt =======
+    // ======= NAV sırasını MÜTLƏQ olaraq: Home -> About -> Services -> Training -> Contact =======
+    function enforceNavOrder(){
+      const desired = ['top','about','services','training','contact'];
+      const ul = document.querySelector('nav ul');
+      const map = new Map();
+      ul.querySelectorAll('a[data-nav]').forEach(a=> map.set(a.getAttribute('data-nav'), a.closest('li')));
+      desired.forEach(key => { const li = map.get(key); if(li) ul.appendChild(li); });
+    }
+    enforceNavOrder();
+
+    // ======= Refresh zamanı həmişə ana səhifəyə qayıt (hash-i sil) =======
+    history.scrollRestoration = 'manual';
+
+    function jumpHome(){
+      if (location.hash){
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+      window.scrollTo(0,0);
+      setActive('top');
+    }
+
+    // İlk yükləmə və dil seçimi zamanı tətbiq et
+    window.addEventListener('DOMContentLoaded', ()=>{
+      if (location.hash) jumpHome();
+    });
+
+    // Bəzi brauzerlər bfcache-dən geri qayıda bilər – pageshow ilə də tuturuq
+    window.addEventListener('pageshow', (e)=>{
+      const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
+      const isReload = (nav && nav.type === 'reload') || (performance.navigation && performance.navigation.type === 1) || e.persisted;
+      if (isReload) jumpHome();
+    });
+
+    // Əlavə təhlükəsizlik: F5/ctrl+R zamanı hash varsa sil
     (function(){
       const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
       const isReload = (navEntry && navEntry.type === 'reload') || (performance.navigation && performance.navigation.type === 1);
-      if (isReload){
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-        window.scrollTo(0,0);
-        setActive('top');
-      }
+      if (isReload) jumpHome();
     })();
   </script>
 </body>
