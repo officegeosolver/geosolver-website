@@ -37,7 +37,6 @@
     img{max-width:100%; height:auto; display:block;}
     a{color:inherit;text-decoration:none}
     .container{max-width:var(--max);margin:0 auto;padding:0 var(--g3)}
-    /* Anchor offset for fixed header */
     section, #top{scroll-margin-top:calc(var(--headerH) + 12px)}
 
     /* NAVBAR */
@@ -113,6 +112,7 @@
     #services .card.service{border:none;background:transparent;box-shadow:none;padding:0}
     .service{display:flex;flex-direction:column;align-items:center;text-align:center;gap:16px}
     .service .icon img{width:40px; height:40px; display:block}
+    .service .icon svg{width:40px;height:40px;display:block}
     .service h3{margin:6px 0 0;font-size:22px;font-weight:600}
     .service p{margin-top:6px;max-width:56ch;color:#475569;font-size:15px}
 
@@ -193,8 +193,8 @@
       </nav>
 
       <div class="lang" role="group" aria-label="Language switcher">
-        <button type="button" class="active" onclick="setLang('az')">AZE</button>
-        <button type="button" onclick="setLang('en')">ENG</button>
+        <button type="button" onclick="setLang('az')">AZE</button>
+        <button type="button" class="active" onclick="setLang('en')">ENG</button>
       </div>
     </div>
   </header>
@@ -202,72 +202,93 @@
   <!-- HERO -->
   <div id="top" class="hero-visual" style="background-image:url('https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/Baku_map3.png');">
     <div class="inner">
-      <h1 class="hero-title" data-i18n="hero_title">Coğrafi məlumatlarınızı CİS və GeoAI ilə daha güclü idarə edin</h1>
-      <p class="hero-sub" data-i18n="hero_sub">CİS texnologiyaları və süni intellektlə yüksək performanslı xidmətlər.</p>
+      <h1 class="hero-title" data-i18n="hero_title">Manage your geospatial data more powerfully with GIS & GeoAI</h1>
+      <p class="hero-sub" data-i18n="hero_sub">High-performance services with GIS technologies and artificial intelligence.</p>
       <div class="hero-cta">
-        <a class="btn soft" href="#services" data-i18n="cta_view">Xidmətlərə bax</a>
+        <a class="btn soft" href="#services" data-i18n="cta_view">See services</a>
       </div>
     </div>
   </div>
 
   <main class="container">
-    <!-- ABOUT (indi 2-ci sırada göstərilir) -->
+    <!-- ABOUT -->
     <section id="about" class="about">
       <div class="section-title">
-        <h2 class="section-heading" data-i18n="about_title_colored">GeoSolver haqqında</h2>
-        <p class="section-sub" data-i18n="about_sub">Məkan məlumatlarını dəyərə çevirən komanda</p>
+        <h2 class="section-heading" data-i18n="about_title_colored">About GeoSolver</h2>
+        <p class="section-sub" data-i18n="about_sub">A team turning geospatial data into value</p>
       </div>
       <div class="about-text" data-i18n-html="about_long_1">
-        <p><strong>GeoSolver</strong> Azərbaycanda fəaliyyət göstərən, CİS (coğrafi informasiya sistemləri), veb/xəritə tətbiqləri və süni intellektlə məkan analitikası üzrə ixtisaslaşmış komandadır.</p>
-        <p>Bizim məqsədimiz məkan məlumatlarını etibarlı arxitektura və ağıllı modellərlə real biznes dəyərinə çevirməkdir.</p>
-        <p>Məqsədimiz, istər açıq mənbə (open-source), istərsə də Esri məhsulları əsasında güclü CİS serverləri və keyfiyyətli məkan verilənləri yaratmaqdır. Bu strukturlaşdırılmış verilənlər üzərində etibarlı, istifadəsi rahat və yüksək performanslı CİS tətbiqləri hazırlayırıq.</p>
-        <p>Həmçinin GeoAI-ni müxtəlif sahələrdə tətbiq edərək ağıllı həllər qurur və CİS ekosistemini irəli aparırıq.</p>
-        <p>Bulud və DevOps praktikaları ilə Docker/Kubernetes, CI/CD və müşahidə alətlərini quraraq həlllərin dayanıqlı və miqyaslana bilən işləməsini təmin edirik.</p>
-        <p>Komandalar üçün praktiki təlimlər və konsaltinq təqdim edir, SLA ilə dəstəyi layihənin istismar dövründə də davam etdiririk.</p>
-        <p>GeoSolver Azərbaycan və Cənubi Qafqazda, eləcə də uzaqdan əməkdaşlıq modeli ilə beynəlxalq layihələrdə etibarlı tərəfdaş olmağı hədəfləyir.</p>
+        <p><strong>GeoSolver</strong> is a team in Azerbaijan specializing in GIS, web/map applications, and AI-driven geospatial analytics.</p>
+        <p>Our goal is to turn geospatial data into real business value with robust architecture and intelligent models.</p>
+        <p>We build strong GIS servers and high-quality spatial datasets on both open-source and Esri stacks. On top of these structured datasets, we deliver reliable, user-friendly, high-performance GIS applications.</p>
+        <p>We also apply GeoAI across domains to create smart solutions and move the GIS ecosystem forward.</p>
+        <p>With cloud and DevOps practices—Docker/Kubernetes, CI/CD, and observability—we ensure resilient, scalable operations.</p>
+        <p>We provide hands-on training and consultancy for teams and continue SLA-backed support during operations.</p>
+        <p>GeoSolver aims to be a trusted partner in Azerbaijan and the South Caucasus, and to join international projects via remote collaboration.</p>
       </div>
     </section>
 
     <!-- SERVICES -->
     <section id="services">
       <div class="section-title">
-        <h2 class="section-heading" data-i18n="services_title_colored">Xidmətlərimiz</h2>
-        <p class="section-sub" data-i18n="services_sub">Tam əhatəli olaraq göstərdiyimiz xidmətlər</p>
+        <h2 class="section-heading" data-i18n="services_title_colored">Our Services</h2>
+        <p class="section-sub" data-i18n="services_sub">A comprehensive set of services we provide</p>
       </div>
 
       <div class="grid two">
+        <!-- Consultancy -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/compass.svg" alt="Consultancy icon">
           </div>
-          <h3 data-i18n="srv_consult_t">CİS və İT Konsaltinqi</h3>
-          <p data-i18n="srv_consult_d">Proseslərinizi həm xəritə, həm də İT baxımından sadələşdirib dəyər qatırıq. Biznes məqsədlərinizi dəqiqləşdirir, mövcud sistemi audit edir, uyğun arxitektura alternativlərini müqayisə edir və aydın, mərhələli yol xəritəsi hazırlayırıq. Məlumatların CİS sistemlərinə uyğunlaşdırılması və xəritəyə inteqrasiya, eləcə də CİS arxitekturasının layihələndirilməsi və formalaşdırılması xidmətlərimizi əhatə edir.</p>
+          <h3 data-i18n="srv_consult_t">GIS & IT Consultancy</h3>
+          <p data-i18n="srv_consult_d">We streamline processes from both mapping and IT perspectives. We clarify business goals, audit your current system, compare architecture options, and deliver a clear, phased roadmap. It also covers preparing data for GIS alignment and map integration, as well as designing and forming the GIS architecture.</p>
         </article>
 
+        <!-- Web & Mobile GIS -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/monitor-smartphone.svg" alt="Web & Mobile GIS icon">
           </div>
-          <h3 data-i18n="srv1_t">Veb & Mobil CİS Tətbiqlərinin Hazırlanması</h3>
-          <p data-i18n="srv1_d">Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik. Sahədən mobil tətbiqlərlə məlumat toplanması, offline xəritələr və sinxronizasiya imkanları ilə.</p>
+          <h3 data-i18n="srv1_t">Web & Mobile GIS Application Development</h3>
+          <p data-i18n="srv1_d">You set the plan, we bring the map to life. We build tailored web and mobile GIS apps—with clean UI, fast maps, smart filters, and convenient reporting. Whatever platform your data lives on, we integrate reliably and deliver modern, stable solutions. Includes field data collection via mobile apps, plus offline maps and synchronization.</p>
         </article>
 
+        <!-- GeoAI -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/brain-circuit.svg" alt="GeoAI icon">
           </div>
           <h3 data-i18n="srv4_t">GeoAI</h3>
-          <p data-i18n="srv4_d">CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq. Bu istiqamətdə coğrafi məlumatların monitorinqi və anomaliya aşkarlanması, eləcə də obyekt aşkarlanması və land cover təsnifatı həyata keçirilir.</p>
+          <p data-i18n="srv4_d">We deliver solutions at the intersection of GIS and AI, processing satellite/orthophoto/UAV imagery with modern deep-learning approaches to produce vector layers and analytics for your maps. This includes geospatial monitoring and anomaly detection, as well as object detection and land-cover classification.</p>
         </article>
 
+        <!-- NEW: Geodatabase Schema Designer -->
+        <article class="card service">
+          <div class="icon" aria-hidden="true">
+            <!-- Inline SVG icon (nodes + database) -->
+            <svg viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <ellipse cx="12" cy="5" rx="7" ry="3"></ellipse>
+              <path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5"></path>
+              <path d="M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"></path>
+              <circle cx="5" cy="4" r="1.5"></circle>
+              <circle cx="19" cy="4" r="1.5"></circle>
+            </svg>
+          </div>
+          <h3 data-i18n="srv_schema_t">Geodatabase Schema Designer</h3>
+          <p data-i18n="srv_schema_d">We design optimized geodatabase schemas so your GIS scales cleanly. From feature classes and relationship classes to domains and subtypes, we model entities, constraints, and rules that reduce duplication, improve data quality, and enable seamless integration across ArcGIS Enterprise, GeoServer, and downstream apps. Includes schema audits, migration plans, and documentation.</p>
+        </article>
+
+        <!-- GIS Servers -->
         <article class="card service">
           <div class="icon">
             <img src="https://raw.githubusercontent.com/officegeosolver/geosolver-website/main/assets/icons/database.svg" alt="GIS servers icon">
           </div>
-          <h3 data-i18n="srv_gis_servers_t">CİS serverlərinin qurulması</h3>
-          <p data-i18n="srv_gis_servers_d">Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik. Buraya CİS sistemlərinin formalaşdırılması və mühitin hazırlanması, yüksək mövcudluq, təhlükəsizlik və performans tənzimləmələri daxildir.</p>
+          <h3 data-i18n="srv_gis_servers_t">GIS Server Deployment</h3>
+          <p data-i18n="srv_gis_servers_d">We design and build a reliable and scalable GIS server environment for your organization. We estimate requirements and capacity, plan on-prem or cloud deployment, and configure services such as map services to run quickly and reliably. This includes forming GIS systems and preparing the environment, plus high availability, security, and performance tuning.</p>
         </article>
 
+        <!-- 3D Cadastre -->
         <article class="card service">
           <div class="icon" aria-hidden="true">
             <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2563eb" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -276,8 +297,8 @@
               <path d="M12 12v10"/>
             </svg>
           </div>
-          <h3 data-i18n="srv_3d_t">3D Kadastr və Vizualizasiya</h3>
-          <p data-i18n="srv_3d_d">Əmlakların və torpaq sahələrinin 3D modelləşdirilməsi, hüquqi məlumatların 3D kadastrla əlaqələndirilməsi və interaktiv vizuallaşdırma.</p>
+          <h3 data-i18n="srv_3d_t">3D Cadastre & Visualization</h3>
+          <p data-i18n="srv_3d_d">3D modeling of properties and parcels, linking legal records with 3D cadastre and interactive visualization.</p>
         </article>
       </div>
     </section>
@@ -285,8 +306,8 @@
     <!-- TRAINING -->
     <section id="training">
       <div class="section-title">
-        <h2 class="section-heading" data-i18n="training_title_colored">Təlimlər</h2>
-        <p class="section-sub" data-i18n="training_sub">Praktiki proqramlar və bootcamp-lər</p>
+        <h2 class="section-heading" data-i18n="training_title_colored">Training</h2>
+        <p class="section-sub" data-i18n="training_sub">Hands-on programs and bootcamps</p>
       </div>
 
       <div class="grid two">
@@ -295,9 +316,9 @@
             <div class="icon" aria-hidden="true">
               <calcite-icon icon="gis-server" scale="l"></calcite-icon>
             </div>
-            <h3 data-i18n="tr_ent_t">ArcGIS Enterprise təlimi</h3>
+            <h3 data-i18n="tr_ent_t">ArcGIS Enterprise</h3>
           </div>
-          <p data-i18n="tr_ent_d">ArcGIS Enterprise ilə CİS təməlini qurun. Enterprise platformasının imkanlarını praktiki şəkildə mənimsəməyə yönəlib: məzmunu təhlükəsiz paylaşmaq, tətbiq və xidmətləri əlçatan etmək, icazələri idarə etmək və komandalararası əməkdaşlığı dəstəkləyən ən yaxşı təcrübələri tətbiq etmək.</p>
+          <p data-i18n="tr_ent_d">Build your GIS foundation with ArcGIS Enterprise. A hands-on program to adopt the platform’s capabilities: securely sharing content, exposing apps/services, managing permissions, and applying collaboration best practices across teams.</p>
         </article>
 
         <article class="plain">
@@ -307,7 +328,7 @@
             </div>
             <h3 data-i18n="tr_online_t">ArcGIS Online</h3>
           </div>
-          <p data-i18n="tr_online_d">Xəritələr və tətbiqlər hamı üçün. ArcGIS Online təşkilat daxilində kəşf, yaratma və paylaşmanı mümkün edir. Bu kursda məzmunun təşkilat portalına dərc edilməsi, veb xəritə və tətbiqlərin hazırlanması, eləcə də əsas inzibati tapşırıqlar öyrənilir.</p>
+          <p data-i18n="tr_online_d">Maps and apps for everyone. Learn to publish content to your org portal, build web maps and apps, and perform core administrative tasks so everything stays discoverable and usable.</p>
         </article>
 
         <article class="plain">
@@ -317,7 +338,7 @@
             </div>
             <h3 data-i18n="tr_gs_t">GeoServer</h3>
           </div>
-          <p data-i18n="tr_gs_d">Geoserver, coğrafi məlumatlarınızı veb xidməti kimi dərc etməyə imkan verən açıq mənbəli server proqramıdır. Bu kurs GeoServerin nə olduğunu, niyə və nə vaxt ehtiyacınız olduğunu izah edəcək. Biz kompüterinizdə quraşdırılmış yerli host versiyasında nümunə məlumatlardan istifadə edərək GeoServer-in əsaslarını araşdıracağıq. Sonra öz məlumatlarınızdan istifadə edərək GeoServer-də layihənin qurulması addımlarını keçəcəyik.</p>
+          <p data-i18n="tr_gs_d">GeoServer is open-source server software that lets you publish geospatial data as web services. We cover the basics and step through setting up a real project.</p>
         </article>
 
         <article class="plain">
@@ -327,7 +348,7 @@
             </div>
             <h3 data-i18n="tr_geoai_t">GeoAI</h3>
           </div>
-          <p data-i18n="tr_geoai_d">ArcGIS-də coğrafi süni intellekt (GeoAI) – süni intellektin (AI), maşın öyrənməsinin (ML) və dərin öyrənmənin (DL) CİS ilə inteqrasiyasıdır ki, bu da bilik yaratmaq və coğrafi problemləri həll etmək üçün istifadə olunur. Klasterləşdirmə və pattern aşkarlanması, proqnozlaşdırma və qabaqcadan təxmin etmə, həmçinin təsvirlərdən məlumat çıxarılması ilə bağlı tapşırıqlar üçün GeoAI iş axınlarını öyrənirik.</p>
+          <p data-i18n="tr_geoai_d">Geospatial AI (GeoAI) in ArcGIS integrates AI, ML, and DL with GIS to produce knowledge and solve geographic problems. Explore workflows for clustering and pattern detection, prediction/forecasting, and extracting information from imagery.</p>
         </article>
       </div>
     </section>
@@ -335,7 +356,7 @@
     <!-- CONTACT -->
     <section id="contact" class="contact">
       <div class="section-title">
-        <h2 class="section-heading" data-i18n="contact_title_colored">Əlaqə</h2>
+        <h2 class="section-heading" data-i18n="contact_title_colored">Contact</h2>
       </div>
       <div class="contact-plain">
         <ul aria-label="Contact methods">
@@ -366,33 +387,33 @@
     </section>
   </main>
 
- <!-- FOOTER -->
-<footer>
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
-    <p>© <span id="year"></span> GeoSolver. <span data-i18n="rights">Bütün hüquqlar qorunur.</span></p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container" style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+      <p>© <span id="year"></span> GeoSolver. <span data-i18n="rights">All rights reserved.</span></p>
 
-    <div class="social" style="display:flex;gap:12px;align-items:center">
-      <a href="https://www.linkedin.com/company/geosolver"
-         aria-label="GeoSolver on LinkedIn" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:10px">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path fill="#2563eb" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM10 9h3.8v1.8h.05c.53-.95 1.84-1.95 3.79-1.95 4.05 0 4.8 2.66 4.8 6.11V21h-4v-5.33c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/>
-        </svg>
-        <span>LinkedIn</span>
-      </a>
+      <div class="social" style="display:flex;gap:12px;align-items:center">
+        <a href="https://www.linkedin.com/company/geosolver"
+           aria-label="GeoSolver on LinkedIn" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:10px">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="#2563eb" d="M4.98 3.5A2.5 2.5 0 1 1 5 8.5a2.5 2.5 0 0 1-.02-5zM3 9h4v12H3zM10 9h3.8v1.8h.05c.53-.95 1.84-1.95 3.79-1.95 4.05 0 4.8 2.66 4.8 6.11V21h-4v-5.33c0-1.27-.02-2.9-1.77-2.9-1.77 0-2.04 1.38-2.04 2.8V21h-4z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </a>
 
-      <a href="https://www.youtube.com/@GeoSolver-IT"
-         aria-label="GeoSolver on YouTube" target="_blank" rel="noopener"
-         style="display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:10px">
-        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
-          <path fill="#ef4444" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41 41 0 0 0 0 12a41 41 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41 41 0 0 0 24 12a41 41 0 0 0-.5-5.8z"/>
-          <path fill="#fff" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
-        </svg>
-        <span>YouTube</span>
-      </a>
+        <a href="https://www.youtube.com/@GeoSolver-IT"
+           aria-label="GeoSolver on YouTube" target="_blank" rel="noopener"
+           style="display:inline-flex;align-items:center;gap:8px;padding:6px 10px;border:1px solid var(--line);border-radius:10px">
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+            <path fill="#ef4444" d="M23.5 6.2a4 4 0 0 0-2.8-2.8C18.9 3 12 3 12 3s-6.9 0-8.7.4A4 4 0 0 0 .5 6.2 41 41 0 0 0 0 12a41 41 0 0 0 .5 5.8 4 4 0 0 0 2.8 2.8C5.1 21 12 21 12 21s6.9 0 8.7-.4a4 4 0 0 0 2.8-2.8A41 41 0 0 0 24 12a41 41 0 0 0-.5-5.8z"/>
+            <path fill="#fff" d="M9.75 15.02V8.98L15.5 12l-5.75 3.02z"/>
+          </svg>
+          <span>YouTube</span>
+        </a>
+      </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <!-- LANGUAGE, NAV & MENU -->
   <script>
@@ -410,6 +431,8 @@
         srv1_d:"Planı siz deyin, xəritəni biz canlandıraq. İstəyinizə uyğun veb və mobil CİS tətbiqləri hazırlayırıq — təmiz interfeys, sürətli xəritələr, ağıllı filtr və rahat hesabatlarla. Məlumatlarınız hansı platformada olursa-olsun, biz etibarlı inteqrasiya qurur, dayanıqlı işləyən müasir həll təqdim edirik. Sahədən mobil tətbiqlərlə məlumat toplanması, offline xəritələr və sinxronizasiya imkanları ilə.",
         srv4_t:"GeoAI",
         srv4_d:"CİS və süni intellektin kəsişməsində həllər təqdim edirik. Peyk, ortofoto və dron təsvirlərini müasir dərin öyrənmə yanaşmaları ilə emal edir, xəritələr üçün vektor qatlar və analitik nəticələr yaradırıq. Bu istiqamətdə coğrafi məlumatların monitorinqi və anomaliya aşkarlanması, eləcə də obyekt aşkarlanması və land cover təsnifatı həyata keçirilir.",
+        srv_schema_t:"Geodatabase Schema Designer",
+        srv_schema_d:"Məlumat modellərinizi optimallaşdırılmış geodatabase sxemi ilə qururuq: feature class-lar, relationship class-lar, domenlər və subtype-lar. Dublikatları azaldır, keyfiyyəti yüksəldir və ArcGIS/GeoServer inteqrasiyasını asanlaşdırırıq. Audit, miqrasiya planı və sənədləşdirmə daxildir.",
         srv_gis_servers_t:"CİS serverlərinin qurulması",
         srv_gis_servers_d:"Təşkilatınız üçün etibarlı və miqyaslana bilən CİS server mühiti layihələndirib qururuq. Tələbləri və tutumu hesablayır, on-prem ya da bulud yerləşdirməsini planlayır, xəritə servisi kimi xidmətləri sürətli və sabit işlədəcək şəkildə konfiqurasiya edirik. Buraya CİS sistemlərinin formalaşdırılması və mühitin hazırlanması, yüksək mövcudluq, təhlükəsizlik və performans tənzimləmələri daxildir.",
         srv_3d_t:"3D Kadastr və Vizualizasiya",
@@ -445,6 +468,8 @@
         srv1_d:"You set the plan, we bring the map to life. We build tailored web and mobile GIS apps—with clean UI, fast maps, smart filters, and convenient reporting. Whatever platform your data lives on, we integrate reliably and deliver modern, stable solutions. Includes field data collection via mobile apps, plus offline maps and synchronization.",
         srv4_t:"GeoAI",
         srv4_d:"We deliver solutions at the intersection of GIS and AI, processing satellite/orthophoto/UAV imagery with modern deep-learning approaches to produce vector layers and analytics for your maps. This includes geospatial monitoring and anomaly detection, as well as object detection and land-cover classification.",
+        srv_schema_t:"Geodatabase Schema Designer",
+        srv_schema_d:"We design optimized geodatabase schemas so your GIS scales cleanly. From feature classes and relationship classes to domains and subtypes, we model entities, constraints, and rules that reduce duplication, improve data quality, and enable seamless integration across ArcGIS Enterprise, GeoServer, and downstream apps. Includes schema audits, migration plans, and documentation.",
         srv_gis_servers_t:"GIS Server Deployment",
         srv_gis_servers_d:"We design and build a reliable and scalable GIS server environment for your organization. We estimate requirements and capacity, plan on-prem or cloud deployment, and configure services such as map services to run quickly and reliably. This includes forming GIS systems and preparing the environment, plus high availability, security, and performance tuning.",
         srv_3d_t:"3D Cadastre & Visualization",
@@ -485,12 +510,11 @@
       document.querySelectorAll('.lang button').forEach(b=>{
         b.classList.toggle('active', b.textContent.trim().toLowerCase().includes(lang==='az'?'aze':'eng'));
       });
-      // Dil dəyişəndə də naviqasiya sırası qorunsun
       enforceNavOrder();
     }
 
     document.getElementById('year').textContent = new Date().getFullYear();
-    setLang('az');
+    setLang('en'); // Default to EN so you can review the new service
 
     // NAV aktivləşdirmə
     const sectionIds = ['top','about','services','training','contact'];
@@ -539,9 +563,7 @@
     }
 
     menuBtn.addEventListener("click", toggleMenu);
-    // Linkə klik edəndə menyunu bağla
     navMenu.querySelectorAll("a").forEach(a=>a.addEventListener("click", closeMenu));
-    // Ekran böyüyəndə menyunu bağla
     window.addEventListener('resize', ()=>{ if (window.innerWidth > 768) closeMenu(); });
 
     // ======= NAV sırasını MÜTLƏQ olaraq: Home -> About -> Services -> Training -> Contact =======
@@ -565,19 +587,16 @@
       setActive('top');
     }
 
-    // İlk yükləmə və dil seçimi zamanı tətbiq et
     window.addEventListener('DOMContentLoaded', ()=>{
       if (location.hash) jumpHome();
     });
 
-    // Bəzi brauzerlər bfcache-dən geri qayıda bilər – pageshow ilə də tuturuq
     window.addEventListener('pageshow', (e)=>{
       const nav = performance.getEntriesByType && performance.getEntriesByType('navigation')[0];
       const isReload = (nav && nav.type === 'reload') || (performance.navigation && performance.navigation.type === 1) || e.persisted;
       if (isReload) jumpHome();
     });
 
-    // Əlavə təhlükəsizlik: F5/ctrl+R zamanı hash varsa sil
     (function(){
       const navEntry = (performance.getEntriesByType && performance.getEntriesByType('navigation')[0]) || null;
       const isReload = (navEntry && navEntry.type === 'reload') || (performance.navigation && performance.navigation.type === 1);
