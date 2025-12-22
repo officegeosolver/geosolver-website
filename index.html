@@ -41,9 +41,10 @@
 
     /* NAVBAR */
     header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH);position:relative}
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .brand img.logo1-img{height:calc(var(--headerH) - 24px);  /* header 72pxdirsə -> ~48px */width:auto;}
+    .nav{ height: var(--headerH); }
+    .brand{ height: 100%; display:flex; align-items:center; }
+    .brand img.logo1-img{ height: 70%; width:auto; }
+
 
     /* Desktop menyu */
     nav ul{list-style:none;display:flex;gap:var(--g3);margin:0;padding:0}
