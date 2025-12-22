@@ -41,9 +41,14 @@
 
     /* NAVBAR */
     header{position:fixed;top:0;left:0;right:0;z-index:100;background:#fffffff2;backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
-    .nav{ height: var(--headerH); }
-    .brand{ height: 100%; display:flex; align-items:center; }
-    .brand img.logo1-img{ height: 70%; width:auto; }
+    .nav{display:flex;align-items:center;justify-content:space-between;gap:var(--g3);padding:12px 0;height:var(--headerH);position:relative}
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .brand img.logo1-img{
+  height: clamp(44px, calc(var(--headerH) - 18px), 64px);
+  width: auto;
+  display: block;
+  border-radius: 8px;
+}
 
 
     /* Desktop menyu */
